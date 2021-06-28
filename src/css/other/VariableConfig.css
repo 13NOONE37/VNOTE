@@ -1,0 +1,28 @@
+:root {
+  /* colors */
+  --blue-1: #000e14;
+  --blue-2: #00141f;
+  --blue-3: #001824;
+  --blue-4: #001b29;
+  --blue-5: #002233;
+  --blue-6: #00293d;
+  --blue-7: #00111a;
+  --blue-8: #003047;
+  --blue-9: #003d5c;
+  --blue-10: #003652;
+  --blue-11: #d6f1ff;
+
+  --grey-1: #7f7f7f;
+  --grey-2: #bfbfbf;
+
+  --positive: #1eb36d;
+  --neutral: #1e61b3;
+  --warning: #fff04d;
+  --error: #ff6347;
+
+  /* shadows */
+  --box-shadow-1: 0px 0px 12px 5px hsla(200, 100%, 25%, 0.2);
+
+  /* borders */
+  --border-1: 3px solid hsl(200, 100%, 10%);
+}

@@ -1,4 +1,4 @@
-// import 'css/Other/VariableConfig.css';
+import 'css/other/VariableConfig.css';
 // import 'css/App.css';
 
 import React, { useState, useEffect } from 'react';
@@ -63,7 +63,6 @@ function App() {
                     path={route.path}
                     exact={route.exact}
                     component={route.component}
-                    key={index}
                   />
                 );
               }
@@ -74,7 +73,6 @@ function App() {
                     path={route.path}
                     exact={route.path}
                     component={route.component}
-                    key={index}
                   />
                 );
               } else {
@@ -82,7 +80,6 @@ function App() {
                   path={route.path}
                   exact={route.exact}
                   component={route.component}
-                  key={index}
                 />;
               }
             })}

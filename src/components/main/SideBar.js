@@ -1,7 +1,8 @@
+import 'css/main/SideBar.css';
 import React, { useContext } from 'react';
 import { ReactComponent as VNoteLogo } from 'resources/logo.svg';
 
-import AppContext from 'store/AppContext';
+import AppContext from 'store/appContext';
 
 export default function SideBar() {
   const [
@@ -67,13 +68,25 @@ export default function SideBar() {
           <i className='fas fa-wrench'></i>
         </button>
 
-        <button className='SideBarLinkItem'>
-          <i className='fas fa-wrench'></i>
-          <span>Edit categories</span>
-        </button>
+        {actionsTable.map((item, index) => {
+          return (
+            <button className='SideBarLinkItem' key={index}>
+              <i className={item.icon}></i>
+              <span>{item.name}</span>
+            </button>
+          );
+        })}
       </div>
 
-      <div className='SideBottom'></div>
+      <div className='SideBottom'>
+        <button className='profileButton'>
+          {user.photoURL ? (
+            <img src={user.photoURL} />
+          ) : (
+            <i className='fas fa-user' />
+          )}
+        </button>
+      </div>
     </div>
   );
 }
