@@ -1,14 +1,5 @@
-import '../css/Authentication/LoginPage.css';
-import InputSquare from '../components/Authentication/InputSquare';
-import LandingSquare from '../components/Authentication/LandingSquare';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="container">
-      <InputSquare/>
-      <LandingSquare/>
-    </div>
-  );
+export default function LoginPage() {
+  return <div>login page</div>;
 }
-
-export default App;
