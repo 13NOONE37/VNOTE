@@ -1,0 +1,58 @@
+.ProfileBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+
+  background-color: #000e14;
+  flex-direction: column;
+  z-index: 2;
+}
+.ProfileBar .indicator {
+  position: absolute;
+  height: 77px;
+  width: 77px;
+  bottom: 0;
+  left: 0;
+
+  background-color: #003652;
+  transition: all 0.2s ease-in;
+}
+.ProfileBar .indicator::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 7px;
+  background-color: #00293d;
+}
+.ProfileBar .indicator::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 7px;
+  background-color: #00293d;
+}
+
+.ProfileBar button {
+  cursor: pointer;
+  height: 77px;
+  width: 77px;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+
+  border: none;
+  outline: none;
+
+  background-color: transparent;
+}
+.ProfileBar button i {
+  color: var(--grey-2);
+  z-index: 2;
+}

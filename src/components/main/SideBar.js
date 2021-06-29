@@ -61,10 +61,13 @@ export default function SideBar() {
           <VNoteLogo />
           <h1>VNote</h1>
         </span>
-        <input type='search' />
+        <button>
+          <span>Search</span>
+          <i className='fas fa-search'></i>
+        </button>
       </div>
 
-      <div className='SideMiddle'>
+      <div className='SideMiddle scrollClass'>
         <button className='SideBarLinkItem editCategories'>
           <span>Edit categories</span>
           <i className='fas fa-wrench'></i>

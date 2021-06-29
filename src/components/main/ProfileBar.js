@@ -1,22 +1,26 @@
-import React from 'react';
+import 'css/main/ProfileBar.css';
 
+import React, { useState } from 'react';
 import SignOut from 'utils/SignOut.js';
 
 export default function ProfileBar() {
+  const [currentPos, setcurrentPos] = useState(0);
+
+  const handleMoveIndicator = (e) => {
+    setcurrentPos(e.currentTarget.offsetTop);
+  };
+
   return (
-    <div className='profileBar'>
-      <span className='indicator'></span>
-      <button>
+    <div className='ProfileBar'>
+      <span className='indicator' style={{ top: `${currentPos}px` }}></span>
+      <button onMouseEnter={handleMoveIndicator}>
         <i className='fas fa-sign-out-alt'></i>
-        <span>Logout</span>
       </button>
-      <button>
+      <button onMouseEnter={handleMoveIndicator}>
         <i className='fas fa-cog'></i>
-        <span>Settings</span>
       </button>
-      <button>
+      <button onMouseEnter={handleMoveIndicator}>
         <i className='fas fa-user'></i>
-        <span>Profile</span>
       </button>
     </div>
   );

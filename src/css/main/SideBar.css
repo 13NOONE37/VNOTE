@@ -3,6 +3,9 @@
   width: 250px;
   height: 100%;
   background-color: var(--blue-3);
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 /* TOP */
@@ -27,26 +30,45 @@
   height: 60px;
 }
 
-.SideTop input {
+.SideTop button {
+  cursor: pointer;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
   position: relative;
   margin-top: 50px;
+  padding: var(--size-3);
+  font-size: var(--size_4);
   width: 95%;
   height: 48px;
 
+  color: var(--grey-2);
   background-color: #002b3d;
   border: 3px solid #001b29;
   outline: none;
 }
-.SideTop input:focus {
+.SideTop button span {
+  margin-left: var(--size-3);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+.SideTop button i {
+  font-size: 22px;
+}
+.SideTop button:focus {
   box-shadow: var(--box-shadow-1);
-  transition: all 0.1s linear;
+  transition: all 0.2s ease-in;
 }
 
 /* MEDIUM */
 .SideMiddle {
   margin-top: 50px;
   width: 100%;
+  overflow: hidden auto;
 }
+
 .editCategories {
   cursor: pointer;
   margin-bottom: 20px;
@@ -64,7 +86,7 @@
   background-color: transparent;
   height: 44px;
   width: 90%;
-  color: var(--grey-1);
+  color: var(--grey-2);
   text-decoration: none;
 
   display: flex;
@@ -75,7 +97,8 @@
 }
 .SideBarLinkItem span {
   margin-left: var(--size-3);
-  font-size: var(--size-5);
+  font-size: 14px;
+  letter-spacing: 0.5px;
   font-weight: 500;
 }
 .SideBarLinkItem i {
@@ -85,6 +108,37 @@
 .SideBarLinkItem:focus {
   background: #002b3d;
   color: #fff;
+}
+
+/* BOTTOM */
+.SideBottom {
+  margin-top: 25px;
+}
+.SideBottom .profileButton {
+  cursor: pointer;
+  outline: none;
+  border: 4px solid var(--blue-10);
+  background-color: transparent;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  overflow: hidden;
+}
+.SideBottom .profileButton i {
+  font-size: 22px;
+  margin: auto;
+  color: var(--grey-2);
+}
+.SideBottom .profileButton img {
+  width: 100%;
+  height: 100%;
+}
+.SideBottom .profileButton:focus-within .ProfileBar {
+  display: flex;
 }
 
 @media only screen and (max-width: 660px) {
