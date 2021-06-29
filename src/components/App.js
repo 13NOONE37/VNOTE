@@ -5,8 +5,8 @@ import React, { useState, useEffect } from 'react';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import CheckSession from 'utils/CheckSession';
-import UpdateUserData from 'utils/UpdateUserData';
+import CheckSession from 'utils/AccountFunctions/CheckSession';
+import UpdateUserData from 'utils/AccountFunctions/UpdateUserData';
 
 import AppContext from 'store/appContext';
 import Routes from 'pages/Routes';

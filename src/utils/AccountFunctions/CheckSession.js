@@ -1,5 +1,5 @@
 import firebase from 'config/firebaseConfig';
-import FetchUserData from 'utils/FetchUserData';
+import FetchUserData from 'utils/AccountFunctions/FetchUserData';
 
 export default async function CheckSession(
   setLoggedIn,

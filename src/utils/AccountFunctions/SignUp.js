@@ -1,5 +1,5 @@
 import firebase from 'config/firebaseConfig';
-import OnAccountCreate from 'utils/OnAccountCreate';
+import OnAccountCreate from 'utils/AccountFunctions/OnAccountCreate';
 
 export default SignUp = async (email, username, password) => {
   try {

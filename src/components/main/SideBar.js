@@ -1,10 +1,11 @@
 import 'css/main/SideBar.css';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as VNoteLogo } from 'resources/logo.svg';
 import AppContext from 'store/appContext';
 import ProfileBar from 'components/main/ProfileBar';
+import AddCategory from 'components/modals/AddCategory';
 
 export default function SideBar() {
   const [
@@ -17,6 +18,8 @@ export default function SideBar() {
     categoriesTable,
     setcategoriesTable,
   ] = useContext(AppContext);
+
+  const [showAddCategories, setshowAddCategories] = useState(false);
 
   const actionsTable = [
     ...[
@@ -56,6 +59,13 @@ export default function SideBar() {
 
   return (
     <div className='SideBar'>
+      <AddCategory
+        categoriesTable={categoriesTable}
+        setcategoriesTable={setcategoriesTable}
+        showAddCategories={showAddCategories}
+        setshowAddCategories={setshowAddCategories}
+      />
+
       <div className='SideTop'>
         <span>
           <VNoteLogo />
@@ -68,7 +78,10 @@ export default function SideBar() {
       </div>
 
       <div className='SideMiddle scrollClass'>
-        <button className='SideBarLinkItem editCategories'>
+        <button
+          className='SideBarLinkItem editCategories'
+          onClick={() => setshowAddCategories(!showAddCategories)}
+        >
           <span>Edit categories</span>
           <i className='fas fa-wrench'></i>
         </button>
