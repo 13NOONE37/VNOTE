@@ -64,7 +64,7 @@ export default function SideBar() {
         <input type='search' />
       </div>
 
-      <ul className='SideMiddle'>
+      <div className='SideMiddle'>
         <button className='SideBarLinkItem editCategories'>
           <span>Edit categories</span>
           <i className='fas fa-wrench'></i>
@@ -74,19 +74,17 @@ export default function SideBar() {
           return (
             <NavLink
               key={index}
-              className='SideBarLink'
-              activeClassName='SideBarLink'
+              className='SideBarLinkItem'
+              activeClassName='SideBarLinkItem'
               to={item.link}
               exact='true'
             >
-              <li className='SideBarLinkItem'>
-                <i className={item.icon} />
-                <span>{item.name}</span>
-              </li>
+              <i className={item.icon} />
+              <span>{item.name}</span>
             </NavLink>
           );
         })}
-      </ul>
+      </div>
 
       <div className='SideBottom'>
         <button className='profileButton'>

@@ -21,54 +21,70 @@
 .SideTop h1 {
   color: #fff;
 }
+
 .SideTop svg {
   width: 60px;
   height: 60px;
 }
+
 .SideTop input {
+  position: relative;
   margin-top: 50px;
   width: 95%;
   height: 48px;
 
   background-color: #002b3d;
   border: 3px solid #001b29;
-  box-shadow: var(--box-shadow-1);
   outline: none;
+}
+.SideTop input:focus {
+  box-shadow: var(--box-shadow-1);
+  transition: all 0.1s linear;
 }
 
 /* MEDIUM */
 .SideMiddle {
   margin-top: 50px;
   width: 100%;
-  justify-content: center;
 }
 .editCategories {
+  cursor: pointer;
   margin-bottom: 20px;
   border: 3px solid #001b29 !important;
   outline: none;
   background-color: #000e14 !important;
-  /* height: 48px;
-  width: 95%;
-  color: var(--grey-2);
-  font-size: var(--size-7); */
+  justify-content: space-between;
+  margin-left: unset;
 }
 .SideBarLinkItem {
+  margin: var(--size-3) auto;
+  padding: var(--size-3);
   border: 3px solid #001b29;
   outline: none;
   background-color: transparent;
-  height: 48px;
-  width: 95%;
-  color: var(--grey-2);
-  font-size: var(--size-7);
+  height: 44px;
+  width: 90%;
+  color: var(--grey-1);
+  text-decoration: none;
+
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+  transition: all 0.2s ease-in;
 }
 .SideBarLinkItem span {
-  font-size: var(--size-4);
+  margin-left: var(--size-3);
+  font-size: var(--size-5);
+  font-weight: 500;
 }
 .SideBarLinkItem i {
-  font-size: var(--size-5);
+  font-size: 22px;
 }
-.SideBarLink {
-  text-decoration: none;
+.SideBarLinkItem:hover,
+.SideBarLinkItem:focus {
+  background: #002b3d;
+  color: #fff;
 }
 
 @media only screen and (max-width: 660px) {
