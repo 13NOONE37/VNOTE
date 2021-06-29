@@ -1,8 +1,10 @@
 import 'css/main/SideBar.css';
 import React, { useContext } from 'react';
-import { ReactComponent as VNoteLogo } from 'resources/logo.svg';
+import { NavLink } from 'react-router-dom';
 
+import { ReactComponent as VNoteLogo } from 'resources/logo.svg';
 import AppContext from 'store/appContext';
+import ProfileBar from 'components/main/ProfileBar';
 
 export default function SideBar() {
   const [
@@ -62,7 +64,7 @@ export default function SideBar() {
         <input type='search' />
       </div>
 
-      <div className='SideMiddle'>
+      <ul className='SideMiddle'>
         <button className='SideBarLinkItem editCategories'>
           <span>Edit categories</span>
           <i className='fas fa-wrench'></i>
@@ -70,21 +72,34 @@ export default function SideBar() {
 
         {actionsTable.map((item, index) => {
           return (
-            <button className='SideBarLinkItem' key={index}>
-              <i className={item.icon}></i>
-              <span>{item.name}</span>
-            </button>
+            <NavLink
+              key={index}
+              className='SideBarLink'
+              activeClassName='SideBarLink'
+              to={item.link}
+              exact='true'
+            >
+              <li className='SideBarLinkItem'>
+                <i className={item.icon} />
+                <span>{item.name}</span>
+              </li>
+            </NavLink>
           );
         })}
-      </div>
+      </ul>
 
       <div className='SideBottom'>
         <button className='profileButton'>
           {user.photoURL ? (
-            <img src={user.photoURL} />
+            <img
+              src={user.photoURL}
+              alt='Profile photo'
+              title={user.displayName}
+            />
           ) : (
-            <i className='fas fa-user' />
+            <i className='fas fa-user' title={user.displayName} />
           )}
+          <ProfileBar />
         </button>
       </div>
     </div>

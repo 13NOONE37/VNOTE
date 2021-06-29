@@ -1,3 +1,80 @@
 .SideBar {
+  padding: var(--size-3);
+  width: 250px;
+  height: 100%;
   background-color: var(--blue-3);
+}
+
+/* TOP */
+.SideTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.SideTop span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.SideTop h1 {
+  color: #fff;
+}
+.SideTop svg {
+  width: 60px;
+  height: 60px;
+}
+.SideTop input {
+  margin-top: 50px;
+  width: 95%;
+  height: 48px;
+
+  background-color: #002b3d;
+  border: 3px solid #001b29;
+  box-shadow: var(--box-shadow-1);
+  outline: none;
+}
+
+/* MEDIUM */
+.SideMiddle {
+  margin-top: 50px;
+  width: 100%;
+  justify-content: center;
+}
+.editCategories {
+  margin-bottom: 20px;
+  border: 3px solid #001b29 !important;
+  outline: none;
+  background-color: #000e14 !important;
+  /* height: 48px;
+  width: 95%;
+  color: var(--grey-2);
+  font-size: var(--size-7); */
+}
+.SideBarLinkItem {
+  border: 3px solid #001b29;
+  outline: none;
+  background-color: transparent;
+  height: 48px;
+  width: 95%;
+  color: var(--grey-2);
+  font-size: var(--size-7);
+}
+.SideBarLinkItem span {
+  font-size: var(--size-4);
+}
+.SideBarLinkItem i {
+  font-size: var(--size-5);
+}
+.SideBarLink {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 660px) {
+  .SideBar {
+    width: 100%;
+    height: 70px;
+    overflow: hidden; /*usunac tymaczowo*/
+  }
 }

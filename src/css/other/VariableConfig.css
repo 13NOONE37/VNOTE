@@ -25,4 +25,14 @@
 
   /* borders */
   --border-1: 3px solid hsl(200, 100%, 10%);
+
+  /* sizes */
+  --size-1: 2px;
+  --size-2: 4px;
+  --size-3: 6px;
+  --size-4: 10px;
+  --size-5: 12px;
+  --size-6: 16px;
+  --size-7: 20px;
+  --size-8: 24px;
 }

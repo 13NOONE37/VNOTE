@@ -1,5 +1,5 @@
 import 'css/other/VariableConfig.css';
-// import 'css/App.css';
+import 'css/other/app.css';
 
 import React, { useState, useEffect } from 'react';
 
