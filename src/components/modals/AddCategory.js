@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
+import Notify from 'components/other/Notify';
 
 export default function AddCategory({
   categoriesTable,
@@ -14,8 +15,15 @@ export default function AddCategory({
 }) {
   const box = useRef(null);
   const [categoryValue, setcategoryValue] = useState('');
+  const [showNotify, setshowNotify] = useState(false);
 
-  const handleChangeValue = (e) => setcategoryValue(e.target.value);
+  const handleCheckLength = () => {
+    categoryValue.length >= 29 ? setshowNotify(true) : setshowNotify(false);
+  };
+  const handleChangeValue = (e) => {
+    setcategoryValue(e.target.value);
+    handleCheckLength();
+  };
   const handleUnfocus = () => document.activeElement.blur();
   const handleEditGroup = (e) =>
     e.currentTarget.parentNode.querySelector('span').focus();
@@ -59,9 +67,19 @@ export default function AddCategory({
       {showAddCategories && (
         <div
           ref={box}
-          onMouseDown={(e) => handleClickOutside(e, box, setshowAddCategories)}
+          onMouseDown={(e) => {
+            handleClickOutside(e, box, setshowAddCategories);
+            setshowNotify(false);
+          }}
           className='modalBox'
         >
+          {showNotify && (
+            <Notify
+              notifyType='Info'
+              notifyContent={`Category name can't be longer than 30 characters. `}
+              notifyTime={12}
+            />
+          )}
           <div className='addCategoryWindow'>
             <span className='titleSection'>Add category</span>
 
@@ -69,7 +87,7 @@ export default function AddCategory({
               <form onSubmit={handleAddCategory}>
                 <input
                   type='text'
-                  maxLength='50'
+                  maxLength='30'
                   placeholder='Create new'
                   value={categoryValue}
                   onChange={handleChangeValue}
@@ -80,7 +98,7 @@ export default function AddCategory({
               </form>
             </span>
 
-            <span className='categories hiddenScroll'>
+            <span className='categories scrollClass'>
               {categoriesTable.length > 0 &&
                 categoriesTable.map((item, index) => (
                   <span className='category' key={index}>
@@ -97,16 +115,17 @@ export default function AddCategory({
                       {item.name}
                     </span>
 
-                    <button className='categoryButton tooltipParent'>
+                    <button className='categoryButton categoryDeleteButton'>
                       <i className='far fa-trash-alt'></i>
 
-                      <div className='deleteBox modalBox'>
+                      <div className='modalChild'>
                         <button
                           aria-label='Cancel delete'
                           onClick={handleUnfocus}
                         >
                           <i className='fas fa-chevron-left'></i>
                         </button>
+
                         <button
                           aria-label='Delete note'
                           onClick={() => handleDeleteGroup(index)}
@@ -121,7 +140,10 @@ export default function AddCategory({
 
             <span className='closeSection'>
               <button
-                onClick={() => setshowAddCategories(false)}
+                onClick={() => {
+                  setshowAddCategories(false);
+                  setshowNotify(false);
+                }}
                 className='addCategoryDone'
               >
                 Done

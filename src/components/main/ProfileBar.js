@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import SignOut from 'utils/AccountFunctions/SignOut.js';
 
 export default function ProfileBar() {
-  const [currentPos, setcurrentPos] = useState(0);
+  const [currentPos, setcurrentPos] = useState(154);
 
   const handleMoveIndicator = (e) => {
     setcurrentPos(e.currentTarget.offsetTop);

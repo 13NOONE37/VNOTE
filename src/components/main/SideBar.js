@@ -20,6 +20,7 @@ export default function SideBar() {
   ] = useContext(AppContext);
 
   const [showAddCategories, setshowAddCategories] = useState(false);
+  const [showSideBar, setshowSideBar] = useState(false);
 
   const actionsTable = [
     ...[
@@ -58,51 +59,25 @@ export default function SideBar() {
   ];
 
   return (
-    <div className='SideBar'>
-      <AddCategory
-        categoriesTable={categoriesTable}
-        setcategoriesTable={setcategoriesTable}
-        showAddCategories={showAddCategories}
-        setshowAddCategories={setshowAddCategories}
-      />
+    <>
+      <header className='header'>
+        <button
+          onClick={() => setshowSideBar(!showSideBar)}
+          className='expandButton'
+        >
+          <i className='fas fa-bars'></i>
+        </button>
 
-      <div className='SideTop'>
-        <span>
+        <NavLink
+          className='logoLink'
+          activeClassName='logoLink'
+          to='/'
+          exact='true'
+        >
           <VNoteLogo />
           <h1>VNote</h1>
-        </span>
-        <button>
-          <span>Search</span>
-          <i className='fas fa-search'></i>
-        </button>
-      </div>
+        </NavLink>
 
-      <div className='SideMiddle scrollClass'>
-        <button
-          className='SideBarLinkItem editCategories'
-          onClick={() => setshowAddCategories(!showAddCategories)}
-        >
-          <span>Edit categories</span>
-          <i className='fas fa-wrench'></i>
-        </button>
-
-        {actionsTable.map((item, index) => {
-          return (
-            <NavLink
-              key={index}
-              className='SideBarLinkItem'
-              activeClassName='SideBarLinkItem'
-              to={item.link}
-              exact='true'
-            >
-              <i className={item.icon} />
-              <span>{item.name}</span>
-            </NavLink>
-          );
-        })}
-      </div>
-
-      <div className='SideBottom'>
         <button className='profileButton'>
           {user.photoURL ? (
             <img
@@ -115,7 +90,70 @@ export default function SideBar() {
           )}
           <ProfileBar />
         </button>
-      </div>
-    </div>
+      </header>
+
+      <aside
+        className='SideBar'
+        style={{ display: `${showSideBar ? 'grid' : 'none'}!important` }}
+      >
+        <AddCategory
+          categoriesTable={categoriesTable}
+          setcategoriesTable={setcategoriesTable}
+          showAddCategories={showAddCategories}
+          setshowAddCategories={setshowAddCategories}
+        />
+
+        <div className='SideTop'>
+          <span>
+            <VNoteLogo />
+            <h1>VNote</h1>
+          </span>
+          <button>
+            <span>Search</span>
+            <i className='fas fa-search'></i>
+          </button>
+        </div>
+
+        <div className='SideMiddle scrollClass'>
+          <button
+            className='SideBarLinkItem editCategories'
+            onClick={() => setshowAddCategories(!showAddCategories)}
+          >
+            <span>Edit categories</span>
+            <i className='fas fa-wrench'></i>
+          </button>
+
+          {actionsTable.map((item, index) => {
+            return (
+              <NavLink
+                key={index}
+                className='SideBarLinkItem'
+                activeClassName='SideBarLinkItem'
+                to={item.link}
+                exact='true'
+              >
+                <i className={item.icon} />
+                <span>{item.name}</span>
+              </NavLink>
+            );
+          })}
+        </div>
+
+        <div className='SideBottom'>
+          <button className='profileButton'>
+            {user.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt='Profile photo'
+                title={user.displayName}
+              />
+            ) : (
+              <i className='fas fa-user' title={user.displayName} />
+            )}
+            <ProfileBar />
+          </button>
+        </div>
+      </aside>
+    </>
   );
 }

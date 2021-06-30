@@ -1,79 +1,80 @@
 .addCategoryWindow {
-  position: relative;
   max-width: 280px;
   max-height: 380px;
 
+  background-color: var(--blue-3);
+  box-shadow: var(--box-shadow-1);
+  border: var(--border-1);
+
+  padding: var(--size-4);
+
+  color: #fff;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-color: hsl(219, 20%, 17%);
-  box-shadow: 2px 2px 0px var(--color_dark_grey_2);
-
-  padding: var(--size_4);
-  color: hsl(0, 0%, 100%);
 }
 
 .titleSection {
   width: 100%;
 
+  font-size: var(--size-6);
   font-weight: 500;
+  letter-spacing: 0.5px;
   display: flex;
   justify-content: flex-start;
-  padding-bottom: var(--size_4);
+  padding-bottom: var(--size-4);
 }
-
 .closeSection {
   width: 100%;
 
   display: flex;
   justify-content: flex-end;
-  border-top: 1px solid var(--color_light_grey_6);
+  border-top: 1px solid var(--blue-11);
 
-  padding-top: var(--size_4);
+  padding-top: var(--size-4);
 }
 
 .addCategoryField input {
-  padding: var(--size_3);
+  padding: var(--size-3);
   outline: none;
   border: none;
   background-color: transparent;
+  color: #fff;
 
-  color: white;
-  font-size: var(--size_5);
+  font-size: var(--size-6);
   font-weight: 500;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0.5px solid transparent;
 }
 .addCategoryField input:focus {
-  border-bottom: 1px solid var(--color_dark_grey_2);
+  border-bottom: 0.5px solid var(--grey-3);
 }
 
 .categories {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 
-  margin: var(--size_4) 0;
-  overflow-y: scroll;
-  display: none;
+  margin: var(--size-4) 0;
+  overflow: hidden auto;
 }
 .category {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  transition: var(--transition_1);
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  transition: all 0.1s ease-in;
+  border-top: 0.5px solid transparent;
+  border-bottom: 0.5px solid transparent;
 }
 .category:hover {
-  border-top: 1px solid var(--color_dark_grey_2);
-  border-bottom: 1px solid var(--color_dark_grey_2);
+  border-top: 0.5px solid var(--grey-3);
+  border-bottom: 0.5px solid var(--grey-3);
 }
 
 .categoryButton {
-  /* cursor: pointer; */
+  cursor: pointer;
   background-color: transparent;
   outline: none;
   border: none;
@@ -84,9 +85,8 @@
 
   height: 35px;
   width: 35px;
-  font-size: var(--size_5);
-  padding: var(--size_3);
-  border-radius: 50%;
+  font-size: var(--size-5);
+  padding: var(--size-3);
 }
 
 .categoryButton:hover,
@@ -109,14 +109,48 @@
   outline: none;
   border: none;
 
-  color: white;
-  font-size: var(--size_5);
+  color: #fff;
+  font-size: var(--size-6);
   font-weight: 500;
 
-  padding: var(--size_3);
-  transition: var(--transition_1);
+  padding: var(--size-3);
+  transition: all 0.1s ease-in;
 }
 .addCategoryDone:hover,
 .addCategoryDone:focus {
   backdrop-filter: brightness(1.3);
+}
+
+.modalChild {
+  position: absolute;
+  left: -100px;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+  width: auto;
+  height: 40px;
+  background-color: #001b29;
+  border: var(--border-1);
+  z-index: 455;
+}
+.categoryDeleteButton:focus-within .modalChild {
+  visibility: visible;
+  opacity: 1;
+}
+.modalChild button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+
+  width: 40px;
+  height: 100%;
+}
+.modalChild button:hover,
+.modalChild button:focus {
+  backdrop-filter: brightness(1.3);
+}
+
+.modalChild button:nth-child(2) {
+  background-color: #ff6347;
 }

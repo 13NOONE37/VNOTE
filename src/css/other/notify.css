@@ -1,0 +1,96 @@
+.notify {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 280px;
+  min-height: 80px;
+  max-height: 350px;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #003652;
+  box-shadow: var(--box-shadow-1);
+
+  color: #ffffff;
+
+  will-change: transform;
+  animation: notifyAppear 1s ease-out;
+}
+
+@keyframes notifyAppear {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.notifyWarning {
+  border-left: 13px solid hsl(55, 71%, 45%);
+}
+
+.notifyError {
+  border-left: 13px solid hsl(9, 710%, 45%);
+}
+
+.notifyInfo {
+  border-left: 13px solid hsl(213, 71%, 45%);
+}
+
+.notifyPositive {
+  border-left: 13px solid hsl(152, 71%, 45%);
+}
+
+.notify span {
+  max-height: 350px;
+  width: 100%;
+  padding: var(--size-5);
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow: hidden auto;
+}
+.notify .closeButton {
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  margin: var(--size-2);
+}
+.notify .closeButton button {
+  z-index: 2;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #fff;
+}
+
+.notify .closeButton button,
+.notify .closeButton svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circle-background,
+.circle-progress {
+  fill: none;
+}
+
+.circle-background {
+  /* color of progress circle */
+  stroke: transparent;
+}
+
+.circle-progress {
+  stroke: #00111a;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

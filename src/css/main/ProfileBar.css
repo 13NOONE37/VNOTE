@@ -1,5 +1,5 @@
 .ProfileBar {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   display: none;
@@ -12,7 +12,6 @@
   position: absolute;
   height: 77px;
   width: 77px;
-  bottom: 0;
   left: 0;
 
   background-color: #003652;
