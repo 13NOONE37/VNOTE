@@ -1,0 +1,25 @@
+.CreateNote {
+  outline: none;
+  background-color: #003652;
+  color: #7f7f7f;
+  box-shadow: var(--box-shadow-1);
+  border: 3px solid #001b29;
+
+  width: 266px;
+  padding: var(--size-4);
+
+  display: flex;
+  justify-content: space-between;
+
+  font: 500 var(--size-6) 'Red Hat Display', monospace;
+  letter-spacing: 0.5px;
+}
+.CreateNote:hover {
+}
+.CreateNote span:nth-child(2) {
+  display: flex;
+}
+.CreateNote i {
+  margin: auto var(--size-3);
+  font-size: var(--size-7);
+}

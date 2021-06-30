@@ -1,5 +1,6 @@
 import 'css/main/SideBar.css';
 import React, { useContext, useState } from 'react';
+
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as VNoteLogo } from 'resources/logo.svg';
@@ -94,7 +95,7 @@ export default function SideBar() {
 
       <aside
         className='SideBar'
-        style={{ display: `${showSideBar ? 'grid' : 'none'}!important` }}
+        style={{ display: `${showSideBar ? 'grid' : 'none'}` }}
       >
         <AddCategory
           categoriesTable={categoriesTable}
@@ -108,13 +109,14 @@ export default function SideBar() {
             <VNoteLogo />
             <h1>VNote</h1>
           </span>
-          <button>
-            <span>Search</span>
-            <i className='fas fa-search'></i>
-          </button>
         </div>
 
         <div className='SideMiddle scrollClass'>
+          <button className='searchButton'>
+            <span>Search</span>
+            <i className='fas fa-search'></i>
+          </button>
+
           <button
             className='SideBarLinkItem editCategories'
             onClick={() => setshowAddCategories(!showAddCategories)}
