@@ -9,21 +9,22 @@
 /* TOP */
 .SideTop {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.SideTop span {
-  width: 100%;
-  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.SideTop h1 {
+.SideTop .logoLink {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+.SideTop .logoLink h1 {
   color: #fff;
 }
 
-.SideTop svg {
+.SideTop .logoLink svg {
   width: 60px;
   height: 60px;
 }
@@ -199,6 +200,7 @@
   }
   .SideMiddle {
     margin-top: unset;
+    padding-bottom: 100px;
   }
   .SideBottom {
     display: none;

@@ -1,7 +1,7 @@
 import 'css/modals/addCategory.css';
 import 'css/modals/modalConfig.css';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
@@ -14,6 +14,8 @@ export default function AddCategory({
   setshowAddCategories,
 }) {
   const box = useRef(null);
+  const inputRef = useRef(null);
+
   const [categoryValue, setcategoryValue] = useState('');
   const [showNotify, setshowNotify] = useState(false);
 
@@ -62,6 +64,10 @@ export default function AddCategory({
     );
   };
 
+  useEffect(() => {
+    showAddCategories && inputRef.current.focus();
+  }, [showAddCategories]);
+
   return ReactDOM.createPortal(
     <>
       {showAddCategories && (
@@ -86,6 +92,7 @@ export default function AddCategory({
             <span className='addCategoryField'>
               <form onSubmit={handleAddCategory}>
                 <input
+                  ref={inputRef}
                   type='text'
                   maxLength='30'
                   placeholder='Create new'

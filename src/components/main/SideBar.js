@@ -105,10 +105,15 @@ export default function SideBar() {
         />
 
         <div className='SideTop'>
-          <span>
+          <NavLink
+            className='logoLink'
+            activeClassName='logoLink'
+            to='/'
+            exact='true'
+          >
             <VNoteLogo />
             <h1>VNote</h1>
-          </span>
+          </NavLink>
         </div>
 
         <div className='SideMiddle scrollClass'>
