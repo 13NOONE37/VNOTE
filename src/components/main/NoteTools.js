@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import encryptNote from 'utils/NoteActions/encryptNote';
 import ChangeColor from 'utils/NoteActions/ChangeColor';
 import addCheckboxes from 'utils/NoteActions/addCheckboxes';
-import LinkToCategories from 'utils/NoteActions/LinkToCategories';
+import LinkToCategories from 'components/modals/LinkToCategories';
 import Share from 'utils/NoteActions/share';
 import ArchiveNote from 'utils/NoteActions/ArchiveNote';
 import PreDelete from 'utils/NoteActions/preDelete';
@@ -17,6 +17,8 @@ export default function NoteTools({
   setshowEditedNote,
   setidShowEditedNote,
 }) {
+  const [showLinkCategories, setshowLinkCategories] = useState(false);
+
   return (
     <div
       onClick={(e) => {
@@ -71,13 +73,20 @@ export default function NoteTools({
             <span className='tooltip'>Encrypt note</span>
           </button>
 
-          <button aria-label='Link to group' className='tooltipParent'>
+          <button
+            aria-label='Link to group'
+            className='tooltipParent'
+            onClick={() => setshowLinkCategories(!showLinkCategories)}
+          >
             <i className='fas fa-link'></i>
             <span className='tooltip'>Link to category</span>
             <LinkToCategories
               setnotesArray={setnotesArray}
               notesArray={notesArray}
               id={item.id}
+              // categoriesTable={categoriesTable}
+              showLinkCategories={showLinkCategories}
+              setshowLinkCategories={setshowLinkCategories}
             />
           </button>
 

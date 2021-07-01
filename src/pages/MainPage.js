@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import Macy from 'macy';
 
+import EmptyState from 'components/other/EmptyState';
 import CreateNote from 'components/main/CreateNote';
 import Note from 'components/main/Note';
 import AppContext from 'store/appContext';
@@ -37,6 +38,7 @@ export default function MainPage() {
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
         <Note renderType='other' notesArray={notes} setnotesArray={setnotes} />
       </span>
+      {/* kiedy ten span jest pusty wyświetlić <EmptyState/> */}
     </div>
   );
 }
