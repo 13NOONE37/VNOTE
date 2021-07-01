@@ -140,7 +140,7 @@ export default function Note({
           key={index}
           className='note'
           style={{
-            backgroundImage: `linear-gradient(45deg, hsl(${item.color},60%,14%), hsl(${item.color},60%,20%))`,
+            backgroundImage: `linear-gradient(45deg, hsl(${item.color},45%,14%), hsl(${item.color},45%,20%))`,
           }}
         >
           {showEditedNote &&
@@ -172,7 +172,7 @@ export default function Note({
           <span className='noteTitle'>
             {item.title ? item.title : String.fromCharCode(0)}
           </span>
-          <span className='noteContent hiddenScroll'>
+          <span className='noteContent scrollClass'>
             {item.content && item.isCheckboxList ? (
               <div className='tasksList'>
                 {item.content.split('\n').map(

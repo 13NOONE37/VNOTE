@@ -1,5 +1,14 @@
 .mainPage {
   width: 100%;
+  overflow: hidden auto;
+}
+.actionsContainer {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .itemsGallery {
   width: 100%;

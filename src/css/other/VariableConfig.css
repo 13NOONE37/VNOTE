@@ -44,6 +44,7 @@
 }
 .scrollClass::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in;
 }
 .scrollClass::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.2);

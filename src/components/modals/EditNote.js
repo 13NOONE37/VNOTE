@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import ContentEditable from 'react-contenteditable';
 
 import 'css/modals/EditNote.css';
-import 'css/main//Note.css';
+import 'css/main/Note.css';
 
 import NoteTools from 'components/main/NoteTools';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
@@ -57,7 +57,7 @@ export default function EditNote({
         tabIndex={id}
         className='note'
         style={{
-          backgroundImage: `linear-gradient(45deg, hsl(${note.color},60%,14%), hsl(${note.color},60%,20%))`,
+          backgroundImage: `linear-gradient(45deg, hsl(${note.color},45%,14%), hsl(${note.color},45%,20%))`,
         }}
       >
         <button

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import 'css/main/NoteTools.css';
-
 import encryptNote from 'utils/NoteActions/encryptNote';
 import ChangeColor from 'utils/NoteActions/ChangeColor';
 import addCheckboxes from 'utils/NoteActions/addCheckboxes';

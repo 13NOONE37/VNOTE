@@ -29,7 +29,7 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div className='mainPage'>
+    <div className='mainPage scrollClass'>
       <span className='actionsContainer'>
         <CreateNote />
       </span>
