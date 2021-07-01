@@ -140,7 +140,7 @@ export default function Note({
           key={index}
           className='note'
           style={{
-            backgroundImage: `linear-gradient(45deg, hsl(${item.color},41%,31%), hsl(${item.color},41%,34%))`,
+            backgroundImage: `linear-gradient(45deg, hsl(${item.color},60%,14%), hsl(${item.color},60%,20%))`,
           }}
         >
           {showEditedNote &&

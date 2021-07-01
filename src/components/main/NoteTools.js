@@ -9,7 +9,7 @@ import LinkToCategories from 'utils/NoteActions/LinkToCategories';
 import Share from 'utils/NoteActions/share';
 import ArchiveNote from 'utils/NoteActions/ArchiveNote';
 import PreDelete from 'utils/NoteActions/preDelete';
-import Delete from 'utils/NoteActions/delete';
+import Delete from 'utils/NoteActions/Delete';
 
 export default function NoteTools({
   notesArray,

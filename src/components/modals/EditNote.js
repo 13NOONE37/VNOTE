@@ -49,7 +49,7 @@ export default function EditNote({
 
   return createPortal(
     <div
-      className='editNoteBox'
+      className='modalBox'
       ref={box}
       onMouseDown={(e) => handleClickOutside(e, box, setshowEditedNote)}
     >
@@ -57,7 +57,7 @@ export default function EditNote({
         tabIndex={id}
         className='note'
         style={{
-          backgroundImage: `linear-gradient(45deg, hsl(${note.color},41%,31%), hsl(${note.color},41%,34%))`,
+          backgroundImage: `linear-gradient(45deg, hsl(${note.color},60%,14%), hsl(${note.color},60%,20%))`,
         }}
       >
         <button
