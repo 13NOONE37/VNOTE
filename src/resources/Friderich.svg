@@ -66,7 +66,9 @@
 <g class="arm">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M32.98 150.26L20.25 165.34L0 206.03L19.28 227.59L37.82 219.2L43.1 176.85L32.98 150.26Z" fill="#B08968"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M30.41 152.44L23.28 158.49L20.25 165.34L43.1 176.85L44.59 169.52L34.98 153.58L30.41 152.44Z" fill="#EAECEB"/>
+<g class="hand">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M27.97 145.44L19.08 132.58L32.73 118.67L55.45 138.05L51.69 150.72L27.97 145.44Z" fill="#FBE3D4"/>
+</g>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M23.28 158.49L19.08 132.58L51.69 150.72L44.59 169.52L23.28 158.49Z" fill="#F4CAB2"/>
 </g>
 </g>

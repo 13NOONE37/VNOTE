@@ -5,7 +5,8 @@ import 'css/other/EmptyState.css';
 export default function EmptyState() {
   return (
     <div className='EmptyState'>
-      <span>There are not notes here</span>
+      <span>There are no notes here</span>
+      <span>You can create a new one by clicking button at the top</span>
       <div>
         <Friderich />
         <q>

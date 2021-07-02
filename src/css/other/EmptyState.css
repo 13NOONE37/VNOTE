@@ -4,14 +4,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  letter-spacing: 0.5px;
 }
 .EmptyState span {
-  text-transform: uppercase;
   color: var(--blue-11);
-  font-weight: 900;
-  font-size: var(--size-8);
+  font-weight: 600;
+  font-size: var(--size-7);
   text-align: center;
 }
+.EmptyState span:nth-child(2) {
+  margin-top: var(--size-7);
+}
+
 .EmptyState div {
   color: var(--grey-2);
   padding-top: 100px;
@@ -25,7 +29,7 @@
 .EmptyState q {
   max-width: 350px;
   padding-left: 40px;
-  font-size: var(--size-8);
+  font-size: var(--size-7);
   font-weight: 900;
 }
 @media only screen and (max-width: 660px) {
@@ -39,7 +43,7 @@
 .EmptyState svg .rightEye {
   transform-origin: center;
   transform-box: fill-box;
-  animation: blink 10s 3s ease-in-out infinite;
+  animation: blink 7s 3s ease-in-out infinite;
 }
 @keyframes blink {
   0%,
@@ -51,18 +55,54 @@
   }
 }
 
+.EmptyState svg .leftEyebrow,
+.EmptyState svg .rightEyebrow {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.EmptyState svg .leftEyebrow {
+  animation: leftEyebrowMove 7s 3s ease-in-out infinite;
+}
+.EmptyState svg .rightEyebrow {
+  animation: rightEyebrowMove 7s 3s ease-in-out infinite;
+}
+
+@keyframes leftEyebrowMove {
+  0%,
+  4% {
+    transform: translate(0, 0);
+  }
+  3% {
+    transform: translate(-2px, 2px);
+  }
+}
+@keyframes rightEyebrowMove {
+  0%,
+  4% {
+    transform: translate(0, 0);
+  }
+  3% {
+    transform: translate(-2px, 2px);
+  }
+}
+
 .EmptyState svg .arm {
   transform-origin: center;
   transform-box: fill-box;
-  animation: armMove 10s 3s ease-in-out infinite;
+  transform: translate(10px, -4px);
 }
 
-@keyframes armMove {
-  0%,
-  25% {
-    transform: rotate(0deg);
+.EmptyState svg .hand {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: handMove 1.5s ease alternate infinite;
+}
+
+@keyframes handMove {
+  0% {
+    transform: scaleY(1) skewX(0deg);
   }
-  15% {
-    transform: rotate(6deg);
+  100% {
+    transform: scaleY(1.2) skewX(-5deg);
   }
 }
