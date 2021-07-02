@@ -40,7 +40,7 @@
 
 /* scroll */
 .scrollClass::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 .scrollClass::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.1);

@@ -10,15 +10,12 @@ export default function Delete({ notesArray, setnotesArray, id }) {
   };
 
   return (
-    <div className='deleteBox modalBox'>
+    <div className='modalChild'>
       <button aria-label='Cancel delete' onClick={handleUnfocus}>
         <i className='fas fa-chevron-left'></i>
       </button>
-      <button
-        aria-label='Delete note'
-        style={{ backgroundColor: '#d84654' }}
-        onClick={handleDelete}
-      >
+
+      <button aria-label='Delete note' onClick={handleDelete}>
         <i className='far fa-trash-alt'></i>
       </button>
     </div>

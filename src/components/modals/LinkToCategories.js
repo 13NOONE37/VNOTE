@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import 'css/modals/LinkToCategories.css';
 import { createPortal } from 'react-dom';
+import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 
 export default function LinkToCategories({
   setnotesArray,
@@ -11,6 +12,7 @@ export default function LinkToCategories({
   setshowLinkCategories,
 }) {
   const [note, setnote] = useState(notesArray.find((item) => item.id == id));
+  const box = useRef(null);
 
   const linkNoteToGroup = (noteId, groupId) => {
     const tempNotes = notesArray.map((item) => {
@@ -27,27 +29,42 @@ export default function LinkToCategories({
     });
     setnotesArray(tempNotes);
   };
-  useEffect(() => {
-    console.log('usefekt');
-  }, []);
 
   return createPortal(
     <>
       {showLinkCategories && (
-        <div className='linkToGroupBox modalBox'>
-          {/* <span className='titleSection'>Link to category</span> */}
-          <ul className='linkGroups scrollClass'>
-            {categoriesTable.map((item, index) => (
-              <li className='linkGroup'>
-                <input
-                  checked={note.groups.includes(item.name)}
-                  type='checkbox'
-                  onChange={() => linkNoteToGroup(id, index)}
-                />
-                <span>{item.name}</span>
-              </li>
-            ))}
-          </ul>
+        <div
+          ref={box}
+          className='modalBox'
+          onClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => handleClickOutside(e, box, setshowLinkCategories)}
+        >
+          <div className='linkBox'>
+            <span className='titleSection'>Add category</span>
+            <ul className='linkGroups scrollClass'>
+              {categoriesTable.map((item, index) => (
+                <li className='linkGroup'>
+                  <input
+                    checked={note.groups.includes(item.name)}
+                    type='checkbox'
+                    onChange={() => linkNoteToGroup(id, index)}
+                  />
+                  <span>{item.name}</span>
+                </li>
+              ))}
+            </ul>
+
+            <span className='closeSection'>
+              <button
+                onClick={() => {
+                  setshowLinkCategories(false);
+                }}
+                className='addCategoryDone'
+              >
+                Done
+              </button>
+            </span>
+          </div>
         </div>
       )}
     </>,

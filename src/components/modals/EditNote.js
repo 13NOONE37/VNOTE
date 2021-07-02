@@ -49,7 +49,7 @@ export default function EditNote({
 
   return createPortal(
     <div
-      className='modalBox'
+      className='modalBox editNoteBox'
       ref={box}
       onMouseDown={(e) => handleClickOutside(e, box, setshowEditedNote)}
     >
@@ -68,14 +68,14 @@ export default function EditNote({
         </button>
 
         <textarea
-          className='titleEdit hiddenScroll'
+          className='titleEdit scrollClass'
           onChange={(e) => handleContentChange(e, setcurrentTitle)}
           maxLength='100'
           placeholder='Set title...'
           value={currentTitle}
         ></textarea>
 
-        <span className='noteContent hiddenScroll'>
+        <span className='noteContent scrollClass'>
           {note.content && note.isCheckboxList ? (
             <div className='tasksList'>
               {note.content.split('\n').map(
@@ -130,7 +130,7 @@ export default function EditNote({
             </div>
           ) : (
             <textarea
-              className='hiddenScroll'
+              className='scrollClass'
               placeholder='Add some content...'
               onKeyDown={handleKeyDownPrevent}
               onChange={(e) => handleContentChange(e, setcurrentContent)}
@@ -140,21 +140,11 @@ export default function EditNote({
         </span>
 
         <NoteTools
-          notesArray={notesArray}
-          setnotesArray={setnotesArray}
           item={note}
           showEditedNote={showEditedNote}
           setshowEditedNote={setshowEditedNote}
           setidShowEditedNote={setidShowEditedNote}
         />
-        <button
-          className='closeNoteEdit'
-          onClick={() => {
-            setshowEditedNote(!showEditedNote);
-          }}
-        >
-          <i className='fas fa-times'></i>
-        </button>
       </div>
     </div>,
     document.getElementById('modal'),

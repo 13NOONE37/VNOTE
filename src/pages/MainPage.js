@@ -38,7 +38,8 @@ export default function MainPage() {
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
         <Note renderType='other' notesArray={notes} setnotesArray={setnotes} />
       </span>
-      {/* kiedy ten span jest pusty wyświetlić <EmptyState/> */}
+      {!itemsGallery.current ||
+        (itemsGallery.current.children.length == 0 && <EmptyState />)}
     </div>
   );
 }

@@ -1,0 +1,66 @@
+.linkBox {
+  max-width: 280px;
+  max-height: 380px;
+
+  background-color: var(--blue-3);
+  box-shadow: var(--box-shadow-1);
+  border: var(--border-1);
+
+  padding: var(--size-4);
+
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.linkGroups {
+  padding: var(--size-4);
+  overflow: hidden auto;
+}
+.linkGroup {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+
+  transition: all 0.1s ease-in;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  padding: var(--size-4);
+}
+.linkGroup:hover {
+  border-top: 1px solid var(--grey-3);
+  border-bottom: 1px solid var(--grey-3);
+}
+
+.linkGroup input[type='checkbox'] {
+  position: relative;
+
+  -webkit-appearance: none;
+  background-color: transparent;
+
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 3px;
+
+  width: 14px;
+  height: 14px;
+
+  margin-right: 4px;
+}
+
+.linkGroup input[type='checkbox']:hover,
+.linkGroup input[type='checkbox']:focus {
+  border: 2px solid hsl(1, 1%, 65%);
+}
+
+.linkGroup input[type='checkbox']:checked {
+  border: 2px solid hsl(1, 1%, 65%);
+  color: hsl(1, 1%, 85%);
+
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20aria-hidden%3D%22true%22%20focusable%3D%22false%22%20data-prefix%3D%22fas%22%20data-icon%3D%22check%22%20class%3D%22svg-inline--fa%20fa-check%20fa-w-16%22%20role%3D%22img%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22hsl(1%2C%201%25%2C%2085%25)%22%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-size: 90%;
+}

@@ -1,0 +1,38 @@
+.shareBox {
+  max-width: 280px;
+  user-select: text;
+
+  box-shadow: var(--box-shadow-1);
+  border: var(--border-1);
+
+  background-color: var(--blue-3);
+
+  padding: var(--size-4);
+  color: #fff;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.shareBox a {
+  width: 75%;
+  white-space: nowrap;
+  padding: var(--size-3);
+  overflow-x: scroll;
+  color: #fff;
+}
+
+.shareBox button {
+  margin-left: var(--size-2);
+  width: 25%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: var(--size-7);
+  padding: var(--size-3);
+}
+.shareBox button:hover {
+  backdrop-filter: brightness(1.3);
+}

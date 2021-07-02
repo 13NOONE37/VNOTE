@@ -14,26 +14,6 @@
   flex-direction: column;
 }
 
-.titleSection {
-  width: 100%;
-
-  font-size: var(--size-6);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: var(--size-4);
-}
-.closeSection {
-  width: 100%;
-
-  display: flex;
-  justify-content: flex-end;
-  border-top: 1px solid var(--blue-11);
-
-  padding-top: var(--size-4);
-}
-
 .addCategoryField input {
   padding: var(--size-3);
   outline: none;

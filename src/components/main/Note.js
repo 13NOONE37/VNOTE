@@ -133,7 +133,6 @@ export default function Note({
           key={index}
           tabIndex={index}
           onClick={(e) => {
-            console.log(e.target, e.currentTarget);
             setshowEditedNote(true);
             setidShowEditedNote(item.id);
           }}
@@ -201,8 +200,6 @@ export default function Note({
           </span>
 
           <NoteTools
-            notesArray={notesArray}
-            setnotesArray={setnotesArray}
             item={item}
             showEditedNote={showEditedNote}
             setshowEditedNote={setshowEditedNote}

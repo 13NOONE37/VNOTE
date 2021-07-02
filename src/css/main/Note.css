@@ -94,7 +94,6 @@
   grid-template-columns: 100%;
 }
 .tasksList span {
-  /* max-width: calc(100% - 30px); */
   margin: 8px 0;
 }
 .tasksList .taskParent span {

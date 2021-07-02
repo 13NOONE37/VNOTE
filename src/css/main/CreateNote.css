@@ -1,7 +1,7 @@
 .CreateNote {
   outline: none;
   background-color: #003652;
-  color: #7f7f7f;
+  color: var(--grey-2);
   box-shadow: var(--box-shadow-1);
   border: 3px solid #001b29;
 
