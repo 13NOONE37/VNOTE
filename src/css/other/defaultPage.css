@@ -13,9 +13,13 @@
 .itemsGallery {
   width: 100%;
   padding: var(--size-8);
-  /* display: flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  justify-content: center; */
+  justify-content: center;
+  /* display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 20px; */
 }

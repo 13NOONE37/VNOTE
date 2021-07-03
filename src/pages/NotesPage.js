@@ -1,15 +1,17 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Macy from 'macy';
 
 import EmptyState from 'components/other/EmptyState';
 import CreateNote from 'components/main/CreateNote';
 import Note from 'components/main/Note';
 import AppContext from 'store/appContext';
-import ItemsGallery from 'components/main/ItemsGallery';
 
 import 'css/other/defaultPage.css';
 
 export default function NotesPage() {
+  const [isNewNote, setisNewNote] = useState(false);
+  const itemsGallery = useRef(null);
+
   const [
     loggedIn,
     user,
@@ -21,28 +23,39 @@ export default function NotesPage() {
     setcategoriesTable,
   ] = useContext(AppContext);
 
-  const itemsGallery = useRef(null);
-
-  //when we create this function move it to file and import in every page
   useEffect(() => {
-    // const macyInstance = new Macy({
+    // const macy = new Macy({
     //   container: '.itemsGallery',
-    //   mobileFirst: true,
+    //   trueOrder: false,
+    //   waitForImages: false,
+    //   margin: 24,
+    //   columns: 6,
+    //   breakAt: {
+    //     1200: 5,
+    //     940: 3,
+    //     520: 2,
+    //     400: 1,
+    //   },
     // });
   }, []);
 
   return (
     <div className='mainPage scrollClass'>
       <span className='actionsContainer'>
-        <CreateNote />
+        <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
-      {/* <span ref={itemsGallery} className='itemsGallery'>
+      <span ref={itemsGallery} className='itemsGallery'>
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
-        <Note renderType='other' notesArray={notes} setnotesArray={setnotes} />
+        <Note
+          renderType='other'
+          notesArray={notes}
+          setnotesArray={setnotes}
+          isNewNote={isNewNote}
+          setisNewNote={setisNewNote}
+        />
       </span>
       {!itemsGallery.current ||
-        (itemsGallery.current.children.length == 0 && <EmptyState />)} */}
-      <ItemsGallery notes={notes} setnotes={setnotes} />
+        (itemsGallery.current.children.length == 0 && <EmptyState />)}
     </div>
   );
 }

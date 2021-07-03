@@ -22,6 +22,7 @@ export default function MainPage() {
 
   const itemsGallery = useRef(null);
 
+  //when we create this function move it to file and import in every page
   useEffect(() => {
     // const macyInstance = new Macy({
     //   container: '.itemsGallery',
