@@ -1,0 +1,39 @@
+.inputSquare
+{
+    background-image:linear-gradient(140deg, rgb(236, 236, 234) 10%, rgb(223, 238, 181));
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+}
+
+.topBar
+{
+    /* border-bottom: 1px solid black; */
+}
+
+.inputField
+{
+    display: grid;
+    grid-template-rows: 1fr 25px;
+}
+
+
+footer ul
+{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: hsl(220, 50%, 10%);
+}
+footer ul li
+{
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:1400px){
+  .field
+  {
+      width:95%
+  }
+}

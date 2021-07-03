@@ -1,7 +1,7 @@
 import firebase from 'config/firebaseConfig';
-import Redirect from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-export default SignIn = async (email, password, setLoggedIn, setuser) => {
+export default async function SignIn(email, password, setLoggedIn, setuser) {
   const res = await firebase.auth().signInWithEmailAndPassword(email, password);
 
   if (res.user) {
@@ -12,4 +12,4 @@ export default SignIn = async (email, password, setLoggedIn, setuser) => {
     //obsluga bledu zwracanie wiadomosci
     return 'Something went wrong';
   }
-};
+}

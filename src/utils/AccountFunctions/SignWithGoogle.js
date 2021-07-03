@@ -2,7 +2,7 @@ import firebase from 'config/firebaseConfig';
 
 //!TODO zamienic na async await
 
-export default signInWithGoogle = (setLoggedIn, setuser) => {
+export default function signInWithGoogle(setLoggedIn, setuser) {
   let provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth().signInWithRedirect(provider);
@@ -30,4 +30,4 @@ export default signInWithGoogle = (setLoggedIn, setuser) => {
       let credential = error.credential;
       console.log(`Sign up google error: ${error}`);
     });
-};
+}

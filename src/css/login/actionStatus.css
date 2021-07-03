@@ -1,0 +1,16 @@
+.actionStatus
+{
+} 
+.actionStatus span
+{
+    text-align: center;   
+    width: 100%; 
+}
+.positive
+{
+    background-color:  hsla(110, 80%, 39%, .3);
+} 
+.negative
+{
+   background-color:  rgba(179,33,20,.3);
+}

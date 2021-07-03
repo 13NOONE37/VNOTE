@@ -1,0 +1,128 @@
+.landingSquare
+{
+    background-image:linear-gradient(140deg, rgb(60, 24, 94) 10%, rgba(172, 90, 248, 1));
+
+}
+main
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .word
+{
+    width: 100%;
+    text-transform: uppercase;
+}
+main .word span 
+{
+    transform: translateX(calc(-100vw / 2.52));
+    display: flex; 
+    letter-spacing: 2px;
+}
+
+main .word span h1
+{
+    font-size:  8em;
+    font-weight: 800;
+}
+
+main .word span h1:nth-child(1)
+{
+   color:rgb(60, 24, 94);
+   color:rgb(132, 66, 193);
+}
+
+main .word span h1:nth-child(2)
+{
+    color:rgb(236, 236, 234);
+}
+
+
+main .word h2
+{
+ color:white;
+ text-align: center;
+ padding-bottom: 12px;
+}
+
+
+main div
+{
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+main div span button
+{
+    display: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin:10px;
+    padding: 10px 24px;
+    font-size: 1.1em;
+    color:white;
+    
+    background-color: #5af8ac;
+    background-color: rgba(248, 93, 90, 1); 
+    background-color: #f8ac5a;
+    
+}
+
+
+@media only screen and (max-width:1800px){
+    main .word span 
+    {
+        transform: translateX(calc(-100vw / 2.605));
+    } 
+}
+  
+@media only screen and (max-width:1400px){
+    main .word span 
+    {
+        transform: translateX(calc(-100vw / 2.73));
+    } 
+}
+
+@media only screen and (max-width:1270px){
+    main .word span 
+    {
+        transform: translateX(calc(-100vw / 2.69));
+    } 
+}
+
+@media only screen and (max-width:1000px){
+    main .word span 
+    {
+        transform:translateX(0);
+    }
+    main div span button
+    {
+        display: unset;
+    }
+}
+
+@media only screen and (max-width:450px){
+    .landingSquare
+    {
+        height: calc(100vh);
+        overflow: hidden;
+    }
+    main .word span h1
+{
+    font-size: 5em;
+}
+}
+
+@media only screen and (max-height:768px){
+    main .word span 
+    {
+        margin-top: -20px;
+    }
+}

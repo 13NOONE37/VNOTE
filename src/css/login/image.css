@@ -1,0 +1,29 @@
+.laptop
+{
+    width:50%;
+}
+.coffe
+{
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: smoke 7s linear infinite;
+}
+@keyframes smoke{
+    0%{transform:translate(-75.19px, -37.55px) rotateY(0deg);} 
+    100%{transform:translate(-75.19px, -37.55px) rotateY(360deg);}
+}
+
+@media only screen and (max-width:1400px){
+    .laptop
+    {
+        width:70%;
+    }
+  }
+  
+@media only screen and (max-width:1000px){
+    .laptop
+    {
+        width:80%;
+    }
+  }
+  

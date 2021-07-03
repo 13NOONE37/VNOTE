@@ -13,7 +13,7 @@ export default function ProfileBar() {
   return (
     <div className='ProfileBar'>
       <span className='indicator' style={{ top: `${currentPos}px` }}></span>
-      <button onMouseEnter={handleMoveIndicator}>
+      <button onMouseEnter={handleMoveIndicator} onClick={() => SignOut()}>
         <i className='fas fa-sign-out-alt'></i>
       </button>
       <button onMouseEnter={handleMoveIndicator}>

@@ -1,7 +1,7 @@
 import firebase from 'config/firebaseConfig';
 import OnAccountCreate from 'utils/AccountFunctions/OnAccountCreate';
 
-export default SignUp = async (email, username, password) => {
+export default async function SignUp(email, username, password) {
   try {
     const res = await firebase
       .auth()
@@ -12,4 +12,4 @@ export default SignUp = async (email, username, password) => {
     //osblusa bledu
     console.log(err);
   }
-};
+}
