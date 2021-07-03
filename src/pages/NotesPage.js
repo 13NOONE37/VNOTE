@@ -5,6 +5,7 @@ import EmptyState from 'components/other/EmptyState';
 import CreateNote from 'components/main/CreateNote';
 import Note from 'components/main/Note';
 import AppContext from 'store/appContext';
+import ItemsGallery from 'components/main/ItemsGallery';
 
 import 'css/other/defaultPage.css';
 
@@ -35,12 +36,13 @@ export default function NotesPage() {
       <span className='actionsContainer'>
         <CreateNote />
       </span>
-      <span ref={itemsGallery} className='itemsGallery'>
+      {/* <span ref={itemsGallery} className='itemsGallery'>
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
         <Note renderType='other' notesArray={notes} setnotesArray={setnotes} />
       </span>
       {!itemsGallery.current ||
-        (itemsGallery.current.children.length == 0 && <EmptyState />)}
+        (itemsGallery.current.children.length == 0 && <EmptyState />)} */}
+      <ItemsGallery notes={notes} setnotes={setnotes} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import Macy from 'macy';
 
 import EmptyState from 'components/other/EmptyState';
-import CreateNote from 'components/main/CreateNote';
+import RestoreArchive from 'components/main/RestoreArchive';
 import Note from 'components/main/Note';
 import AppContext from 'store/appContext';
 
@@ -33,8 +33,7 @@ export default function ArchivePage() {
   return (
     <div className='mainPage scrollClass'>
       <span className='actionsContainer'>
-        <CreateNote />
-        change to archive button
+        <RestoreArchive notes={notes} setnotes={setnotes} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
         <Note

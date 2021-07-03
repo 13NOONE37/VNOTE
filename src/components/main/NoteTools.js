@@ -51,7 +51,7 @@ export default function NoteTools({
               }
             }}
             aria-label='Edit note'
-            className='tooltipParent'
+            className='tooltipParent noteItem'
           >
             {showEditedNote ? (
               <>
@@ -66,7 +66,7 @@ export default function NoteTools({
             )}
           </button>
 
-          <button aria-label='Change color' className='tooltipParent'>
+          <button aria-label='Change color' className='tooltipParent noteItem'>
             <i className='fas fa-palette'></i>
             <span className='tooltip'>Change color</span>
             <ChangeColor
@@ -79,7 +79,7 @@ export default function NoteTools({
           <button
             aria-label='Add checkboxes'
             onClick={() => addCheckboxes(notes, setnotes, item.id)}
-            className='tooltipParent'
+            className='tooltipParent noteItem'
           >
             <i className='far fa-check-square'></i>
             <span className='tooltip'>Add checkboxes</span>
@@ -88,7 +88,7 @@ export default function NoteTools({
           <button
             aria-label='Encrypt/Decrypt Note'
             onClick={() => encryptNote(notes, setnotes, item.id)}
-            className='tooltipParent'
+            className='tooltipParent noteItem'
           >
             <i className='fas fa-key'></i>
             <span className='tooltip'>Encrypt note</span>
@@ -96,7 +96,7 @@ export default function NoteTools({
 
           <button
             aria-label='Link to group'
-            className='tooltipParent'
+            className='tooltipParent noteItem'
             onClick={() => setshowLinkCategories(!showLinkCategories)}
           >
             <i className='fas fa-link'></i>
@@ -113,7 +113,7 @@ export default function NoteTools({
 
           <button
             aria-label='Share note'
-            className='tooltipParent'
+            className='tooltipParent noteItem'
             onClick={() => setshowShareBox(!showShareBox)}
           >
             <i className='fas fa-share'></i>
@@ -128,7 +128,7 @@ export default function NoteTools({
 
           <button
             aria-label='Archive note'
-            className='tooltipParent categoryDeleteButton'
+            className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='fas fa-archive'></i>
             <span className='tooltip'>Archive note</span>
@@ -141,7 +141,7 @@ export default function NoteTools({
 
           <button
             aria-label='Delete note'
-            className='tooltipParent categoryDeleteButton'
+            className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='far fa-trash-alt'></i>
             <span className='tooltip'>Delete note</span>
@@ -156,7 +156,7 @@ export default function NoteTools({
         <>
           <button
             aria-label='Restore note'
-            className='tooltipParent categoryDeleteButton'
+            className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='fas fa-undo'></i>
             <span className='tooltip'>Restore note</span>
@@ -170,7 +170,7 @@ export default function NoteTools({
 
           <button
             aria-label='Delete note'
-            className='tooltipParent categoryDeleteButton'
+            className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='far fa-trash-alt'></i>
             <span className='tooltip'>Delete note</span>
@@ -181,7 +181,7 @@ export default function NoteTools({
         <>
           <button
             aria-label='Restore note'
-            className='tooltipParent categoryDeleteButton'
+            className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='fas fa-archive'></i>
             <span className='tooltip'>Restore note</span>
@@ -189,12 +189,13 @@ export default function NoteTools({
               setnotesArray={setnotes}
               notesArray={notes}
               id={item.id}
+              showRestoreIcon={true}
             />
           </button>
 
           <button
             aria-label='Delete note'
-            className='tooltipParent categoryDeleteButton'
+            className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='far fa-trash-alt'></i>
             <span className='tooltip'>Delete note</span>

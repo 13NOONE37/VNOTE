@@ -13,9 +13,9 @@
 .itemsGallery {
   width: 100%;
   padding: var(--size-8);
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  justify-content: center;
+  justify-content: center; */
 }

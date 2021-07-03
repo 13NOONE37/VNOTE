@@ -1,7 +1,12 @@
 import React from 'react';
 import 'css/actions/Delete.css';
 
-export default function ArchiveNote({ notesArray, setnotesArray, id }) {
+export default function ArchiveNote({
+  notesArray,
+  setnotesArray,
+  id,
+  showRestoreIcon,
+}) {
   const handleUnfocus = () => document.activeElement.blur();
 
   const handleArchive = () => {
@@ -25,7 +30,11 @@ export default function ArchiveNote({ notesArray, setnotesArray, id }) {
         style={{ backgroundColor: '#FF8D4D' }}
         onClick={handleArchive}
       >
-        <i className='fas fa-archive'></i>
+        {showRestoreIcon ? (
+          <i className='fas fa-undo'></i>
+        ) : (
+          <i className='fas fa-archive'></i>
+        )}
       </button>
     </div>
   );

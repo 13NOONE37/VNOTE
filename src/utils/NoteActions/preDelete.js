@@ -25,7 +25,13 @@ export default function PreDelete({
         <i className='fas fa-chevron-left'></i>
       </button>
 
-      <button aria-label='Delete note' onClick={handlePreDelete}>
+      <button
+        style={{
+          backgroundColor: `${showRestoreIcon ? '#ff8d4d' : '#ff6347'}`,
+        }}
+        aria-label='Delete note'
+        onClick={handlePreDelete}
+      >
         {showRestoreIcon ? (
           <i className='fas fa-undo'></i>
         ) : (
