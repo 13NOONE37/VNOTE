@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 
 import encryptNote from 'utils/NoteActions/encryptNote';
-import ChangeColor from 'utils/NoteActions/ChangeColor';
+import ColorModal from 'components/modals/ColorModal';
 import addCheckboxes from 'utils/NoteActions/addCheckboxes';
 import LinkToCategories from 'components/modals/LinkToCategories';
 import Share from 'components/modals/ShareNote';
@@ -30,7 +30,7 @@ export default function NoteTools({
 
   const [showLinkCategories, setshowLinkCategories] = useState(false);
   const [showShareBox, setshowShareBox] = useState(false);
-
+  const [showColorModal, setshowColorModal] = useState(false);
   return (
     <div
       onClick={(e) => {
@@ -66,13 +66,19 @@ export default function NoteTools({
             )}
           </button>
 
-          <button aria-label='Change color' className='tooltipParent noteItem'>
+          <button
+            aria-label='Change color'
+            className='tooltipParent noteItem'
+            onClick={() => setshowColorModal(true)}
+          >
             <i className='fas fa-palette'></i>
             <span className='tooltip'>Change color</span>
-            <ChangeColor
+            <ColorModal
               setnotesArray={setnotes}
               notesArray={notes}
               id={item.id}
+              showColorModal={showColorModal}
+              setshowColorModal={setshowColorModal}
             />
           </button>
 

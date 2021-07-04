@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Macy from 'macy';
 
 import EmptyState from 'components/other/EmptyState';
@@ -20,6 +20,7 @@ export default function MainPage() {
     setcategoriesTable,
   ] = useContext(AppContext);
 
+  const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);
 
   //when we create this function move it to file and import in every page
@@ -33,11 +34,17 @@ export default function MainPage() {
   return (
     <div className='mainPage scrollClass'>
       <span className='actionsContainer'>
-        <CreateNote />
+        <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
-        <Note renderType='other' notesArray={notes} setnotesArray={setnotes} />
+        <Note
+          renderType='other'
+          notesArray={notes}
+          setnotesArray={setnotes}
+          isNewNote={isNewNote}
+          setisNewNote={setisNewNote}
+        />
       </span>
       {!itemsGallery.current ||
         (itemsGallery.current.children.length == 0 && <EmptyState />)}
