@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { ReactComponent as VNoteLogo } from 'resources/logo.svg';
+import { ReactComponent as VNoteLogo } from 'resources/SVG/logo.svg';
 import AppContext from 'store/appContext';
 import ProfileBar from 'components/main/ProfileBar';
 import AddCategory from 'components/modals/AddCategory';

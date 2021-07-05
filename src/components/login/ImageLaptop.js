@@ -1,5 +1,5 @@
 import React from 'react';
-import 'css/login/image.css';
+import 'css/login//image.css';
 
 export default function ImageLaptop() {
   return (

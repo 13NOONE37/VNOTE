@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import ActionStatus from './actionStatus';
 import SignIn from 'utils/AccountFunctions/SignIn';
-import SignInWithGoogle from 'utils/AccountFunctions/SignWithGoogle';
+import signInWithGoogle from 'utils/AccountFunctions/SignWithGoogle';
 
 import 'css/login/fields.css';
 import googleIcon from 'resources/google.png';
@@ -140,7 +140,7 @@ export default function Login(props) {
                 <button
                   className='google'
                   onClick={() => {
-                    SignInWithGoogle(setLoggedIn, setuser);
+                    signInWithGoogle(setLoggedIn, setuser);
                   }}
                 >
                   <img src={googleIcon} />

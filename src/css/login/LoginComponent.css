@@ -1,2 +1,40 @@
-.LoginComponent {
+/* .loginContainer {
+  width: 100%;
+  background: linear-gradient(
+    0.02deg,
+    #cce0f4 0.04%,
+    #c3dcf2 6.39%,
+    #a9d2ee 16.96%,
+    #80c2e7 30.46%,
+    #47acde 46.16%,
+    #1e9cd7 56.33%,
+    #0075be 85.88%,
+    #005b97 98.7%
+  );
+} */
+
+.loginContainer {
+  display: grid;
+  grid-template-columns: 2fr 6fr;
+}
+
+@media only screen and (max-width: 1800px) {
+  .loginContainer {
+    grid-template-columns: 2fr 5fr;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .loginContainer {
+    grid-template-columns: 2fr 4fr;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .loginContainer {
+    grid-template-columns: 1fr;
+  }
+  .landingSquare {
+    display: none !important;
+  }
 }

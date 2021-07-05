@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as Friderich } from 'resources/Friderich.svg';
+import { ReactComponent as Friderich } from 'resources/SVG/Friderich.svg';
 import 'css/other/EmptyState.css';
 
 export default function EmptyState() {

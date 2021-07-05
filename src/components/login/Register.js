@@ -46,7 +46,7 @@ export default function Register(props) {
             password2: '',
           }}
           onSubmit={async (values) => {
-            const { message } = SignUp(
+            const { message } = await SignUp(
               values.email,
               values.username,
               values.password,
