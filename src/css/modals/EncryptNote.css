@@ -1,0 +1,52 @@
+.EncryptBox {
+  max-width: 280px;
+  max-height: 380px;
+
+  background-color: var(--blue-3);
+  box-shadow: var(--box-shadow-1);
+  border: var(--border-1);
+
+  padding: var(--size-4);
+
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+}
+.decryptSpan form {
+  display: grid;
+  place-items: center;
+}
+
+.EncryptBox input {
+  margin: 8px 0;
+  padding: var(--size-4);
+  outline: none;
+  border: none;
+  background-color: var(--blue-2);
+  color: #fff;
+
+  font-size: var(--size-6);
+  font-weight: 500;
+  border-bottom: 0.5px solid transparent;
+}
+.EncryptBox input:focus {
+  border-bottom: 0.5px solid var(--grey-3);
+}
+.decryptButton {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--blue-1);
+  border-radius: 50%;
+  padding: var(--size-5);
+  font-size: var(--size-8);
+  color: var(--grey-1);
+
+  transition: all 0.2s ease-in;
+}
+.decryptButton:hover,
+.decryptButton:focus {
+  color: var(--positive);
+  box-shadow: 0 0 5px var(--positive);
+}

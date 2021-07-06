@@ -35,7 +35,7 @@ export default function Note({
     let currentType = 'other';
 
     //categories filtering
-    if (renderTypeHere == 'category' && !isDeleted && !isArchive) {
+    if (renderTypeHere == 'category' && !isDeleted && !isArchive && !isSecret) {
       if (groups.includes(categoryTypeHere)) return true;
     }
 

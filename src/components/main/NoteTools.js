@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import encryptNote from 'utils/NoteActions/encryptNote';
+import handleToggleCryptState from 'utils/NoteActions/handleToogleCryptState';
 import ColorModal from 'components/modals/ColorModal';
 import addCheckboxes from 'utils/NoteActions/addCheckboxes';
 import LinkToCategories from 'components/modals/LinkToCategories';
@@ -31,6 +31,7 @@ export default function NoteTools({
   const [showLinkCategories, setshowLinkCategories] = useState(false);
   const [showShareBox, setshowShareBox] = useState(false);
   const [showColorModal, setshowColorModal] = useState(false);
+
   return (
     <div
       onClick={(e) => {
@@ -93,11 +94,13 @@ export default function NoteTools({
 
           <button
             aria-label='Encrypt/Decrypt Note'
-            onClick={() => encryptNote(notes, setnotes, item.id)}
+            onClick={() => handleToggleCryptState(notes, setnotes, item.id)}
             className='tooltipParent noteItem'
           >
             <i className='fas fa-key'></i>
-            <span className='tooltip'>Encrypt note</span>
+            <span className='tooltip'>
+              {item.isSecret ? 'Decrypt note' : 'Encrypt note'}
+            </span>
           </button>
 
           <button
