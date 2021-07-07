@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Macy from 'macy';
 
 import EmptyState from 'components/other/EmptyState';
 import CreateNote from 'components/main/CreateNote';
@@ -24,19 +23,12 @@ export default function NotesPage() {
   ] = useContext(AppContext);
 
   useEffect(() => {
-    // const macy = new Macy({
-    //   container: '.itemsGallery',
-    //   trueOrder: false,
-    //   waitForImages: false,
-    //   margin: 24,
-    //   columns: 6,
-    //   breakAt: {
-    //     1200: 5,
-    //     940: 3,
-    //     520: 2,
-    //     400: 1,
-    //   },
-    // });
+    // const parentEl = itemsGallery.current;
+    // const childs = parentEl.children;
+    // if (window.innerWidth >= 824) {
+    //   console.log(childs);
+    //   console.log(parentEl.offsetWidth);
+    // }
   }, []);
 
   return (

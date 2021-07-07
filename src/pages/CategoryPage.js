@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Macy from 'macy';
 
@@ -22,7 +22,7 @@ export default function CategoryPage() {
   ] = useContext(AppContext);
 
   const { id } = useParams();
-
+  const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);
 
   //when we create this function move it to file and import in every page
@@ -36,7 +36,7 @@ export default function CategoryPage() {
   return (
     <div className='mainPage scrollClass'>
       <span className='actionsContainer'>
-        <CreateNote />
+        <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
         <Note
@@ -44,6 +44,8 @@ export default function CategoryPage() {
           renderType='category'
           notesArray={notes}
           setnotesArray={setnotes}
+          isNewNote={isNewNote}
+          setisNewNote={setisNewNote}
         />
       </span>
       {!itemsGallery.current ||

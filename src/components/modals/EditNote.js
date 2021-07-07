@@ -5,6 +5,7 @@ import ContentEditable from 'react-contenteditable';
 import 'css/modals/EditNote.css';
 import 'css/main/Note.css';
 
+import Notify from 'components/other/Notify';
 import NoteTools from 'components/main/NoteTools';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import handleContentChange from 'utils/Global/handleContentChange';
@@ -26,6 +27,12 @@ export default function EditNote({
   const [currentTitle, setcurrentTitle] = useState(note.title);
   const [currentContent, setcurrentContent] = useState(note.content);
   const [currentDoneTasks, setcurrentDoneTasks] = useState(note.doneTasks);
+
+  const [showNotify, setshowNotify] = useState(false);
+
+  const handleCheckLength = () => {
+    currentTitle.length >= 99 ? setshowNotify(true) : setshowNotify(false);
+  };
 
   useEffect(() => {
     setnotesArray(
@@ -53,6 +60,13 @@ export default function EditNote({
       ref={box}
       onMouseDown={(e) => handleClickOutside(e, box, setshowEditedNote)}
     >
+      {showNotify && (
+        <Notify
+          notifyType='Info'
+          notifyContent={`Title can't be longer than 100 characters. `}
+          notifyTime={12}
+        />
+      )}
       <div
         tabIndex={id}
         className='note'
@@ -69,7 +83,10 @@ export default function EditNote({
 
         <textarea
           className='titleEdit scrollClass'
-          onChange={(e) => handleContentChange(e, setcurrentTitle)}
+          onChange={(e) => {
+            handleContentChange(e, setcurrentTitle);
+            handleCheckLength();
+          }}
           maxLength='100'
           placeholder='Set title...'
           value={currentTitle}

@@ -1,4 +1,5 @@
 .notify {
+  z-index: 9999;
   position: fixed;
   bottom: 50px;
   right: 50px;
@@ -18,7 +19,13 @@
   color: #ffffff;
 
   will-change: transform;
+  /* animation: notifyAppear 1s ease-out; */
+}
+.showNotify {
   animation: notifyAppear 1s ease-out;
+}
+.hideNotify {
+  animation: notifyDisappear 1s ease-out;
 }
 @keyframes notifyAppear {
   from {
@@ -26,6 +33,14 @@
   }
   to {
     transform: translateX(0%);
+  }
+}
+@keyframes notifyDisappear {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(150%);
   }
 }
 

@@ -6,7 +6,7 @@ export default function Notify({ notifyType, notifyContent, notifyTime }) {
   const [leftTime, setleftTime] = useState(
     notifyTime <= 100 ? notifyTime : 100,
   );
-
+  const [showDiv, setshowDiv] = useState(true);
   const handleHideNotify = () => setleftTime(-1);
 
   useEffect(() => {
@@ -21,8 +21,17 @@ export default function Notify({ notifyType, notifyContent, notifyTime }) {
   }, [leftTime]);
 
   return (
-    leftTime > 0 && (
-      <div className={`notify notify${notifyType}`}>
+    showDiv && (
+      <div
+        className={`notify notify${notifyType} ${
+          leftTime > 0 ? 'showNotify' : 'hideNotify'
+        }`}
+        onAnimationEnd={() => {
+          if (leftTime <= 0) {
+            setshowDiv(false);
+          }
+        }}
+      >
         <span className='scrollClass'>{notifyContent}</span>
         <div className='closeButton'>
           <button onClick={handleHideNotify}>

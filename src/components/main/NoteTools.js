@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import handleToggleCryptState from 'utils/NoteActions/handleToogleCryptState';
+// import handleToggleCryptState from 'utils/NoteActions/handleToogleCryptState';
 import ColorModal from 'components/modals/ColorModal';
 import addCheckboxes from 'utils/NoteActions/addCheckboxes';
 import LinkToCategories from 'components/modals/LinkToCategories';
@@ -92,7 +92,7 @@ export default function NoteTools({
             <span className='tooltip'>Add checkboxes</span>
           </button>
 
-          <button
+          {/* <button
             aria-label='Encrypt/Decrypt Note'
             onClick={() => handleToggleCryptState(notes, setnotes, item.id)}
             className='tooltipParent noteItem'
@@ -101,7 +101,7 @@ export default function NoteTools({
             <span className='tooltip'>
               {item.isSecret ? 'Decrypt note' : 'Encrypt note'}
             </span>
-          </button>
+          </button> */}
 
           <button
             aria-label='Link to group'

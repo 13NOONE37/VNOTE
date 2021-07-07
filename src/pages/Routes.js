@@ -32,11 +32,11 @@ export default [
     component: () => <NotebooksPage />,
     protected: 'auth',
   },
-  {
-    path: '/secrets',
-    component: () => <SecretPage />,
-    protected: 'auth',
-  },
+  // {
+  //   path: '/secrets',
+  //   component: () => <SecretPage />,
+  //   protected: 'auth',
+  // },
   {
     path: '/shared',
     component: () => <SharePage />,

@@ -173,7 +173,8 @@
 }
 
 .note .noteTools .noteItem {
-  width: calc(100% / 8);
+  /* width: calc(100% / 8); */
+  width: calc(100% / 7);
   cursor: pointer;
   border: none;
   border-bottom: 1px solid transparent;

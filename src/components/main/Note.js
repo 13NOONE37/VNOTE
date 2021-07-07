@@ -104,7 +104,7 @@ export default function Note({
         color: 0,
         isPinned: false,
         isCheckboxList: false,
-        groups: [],
+        groups: [`${categoryTypeHere && categoryTypeHere}`],
         isDeleted: false,
         isArchive: false,
         isShared: false,

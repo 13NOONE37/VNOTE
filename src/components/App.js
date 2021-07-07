@@ -39,6 +39,21 @@ function App() {
     UpdateUserData(user, notes, notebooks, categoriesTable);
   }, [notes, notebooks, categoriesTable]);
 
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', async (e) => {
+  //     e.preventDefault();
+  //     await UpdateUserData(user, notes, notebooks, categoriesTable);
+  //     e.returnValue = 'Masz niezapisane zmiany! Chcesz wyjść?';
+  //   });
+
+  //   document.addEventListener('visibilitychange', (e) => {
+  //     if (document.visibilityState === 'hidden') {
+  //       console.log('visibility change ot hidden');
+  //       UpdateUserData(user, notes, notebooks, categoriesTable);
+  //     }
+  //   });
+  // }, []);
+
   return (
     <Router>
       <div className='globalContainer'>

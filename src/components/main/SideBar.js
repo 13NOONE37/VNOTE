@@ -35,11 +35,11 @@ export default function SideBar() {
         icon: 'fas fa-book',
         link: '/notebooks',
       },
-      {
-        name: 'Secrets',
-        icon: 'fas fa-key',
-        link: '/secrets',
-      },
+      // {
+      //   name: 'Secrets',
+      //   icon: 'fas fa-key',
+      //   link: '/secrets',
+      // },
       {
         name: 'Shared',
         icon: 'fas fa-people-arrows',
