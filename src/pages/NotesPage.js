@@ -10,6 +10,7 @@ import 'css/other/defaultPage.css';
 export default function NotesPage() {
   const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);
+  const renderType = 'other';
 
   const [
     loggedIn,
@@ -23,13 +24,19 @@ export default function NotesPage() {
   ] = useContext(AppContext);
 
   useEffect(() => {
-    // const parentEl = itemsGallery.current;
-    // const childs = parentEl.children;
-    // if (window.innerWidth >= 824) {
-    //   console.log(childs);
-    //   console.log(parentEl.offsetWidth);
-    // }
+    const parentEl = itemsGallery.current;
+    const childs = parentEl.children;
+
+    if (window.innerWidth >= 824) {
+      console.log(childs);
+      console.log(parentEl.offsetWidth);
+    }
   }, []);
+
+  const [isEmpty, setisEmpty] = useState(1);
+  useEffect(() => {
+    setisEmpty(isEmpty + 1);
+  }, [notes]);
 
   return (
     <div className='mainPage scrollClass'>
@@ -39,15 +46,16 @@ export default function NotesPage() {
       <span ref={itemsGallery} className='itemsGallery'>
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
         <Note
-          renderType='other'
+          renderType={renderType}
           notesArray={notes}
           setnotesArray={setnotes}
           isNewNote={isNewNote}
           setisNewNote={setisNewNote}
         />
       </span>
-      {!itemsGallery.current ||
-        (itemsGallery.current.children.length == 0 && <EmptyState />)}
+      {isEmpty &&
+        itemsGallery.current &&
+        itemsGallery.current.children.length == 0 && <EmptyState />}
     </div>
   );
 }

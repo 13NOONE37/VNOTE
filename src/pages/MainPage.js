@@ -30,6 +30,10 @@ export default function MainPage() {
     //   mobileFirst: true,
     // });
   }, []);
+  const [isEmpty, setisEmpty] = useState(1);
+  useEffect(() => {
+    setisEmpty(isEmpty + 1);
+  }, [notes]);
 
   return (
     <div className='mainPage scrollClass'>
@@ -46,8 +50,9 @@ export default function MainPage() {
           setisNewNote={setisNewNote}
         />
       </span>
-      {!itemsGallery.current ||
-        (itemsGallery.current.children.length == 0 && <EmptyState />)}
+      {isEmpty &&
+        itemsGallery.current &&
+        itemsGallery.current.children.length == 0 && <EmptyState />}
     </div>
   );
 }

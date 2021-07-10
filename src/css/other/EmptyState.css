@@ -13,12 +13,12 @@
   text-align: center;
 }
 .EmptyState span:nth-child(2) {
-  margin-top: var(--size-7);
+  margin-top: var(--size-2);
 }
 
 .EmptyState div {
   color: var(--grey-2);
-  padding-top: 100px;
+  padding-top: 60px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -36,6 +36,7 @@
   .EmptyState q {
     padding-left: unset;
     width: 240px;
+    padding-bottom: 60px;
   }
 }
 

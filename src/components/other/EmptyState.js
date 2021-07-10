@@ -6,7 +6,7 @@ export default function EmptyState() {
   return (
     <div className='EmptyState'>
       <span>There are no notes here</span>
-      <span>You can create a new one by clicking button at the top</span>
+      {/* <span>You can create a new one by clicking button at the top</span> */}
       <div>
         <Friderich />
         <q>

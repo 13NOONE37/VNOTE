@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Macy from 'macy';
 
 import EmptyState from 'components/other/EmptyState';
@@ -22,13 +22,10 @@ export default function ArchivePage() {
 
   const itemsGallery = useRef(null);
 
-  //when we create this function move it to file and import in every page
+  const [isEmpty, setisEmpty] = useState(1);
   useEffect(() => {
-    // const macyInstance = new Macy({
-    //   container: '.itemsGallery',
-    //   mobileFirst: true,
-    // });
-  }, []);
+    setisEmpty(isEmpty + 1);
+  }, [notes]);
 
   return (
     <div className='mainPage scrollClass'>
@@ -42,8 +39,9 @@ export default function ArchivePage() {
           setnotesArray={setnotes}
         />
       </span>
-      {!itemsGallery.current ||
-        (itemsGallery.current.children.length == 0 && <EmptyState />)}
+      {isEmpty &&
+        itemsGallery.current &&
+        itemsGallery.current.children.length == 0 && <EmptyState />}
     </div>
   );
 }
