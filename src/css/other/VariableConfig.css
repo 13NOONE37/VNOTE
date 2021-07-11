@@ -16,10 +16,10 @@
   --grey-2: #bfbfbf;
   --grey-3: hsla(0, 0%, 75%, 0.5);
 
-  --positive: #1eb36d;
-  --neutral: #1e61b3;
-  --warning: #fff04d;
-  --error: #ff6347;
+  --positive: hsl(152, 71%, 41%);
+  --neutral: hsl(213, 71%, 41%);
+  --warning: hsl(55, 80%, 65%);
+  --error: hsl(9, 80%, 64%);
 
   /* shadows */
   --box-shadow-1: 0px 0px 12px 5px hsla(200, 100%, 25%, 0.2);

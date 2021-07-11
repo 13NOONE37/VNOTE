@@ -6,13 +6,11 @@ import ActionStatus from './actionStatus';
 import SignIn from 'utils/AccountFunctions/SignIn';
 import signInWithGoogle from 'utils/AccountFunctions/SignWithGoogle';
 
-import 'css/login/fields.css';
 import googleIcon from 'resources/google.png';
 
-export default function Login(props) {
+export default function Login({ setcurrentWindow }) {
   const [LoggedIn, setLoggedIn] = useState(null);
   const [user, setuser] = useState(null);
-  const [rememberMe, setrememberMe] = useState(false);
 
   const validationSchema = Yup.object({
     email: Yup.string().required('Email is required').email('Email is invalid'),
@@ -20,136 +18,110 @@ export default function Login(props) {
   });
 
   return (
-    <div className='field'>
+    <div className='formField'>
       <h1>Sign in</h1>
-      <div className='form'>
-        <Formik
-          validationSchema={validationSchema}
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          onSubmit={async (values) => {
-            const res = await SignIn(
-              values.email,
-              values.password,
-              rememberMe,
-              setLoggedIn,
-              setuser,
-            );
-            res ? setLoggedIn(false) : setLoggedIn(true);
-          }}
-        >
-          {({
-            isSubmitting,
-            getFieldProps,
-            handleChange,
-            handleBlur,
-            values,
-            errors,
-            touched,
-          }) => (
-            <Form>
-              <span>
-                {LoggedIn == true ? null : LoggedIn == false ? (
-                  <ActionStatus message='Wrong data' isPositive={false} />
-                ) : null}
-                <div className='inputBox'>
-                  <i className='fas fa-envelope'></i>
-                  <input
-                    type='email'
-                    placeholder='Email'
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    name='email'
-                  />
-                  <i
-                    className={`${
-                      touched.email &&
-                      errors.email &&
-                      'unCorrect fas fa-times-circle'
-                    }`}
-                    title={errors.email}
-                  ></i>
-                </div>
-                <div className='inputBox'>
-                  <i className='fas fa-lock'></i>
-                  <input
-                    type='password'
-                    placeholder='Password'
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    name='password'
-                  />
-                  <i
-                    className={`${
-                      touched.password &&
-                      errors.password &&
-                      'unCorrect fas fa-times-circle'
-                    }`}
-                    title={errors.password}
-                  ></i>
-                </div>
-              </span>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        onSubmit={async (values) => {
+          const res = await SignIn(
+            values.email,
+            values.password,
+            setLoggedIn,
+            setuser,
+          );
+          res ? setLoggedIn(false) : setLoggedIn(true);
+        }}
+      >
+        {({
+          isSubmitting,
+          getFieldProps,
+          handleChange,
+          handleBlur,
+          values,
+          errors,
+          touched,
+        }) => (
+          <Form>
+            <span className='loginInputs'>
+              {LoggedIn == true ? null : LoggedIn == false ? (
+                <ActionStatus message='Wrong data' isPositive={false} />
+              ) : null}
+              <div className='inputBox'>
+                <i className='fas fa-envelope'></i>
+                <input
+                  type='email'
+                  placeholder='Email'
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name='email'
+                />
+                <i
+                  className={`${
+                    touched.email &&
+                    errors.email &&
+                    'unCorrect fas fa-times-circle'
+                  }`}
+                  title={errors.email}
+                ></i>
+              </div>
+              <div className='inputBox'>
+                <i className='fas fa-lock'></i>
+                <input
+                  type='password'
+                  placeholder='Password'
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name='password'
+                />
+                <i
+                  className={`${
+                    touched.password &&
+                    errors.password &&
+                    'unCorrect fas fa-times-circle'
+                  }`}
+                  title={errors.password}
+                ></i>
+              </div>
+            </span>
 
-              <span className='underInputBox'>
-                <span>
-                  <button
-                    className='forget'
-                    type='button'
-                    name='rememberMe'
-                    value={values.rememberMe}
-                    onClick={() => setrememberMe(!rememberMe)}
-                  >
-                    <i
-                      className={`fas fa-check-circle ${
-                        rememberMe && 'correct'
-                      }`}
-                    ></i>
-                    Remember me
-                  </button>
-                </span>
-                <span>
-                  <button
-                    className='forget'
-                    type='button'
-                    onClick={() => props.setcurrentWindow(2)}
-                  >
-                    Forget Password?
-                  </button>
-                </span>
-              </span>
+            <span class='buttons'>
+              <button
+                className='forgetButton'
+                type='button'
+                onClick={() => setcurrentWindow(2)}
+              >
+                Forget Password?
+              </button>
+              <button className='loginButton' type='submit'>
+                Sign up now
+              </button>
+              <button
+                className='registerButton'
+                onClick={() => setcurrentWindow(1)}
+              >
+                Or Create Account
+              </button>
+            </span>
 
-              <span class='buttons'>
-                {isSubmitting ? (
-                  <i className='fas fa-spinner'></i> //or any diffrent loading
-                ) : (
-                  <button className='login' type='submit'>
-                    Sign up now
-                  </button>
-                )}
-                <button onClick={() => props.setcurrentWindow(1)}>
-                  Or Create Account
-                </button>
-              </span>
-
-              <span>
-                <span className='otherLoginFormLabel'>Or Continue with: </span>
-                <button
-                  className='google'
-                  onClick={() => {
-                    signInWithGoogle(setLoggedIn, setuser);
-                  }}
-                >
-                  <img src={googleIcon} />
-                </button>
-              </span>
-            </Form>
-          )}
-        </Formik>
-      </div>
+            <span className='otherLoginForm'>
+              <span>Or Continue with: </span>
+              <button
+                onClick={() => {
+                  signInWithGoogle(setLoggedIn, setuser);
+                }}
+              >
+                <img src={googleIcon} />
+              </button>
+            </span>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }
