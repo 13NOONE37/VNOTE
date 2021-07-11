@@ -11,6 +11,7 @@ import googleIcon from 'resources/google.png';
 export default function Login({ setcurrentWindow }) {
   const [LoggedIn, setLoggedIn] = useState(null);
   const [user, setuser] = useState(null);
+  const [errorMessage, seterrorMessage] = useState(null);
 
   const validationSchema = Yup.object({
     email: Yup.string().required('Email is required').email('Email is invalid'),
@@ -32,7 +33,9 @@ export default function Login({ setcurrentWindow }) {
             values.password,
             setLoggedIn,
             setuser,
+            seterrorMessage,
           );
+          seterrorMessage(res.message);
           res ? setLoggedIn(false) : setLoggedIn(true);
         }}
       >
@@ -47,9 +50,9 @@ export default function Login({ setcurrentWindow }) {
         }) => (
           <Form>
             <span className='loginInputs'>
-              {LoggedIn == true ? null : LoggedIn == false ? (
-                <ActionStatus message='Wrong data' isPositive={false} />
-              ) : null}
+              {errorMessage && (
+                <ActionStatus message={errorMessage} isPositive={false} />
+              )}
               <div className='inputBox'>
                 <i className='fas fa-envelope'></i>
                 <input

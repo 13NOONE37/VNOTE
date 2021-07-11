@@ -9,7 +9,6 @@ export default async function SignUp(email, password) {
     //!TODO nadac userowi nick
     OnAccountCreate(res.user); //docelowo zlikwidowac i zastapic triggerem w check session ktory wywouluje sie na utworzenie konta
   } catch (err) {
-    //osblusa bledu
-    console.log(err);
+    return err;
   }
 }

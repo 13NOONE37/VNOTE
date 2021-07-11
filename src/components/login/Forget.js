@@ -21,6 +21,7 @@ export default function Forget(props) {
         }}
         onSubmit={async (values) => {
           const res = await ForgetPassword(values.email);
+          console.log(res);
           res ? setisFound(false) : setisFound(true);
         }}
       >

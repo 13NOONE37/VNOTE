@@ -9,6 +9,7 @@ import 'css/login/fields.css';
 
 export default function Register({ setcurrentWindow }) {
   const [isCreated, setisCreated] = useState(null);
+  const [errorMessage, seterrorMessage] = useState(null);
 
   const validationSchema = Yup.object({
     email: Yup.string().required('Email is required').email('Email is invalid'),
@@ -41,6 +42,7 @@ export default function Register({ setcurrentWindow }) {
         }}
         onSubmit={async (values) => {
           const { message } = await SignUp(values.email, values.password);
+          seterrorMessage(message);
           if (message) setisCreated(false);
           else setisCreated(true);
         }}
@@ -56,9 +58,9 @@ export default function Register({ setcurrentWindow }) {
         }) => (
           <Form>
             <span className='loginInputs'>
-              {/* {LoggedIn == true ? null : LoggedIn == false ? (
-                <ActionStatus message='Wrong data' isPositive={false} />
-              ) : null} */}
+              {errorMessage && (
+                <ActionStatus message={errorMessage} isPositive={false} />
+              )}
               <div className='inputBox'>
                 <i className='fas fa-envelope'></i>
                 <input

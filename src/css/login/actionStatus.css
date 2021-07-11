@@ -1,16 +1,16 @@
-.actionStatus
-{
-} 
-.actionStatus span
-{
-    text-align: center;   
-    width: 100%; 
+.actionStatus {
 }
-.positive
-{
-    background-color:  hsla(110, 80%, 39%, .3);
-} 
-.negative
-{
-   background-color:  rgba(179,33,20,.3);
+.actionStatus span {
+  padding: var(--size-4);
+  text-align: center;
+  max-width: 200px;
+  width: 100%;
+}
+.positive {
+  background-color: var(--positive);
+  color: #fff;
+}
+.negative {
+  background-color: var(--error);
+  color: #fff;
 }
