@@ -26,3 +26,17 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: 20px; */
 }
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  width: auto;
+  /* width: 100%; */
+}
+.my-masonry-grid-column {
+  /* padding-left: 30px; gutter size */
+  background-clip: padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

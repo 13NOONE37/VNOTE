@@ -23,16 +23,6 @@ export default function NotesPage() {
     setcategoriesTable,
   ] = useContext(AppContext);
 
-  useEffect(() => {
-    const parentEl = itemsGallery.current;
-    const childs = parentEl.children;
-
-    if (window.innerWidth >= 824) {
-      console.log(childs);
-      console.log(parentEl.offsetWidth);
-    }
-  }, []);
-
   const [isEmpty, setisEmpty] = useState(1);
   useEffect(() => {
     setisEmpty(isEmpty + 1);
@@ -44,7 +34,7 @@ export default function NotesPage() {
         <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
-        <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
+        {/* <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} /> */}
         <Note
           renderType={renderType}
           notesArray={notes}
