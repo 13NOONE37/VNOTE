@@ -14,6 +14,7 @@ import AuthRoute from 'pages/AuthRoute';
 import GuestRoute from 'pages/GuestRoute';
 import NotFound from 'pages/NotFound';
 import SideBar from 'components/main/SideBar';
+import Loading from './other/Loading';
 
 function App() {
   const [LoggedIn, setLoggedIn] = useState(null);
@@ -23,6 +24,7 @@ function App() {
   const [categoriesTable, setcategoriesTable] = useState([]);
 
   useEffect(() => {
+    console.log('useeffect z app');
     CheckSession(
       setLoggedIn,
       setuser,
@@ -36,6 +38,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    //Dodać te dane do localstorage zamiast do firebase a niżej wysyłac do firebase
     UpdateUserData(user, notes, notebooks, categoriesTable);
   }, [notes, notebooks, categoriesTable]);
 

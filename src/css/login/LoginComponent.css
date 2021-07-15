@@ -119,6 +119,14 @@
   padding-top: var(--size-4);
   border: none;
   background-color: transparent;
+
+  /* Delete below */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px;
+  color: var(--grey-2);
 }
 .otherLoginForm img {
   width: 30px;

@@ -5,8 +5,6 @@ import * as Yup from 'yup';
 import SignUp from 'utils/AccountFunctions/SignUp';
 import ActionStatus from './actionStatus';
 
-import 'css/login/fields.css';
-
 export default function Register({ setcurrentWindow }) {
   const [isCreated, setisCreated] = useState(null);
   const [errorMessage, seterrorMessage] = useState(null);

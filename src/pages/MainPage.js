@@ -7,6 +7,7 @@ import Note from 'components/main/Note';
 import AppContext from 'store/appContext';
 
 import 'css/other/defaultPage.css';
+import Loading from 'components/other/Loading';
 
 export default function MainPage() {
   const [
@@ -23,12 +24,8 @@ export default function MainPage() {
   const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);
 
-  //when we create this function move it to file and import in every page
   useEffect(() => {
-    // const macyInstance = new Macy({
-    //   container: '.itemsGallery',
-    //   mobileFirst: true,
-    // });
+    console.log(notes);
   }, []);
   const [isEmpty, setisEmpty] = useState(1);
   useEffect(() => {
@@ -41,14 +38,24 @@ export default function MainPage() {
         <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
-        <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
-        <Note
-          renderType='other'
-          notesArray={notes}
-          setnotesArray={setnotes}
-          isNewNote={isNewNote}
-          setisNewNote={setisNewNote}
-        />
+        {notes && (
+          <Note
+            renderType='pinned'
+            notesArray={notes}
+            setnotesArray={setnotes}
+          />
+        )}
+      </span>
+      <span ref={itemsGallery} className='itemsGallery'>
+        {notes && (
+          <Note
+            renderType='other'
+            notesArray={notes}
+            setnotesArray={setnotes}
+            isNewNote={isNewNote}
+            setisNewNote={setisNewNote}
+          />
+        )}
       </span>
       {isEmpty &&
         itemsGallery.current &&

@@ -33,7 +33,6 @@ export default function Login({ setcurrentWindow }) {
             values.password,
             setLoggedIn,
             setuser,
-            seterrorMessage,
           );
           seterrorMessage(res.message);
           res ? setLoggedIn(false) : setLoggedIn(true);
@@ -116,9 +115,10 @@ export default function Login({ setcurrentWindow }) {
               <span>Or Continue with: </span>
               <button
                 onClick={() => {
-                  signInWithGoogle(setLoggedIn, setuser);
+                  console.log('temporaly disabled');
                 }}
               >
+                Temporaly disabled
                 <img src={googleIcon} />
               </button>
             </span>

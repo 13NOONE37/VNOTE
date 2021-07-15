@@ -187,7 +187,7 @@
   height: 60px;
 }
 
-@media only screen and (min-width: 660px) {
+@media only screen and (min-width: 661px) {
   .SideBar {
     display: grid !important;
   }

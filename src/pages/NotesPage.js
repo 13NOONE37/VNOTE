@@ -34,7 +34,9 @@ export default function NotesPage() {
         <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
-        {/* <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} /> */}
+        <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
+      </span>
+      <span ref={itemsGallery} className='itemsGallery'>
         <Note
           renderType={renderType}
           notesArray={notes}

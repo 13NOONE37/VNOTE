@@ -14,6 +14,6 @@ export default async function OnAccountCreate(user) {
       categories: [],
     })
     .catch((err) => {
-      console.log(err.message);
+      console.log('Error from OnAccountCreate: ', err.message);
     });
 }
