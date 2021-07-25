@@ -27,6 +27,7 @@ export default function SearchModal({ showBox, setshowBox }) {
   useEffect(() => {
     showBox && input.current.focus();
   }, [showBox]);
+
   useEffect(() => {
     setsearchResult([]);
     const temp = searchResult;
