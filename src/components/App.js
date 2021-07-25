@@ -15,6 +15,7 @@ import GuestRoute from 'pages/GuestRoute';
 import NotFound from 'pages/NotFound';
 import SideBar from 'components/main/SideBar';
 import Loading from './other/Loading';
+import FetchUserData from 'utils/AccountFunctions/FetchUserData';
 
 function App() {
   const [LoggedIn, setLoggedIn] = useState(null);
@@ -35,6 +36,7 @@ function App() {
       categoriesTable,
       setcategoriesTable,
     );
+    FetchUserData(user, setnotes, setnotebooks, setcategoriesTable);
   }, []);
 
   useEffect(() => {

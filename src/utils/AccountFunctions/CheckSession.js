@@ -79,7 +79,9 @@ export default async function CheckSession(
     } else {
       setLoggedIn(false);
       setuser({});
-      setnotes([null]);
+      setnotes([]);
+      setnotebooks([]);
+      setcategoriesTable([]);
     }
   });
 }

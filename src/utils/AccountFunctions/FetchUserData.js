@@ -12,8 +12,10 @@ export default async function FetchUserData(
   if (user) {
     const res = await db.collection('users').doc(user.uid).get();
     if (!res.exists) {
-      //instead this show notification
       console.log('No such document');
+      setnotes([]);
+      setnotebooks([]);
+      setcategoriesTable([]);
     } else {
       // console.log('Document data:', res.data());
 

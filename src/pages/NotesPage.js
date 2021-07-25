@@ -33,7 +33,7 @@ export default function NotesPage() {
       <span className='actionsContainer'>
         <CreateNote isNewNote={isNewNote} setisNewNote={setisNewNote} />
       </span>
-      <span ref={itemsGallery} className='itemsGallery'>
+      {/* <span ref={itemsGallery} className='itemsGallery'>
         <Note renderType='pinned' notesArray={notes} setnotesArray={setnotes} />
       </span>
       <span ref={itemsGallery} className='itemsGallery'>
@@ -44,6 +44,24 @@ export default function NotesPage() {
           isNewNote={isNewNote}
           setisNewNote={setisNewNote}
         />
+      </span> */}
+      <span ref={itemsGallery} className='itemsGallery'>
+        {notes && (
+          <Note
+            renderType='pinned'
+            notesArray={notes}
+            setnotesArray={setnotes}
+          />
+        )}
+        {notes && (
+          <Note
+            renderType='other'
+            notesArray={notes}
+            setnotesArray={setnotes}
+            isNewNote={isNewNote}
+            setisNewNote={setisNewNote}
+          />
+        )}
       </span>
       {isEmpty &&
         itemsGallery.current &&

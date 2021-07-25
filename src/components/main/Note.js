@@ -4,7 +4,8 @@ import NoteTools from 'components/main/NoteTools';
 import EditNote from 'components/modals/EditNote';
 import EmptyState from 'components/other/EmptyState';
 import handleTypeDecide from 'utils/Global/handleTypeDecide';
-
+import Loading from 'components/other/Loading';
+import FetchUserData from 'utils/AccountFunctions/FetchUserData';
 import 'css/main/Note.css';
 import Masonry from 'react-masonry-css';
 
@@ -26,7 +27,6 @@ export default function Note({
 
     setnotesArray(tempNotes);
   };
-
   const handleChangeCheckboxState = (noteId, taskId) => {
     setnotesArray(
       notesArray.map((item) => {
@@ -43,10 +43,8 @@ export default function Note({
       }),
     );
   };
-
   const [showEditedNote, setshowEditedNote] = useState(false);
   const [idShowEditedNote, setidShowEditedNote] = useState(null);
-
   useEffect(() => {
     if (isNewNote) {
       const temp = notesArray;
@@ -76,10 +74,6 @@ export default function Note({
       setisNewNote(!isNewNote);
     }
   }, [isNewNote]);
-
-  useEffect(() => {
-    console.log('useeffect z note');
-  }, []);
 
   return notesArray.map((item, index) => {
     return (

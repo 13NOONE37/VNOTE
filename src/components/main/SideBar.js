@@ -7,6 +7,7 @@ import { ReactComponent as VNoteLogo } from 'resources/SVG/logo.svg';
 import AppContext from 'store/appContext';
 import ProfileBar from 'components/main/ProfileBar';
 import AddCategory from 'components/modals/AddCategory';
+import SearchModal from 'components/modals/SearchModal';
 
 export default function SideBar() {
   const [
@@ -20,6 +21,7 @@ export default function SideBar() {
     setcategoriesTable,
   ] = useContext(AppContext);
 
+  const [showSearchModal, setshowSearchModal] = useState(false);
   const [showAddCategories, setshowAddCategories] = useState(false);
   const [showSideBar, setshowSideBar] = useState(false);
 
@@ -103,6 +105,10 @@ export default function SideBar() {
           showAddCategories={showAddCategories}
           setshowAddCategories={setshowAddCategories}
         />
+        <SearchModal
+          showBox={showSearchModal}
+          setshowBox={setshowSearchModal}
+        />
 
         <div className='SideTop'>
           <NavLink
@@ -117,7 +123,10 @@ export default function SideBar() {
         </div>
 
         <div className='SideMiddle scrollClass'>
-          <button className='searchButton'>
+          <button
+            className='searchButton'
+            onClick={() => setshowSearchModal(!showSearchModal)}
+          >
             <span>Search</span>
             <i className='fas fa-search'></i>
           </button>

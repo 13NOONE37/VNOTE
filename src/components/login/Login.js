@@ -55,6 +55,7 @@ export default function Login({ setcurrentWindow }) {
               <div className='inputBox'>
                 <i className='fas fa-envelope'></i>
                 <input
+                  autoComplete='email'
                   type='email'
                   placeholder='Email'
                   value={values.email}
@@ -74,6 +75,7 @@ export default function Login({ setcurrentWindow }) {
               <div className='inputBox'>
                 <i className='fas fa-lock'></i>
                 <input
+                  autoComplete='password'
                   type='password'
                   placeholder='Password'
                   value={values.password}
