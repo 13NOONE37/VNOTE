@@ -29,13 +29,14 @@ export default function SearchModal({ showBox, setshowBox }) {
   }, [showBox]);
 
   useEffect(() => {
-    setsearchResult([]);
-    const temp = searchResult;
-    notes.map((item) => {
-      if (item.content.search(searchContent.trim()) != -1) {
-        temp.push(item.id);
-      }
-    });
+    const temp = [];
+
+    searchContent.trim().length > 0 &&
+      notes.map((item) => {
+        if (item.content.search(searchContent.trim()) != -1) {
+          temp.push(item.id);
+        }
+      });
     setsearchResult(temp);
     console.log(searchResult);
   }, [searchContent]);
@@ -68,7 +69,9 @@ export default function SearchModal({ showBox, setshowBox }) {
             </form>
             <span className='searchResult'>
               {searchResult.length > 0 ? (
-                <h1>Notes</h1>
+                notes.map((item) => {
+                  searchResult.includes(item.id) && <span>{item.content}</span>;
+                })
               ) : searchResult.length == 0 ? (
                 <h1>No results</h1>
               ) : null}
