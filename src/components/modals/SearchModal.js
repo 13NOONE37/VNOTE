@@ -5,6 +5,7 @@ import 'css/modals/SearchModal.css';
 import 'css/modals/modalConfig.css';
 import handleContentChange from 'utils/Global/handleContentChange';
 import AppContext from 'store/appContext';
+import SearchNote from 'components/main/SearchNote';
 
 export default function SearchModal({ showBox, setshowBox }) {
   const [
@@ -21,25 +22,11 @@ export default function SearchModal({ showBox, setshowBox }) {
   const box = useRef(null);
   const input = useRef(null);
 
-  const [searchResult, setsearchResult] = useState([]);
   const [searchContent, setsearchContent] = useState('');
 
   useEffect(() => {
     showBox && input.current.focus();
   }, [showBox]);
-
-  useEffect(() => {
-    const temp = [];
-
-    searchContent.trim().length > 0 &&
-      notes.map((item) => {
-        if (item.content.search(searchContent.trim()) != -1) {
-          temp.push(item.id);
-        }
-      });
-    setsearchResult(temp);
-    console.log(searchResult);
-  }, [searchContent]);
 
   return createPortal(
     <>
@@ -55,7 +42,7 @@ export default function SearchModal({ showBox, setshowBox }) {
           }}
         >
           <div className='searchBox'>
-            <form className='searchField'>
+            <span className='searchField'>
               <input
                 ref={input}
                 type='text'
@@ -63,25 +50,25 @@ export default function SearchModal({ showBox, setshowBox }) {
                 value={searchContent}
                 onChange={(e) => handleContentChange(e, setsearchContent)}
               />
-              <button type='submit'>
+              <button disabled>
                 <i className='fas fa-search'></i>
               </button>
-            </form>
-            <span className='searchResult'>
-              {searchResult.length > 0 ? (
-                notes.map((item) => {
-                  searchResult.includes(item.id) && <span>{item.content}</span>;
-                })
-              ) : searchResult.length == 0 ? (
-                <h1>No results</h1>
-              ) : null}
             </span>
-            <span className='preTypes'>
-              <button>
-                <i className='fas fa-list'></i> <span>Lists</span>
-              </button>
-              <button>
-                <i className='fas fa-link'></i> <span>URLs</span>
+            <span className='searchResult scrollClass'>
+              <SearchNote
+                notesArray={notes}
+                setnotesArray={setnotes}
+                searchPhrase={searchContent}
+              />
+            </span>
+            <span className='closeSection'>
+              <button
+                onClick={() => {
+                  setshowBox(false);
+                }}
+                className='addCategoryDone'
+              >
+                Done
               </button>
             </span>
           </div>

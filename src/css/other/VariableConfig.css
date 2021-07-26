@@ -88,3 +88,18 @@
 
   background-color: var(--blue-8);
 }
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  width: 1300px;
+}
+.my-masonry-grid_column {
+  background-clip: padding-box;
+}
+@media only screen and (max-width: 530px) {
+  .my-masonry-grid {
+    width: auto;
+  }
+}

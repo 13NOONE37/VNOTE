@@ -75,96 +75,118 @@ export default function Note({
     }
   }, [isNewNote]);
 
-  return notesArray.map((item, index) => {
-    return (
-      handleTypeDecide(
-        item.isPinned,
-        item.isDeleted,
-        item.isArchive,
-        item.isShared,
-        item.isSecret,
-        item.groups,
-        renderType,
-        categoryTypeHere,
-      ) && (
-        <div
-          key={index}
-          tabIndex={index}
-          onClick={(e) => {
-            setshowEditedNote(true);
-            setidShowEditedNote(item.id);
-          }}
-          key={index}
-          className='note'
-          style={{
-            backgroundImage: `linear-gradient(45deg, hsl(${item.color},45%,14%), hsl(${item.color},45%,20%))`,
-          }}
-        >
-          {showEditedNote &&
-            idShowEditedNote == item.id &&
-            !item.isDeleted &&
-            !item.isArchive && (
-              <EditNote
-                notesArray={notesArray}
-                setnotesArray={setnotesArray}
-                id={item.id}
-                setshowEditedNote={setshowEditedNote}
+  const breakpointColumnsObj = {
+    default: 5,
+    1550: 4,
+    1290: 3,
+    1035: 2,
+    784: 1,
+    660: 2,
+    530: 1,
+  };
+
+  return (
+    <Masonry
+      breakpointCols={breakpointColumnsObj}
+      className='my-masonry-grid'
+      columnClassName='my-masonry-grid_column'
+    >
+      {notesArray.map((item, index) => {
+        return (
+          handleTypeDecide(
+            item.isPinned,
+            item.isDeleted,
+            item.isArchive,
+            item.isShared,
+            item.isSecret,
+            item.groups,
+            renderType,
+            categoryTypeHere,
+          ) && (
+            <div
+              key={index}
+              tabIndex={index}
+              onClick={(e) => {
+                setshowEditedNote(true);
+                setidShowEditedNote(item.id);
+              }}
+              key={index}
+              className='note'
+              style={{
+                backgroundImage: `linear-gradient(45deg, hsl(${item.color},45%,14%), hsl(${item.color},45%,20%))`,
+              }}
+            >
+              {showEditedNote &&
+                idShowEditedNote == item.id &&
+                !item.isDeleted &&
+                !item.isArchive && (
+                  <EditNote
+                    notesArray={notesArray}
+                    setnotesArray={setnotesArray}
+                    id={item.id}
+                    setshowEditedNote={setshowEditedNote}
+                    showEditedNote={showEditedNote}
+                    handlePinNote={handlePinNote}
+                    handleChangeCheckboxState={handleChangeCheckboxState}
+                    setidShowEditedNote={setidShowEditedNote}
+                  />
+                )}
+
+              {!item.isDeleted && (
+                <button
+                  onClick={(e) => handlePinNote(e, item.id)}
+                  className={`notePin ${
+                    item.isPinned ? 'pinnedNote' : 'unpinnedNote'
+                  }`}
+                >
+                  <i className='fas fa-thumbtack notePin'></i>
+                </button>
+              )}
+              <span className='noteTitle'>
+                {item.title ? item.title : String.fromCharCode(0)}
+              </span>
+              <span className='noteContent scrollClass'>
+                {item.content && item.isCheckboxList ? (
+                  <div className='tasksList'>
+                    {item.content.split('\n').map(
+                      (task, n) =>
+                        task.length > 0 && (
+                          <span
+                            key={n}
+                            className={`${
+                              item.doneTasks[n] ? 'doneTask' : null
+                            }`}
+                          >
+                            <input
+                              // disabled={`${!item.isDeleted}`}
+                              checked={item.doneTasks[n]}
+                              type='checkbox'
+                              onClick={(e) => e.stopPropagation()}
+                              onChange={() =>
+                                handleChangeCheckboxState(item.id, n)
+                              }
+                            />
+
+                            {`${task}\n`}
+                          </span>
+                        ),
+                    )}
+                  </div>
+                ) : (
+                  item.content
+                )}
+              </span>
+
+              <NoteTools
+                item={item}
                 showEditedNote={showEditedNote}
-                handlePinNote={handlePinNote}
-                handleChangeCheckboxState={handleChangeCheckboxState}
+                setshowEditedNote={setshowEditedNote}
                 setidShowEditedNote={setidShowEditedNote}
               />
-            )}
-
-          {!item.isDeleted && (
-            <button
-              onClick={(e) => handlePinNote(e, item.id)}
-              className={`notePin ${
-                item.isPinned ? 'pinnedNote' : 'unpinnedNote'
-              }`}
-            >
-              <i className='fas fa-thumbtack notePin'></i>
-            </button>
-          )}
-          <span className='noteTitle'>
-            {item.title ? item.title : String.fromCharCode(0)}
-          </span>
-          <span className='noteContent scrollClass'>
-            {item.content && item.isCheckboxList ? (
-              <div className='tasksList'>
-                {item.content.split('\n').map(
-                  (task, n) =>
-                    task.length > 0 && (
-                      <span
-                        key={n}
-                        className={`${item.doneTasks[n] ? 'doneTask' : null}`}
-                      >
-                        <input
-                          // disabled={`${!item.isDeleted}`}
-                          checked={item.doneTasks[n]}
-                          type='checkbox'
-                          onClick={(e) => e.stopPropagation()}
-                          onChange={() => handleChangeCheckboxState(item.id, n)}
-                        />
-
-                        {`${task}\n`}
-                      </span>
-                    ),
-                )}
-              </div>
-            ) : (
-              item.content
-            )}
-          </span>
-
-          <NoteTools
-            item={item}
-            showEditedNote={showEditedNote}
-            setshowEditedNote={setshowEditedNote}
-            setidShowEditedNote={setidShowEditedNote}
-          />
-        </div>
-      )
-    );
-  });
+            </div>
+          )
+        );
+      })}
+    </Masonry>
+  );
 }
