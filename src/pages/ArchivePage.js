@@ -27,6 +27,14 @@ export default function ArchivePage() {
     setisEmpty(isEmpty + 1);
   }, [notes]);
 
+  const handleShowEmpty = () => {
+    let state = false;
+    notes.map((item) => {
+      if (item.isArchive) state = true;
+    });
+    return state;
+  };
+
   return (
     <div className='mainPage scrollClass'>
       <span className='actionsContainer'>
@@ -39,9 +47,7 @@ export default function ArchivePage() {
           setnotesArray={setnotes}
         />
       </span>
-      {isEmpty &&
-        itemsGallery.current &&
-        itemsGallery.current.children.length == 0 && <EmptyState />}
+      {!handleShowEmpty() && <EmptyState />}
     </div>
   );
 }
