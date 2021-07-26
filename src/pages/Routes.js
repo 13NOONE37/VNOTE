@@ -37,11 +37,11 @@ export default [
   //   component: () => <SecretPage />,
   //   protected: 'auth',
   // },
-  {
-    path: '/shared',
-    component: () => <SharePage />,
-    protected: 'auth',
-  },
+  // {
+  //   path: '/shared',
+  //   component: () => <SharePage />,
+  //   protected: 'auth',
+  // },
   {
     path: '/deleted',
     component: () => <TrashPage />,

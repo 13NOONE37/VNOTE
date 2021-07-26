@@ -27,17 +27,21 @@ export default function SharePage() {
     setisEmpty(isEmpty + 1);
   }, [notes]);
 
+  const handleShowEmpty = () => {
+    let state = false;
+    notes.map((item) => {
+      if (item.isShared) state = true;
+    });
+    return state;
+  };
+
   return (
     <div className='mainPage scrollClass'>
-      <span className='actionsContainer'>
-        <CreateNote />
-      </span>
+      <span className='actionsContainer'>{/* <CreateNote /> */}</span>
       <span ref={itemsGallery} className='itemsGallery'>
         <Note renderType='shared' notesArray={notes} setnotesArray={setnotes} />
       </span>
-      {isEmpty &&
-        itemsGallery.current &&
-        itemsGallery.current.children.length == 0 && <EmptyState />}
+      {!handleShowEmpty() && <EmptyState />}
     </div>
   );
 }

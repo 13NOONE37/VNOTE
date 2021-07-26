@@ -24,13 +24,18 @@ export default function MainPage() {
   const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);
 
-  useEffect(() => {
-    console.log(notes);
-  }, []);
   const [isEmpty, setisEmpty] = useState(1);
   useEffect(() => {
     setisEmpty(isEmpty + 1);
   }, [notes]);
+
+  const handleShowEmpty = () => {
+    let state = false;
+    notes.map((item) => {
+      if (!item.isArchive && !item.isDeleted && !item.isShared) state = true;
+    });
+    return state;
+  };
 
   return (
     <div className='mainPage scrollClass'>
@@ -75,9 +80,7 @@ export default function MainPage() {
           />
         )}
       </span> */}
-      {isEmpty &&
-        itemsGallery.current &&
-        itemsGallery.current.children.length == 0 && <EmptyState />}
+      {!handleShowEmpty() && <EmptyState />}
     </div>
   );
 }

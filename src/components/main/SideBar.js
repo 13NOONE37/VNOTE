@@ -42,11 +42,11 @@ export default function SideBar() {
       //   icon: 'fas fa-key',
       //   link: '/secrets',
       // },
-      {
-        name: 'Shared',
-        icon: 'fas fa-people-arrows',
-        link: '/shared',
-      },
+      // {
+      //   name: 'Shared',
+      //   icon: 'fas fa-people-arrows',
+      //   link: '/shared',
+      // },
       {
         name: 'Archive',
         icon: 'fas fa-archive',
