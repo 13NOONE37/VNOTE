@@ -94,11 +94,12 @@
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
   width: 1300px;
+  /* width: auto; */
 }
 .my-masonry-grid_column {
   background-clip: padding-box;
 }
-@media only screen and (max-width: 530px) {
+@media only screen and (max-width: 1035px) {
   .my-masonry-grid {
     width: auto;
   }
