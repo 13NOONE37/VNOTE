@@ -14,15 +14,16 @@ export default function LinkToCategories({
   const [note, setnote] = useState(notesArray.find((item) => item.id == id));
   const box = useRef(null);
 
-  const linkNoteToGroup = (noteId, groupId) => {
+  const linkNoteToGroup = (noteId, group) => {
     const tempNotes = notesArray.map((item) => {
       if (item.id == noteId) {
-        if (item.groups[groupId]) item.groups[groupId] = null;
-        else item.groups[groupId] = categoriesTable[groupId].name;
-
-        const makeNull = (i) => (item.groups[i] = null);
-        for (let i = 0; i < item.groups.length; i++) {
-          item.groups[i] == undefined && makeNull(i);
+        console.log(item.groups.includes(group), group);
+        if (item.groups.includes(group)) {
+          //already is in group so we have to delete it
+          item.groups = item.groups.filter((el) => el != group);
+        } else {
+          //we have to add note to group
+          item.groups.push(group);
         }
       }
       return item;
@@ -47,7 +48,7 @@ export default function LinkToCategories({
                   <input
                     checked={note.groups.includes(item.name)}
                     type='checkbox'
-                    onChange={() => linkNoteToGroup(id, index)}
+                    onChange={() => linkNoteToGroup(id, item.name)}
                   />
                   <span>{item.name}</span>
                 </li>
