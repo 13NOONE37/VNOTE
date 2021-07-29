@@ -43,8 +43,8 @@ export default function AddCategory({
       }),
     );
 
-  const handleAddCategory = (e) => {
-    e.preventDefault();
+  const handleAddCategory = (e, notDoPrevent) => {
+    !notDoPrevent && e.preventDefault();
 
     if (categoryValue.length > 0) {
       let temp = categoriesTable;
@@ -74,6 +74,7 @@ export default function AddCategory({
         <div
           ref={box}
           onMouseDown={(e) => {
+            handleAddCategory(e, true);
             handleClickOutside(e, box, setshowAddCategories);
             setshowNotify(false);
           }}
