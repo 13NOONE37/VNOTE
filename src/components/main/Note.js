@@ -158,6 +158,7 @@ export default function Note({
                             }`}
                           >
                             <input
+                              // id={`check${n}`}
                               // disabled={`${!item.isDeleted}`}
                               checked={item.doneTasks[n]}
                               type='checkbox'
@@ -166,6 +167,11 @@ export default function Note({
                                 handleChangeCheckboxState(item.id, n)
                               }
                             />
+                            {/* <label for={`check${n}`}>
+                              <svg viewBox='0,0,50,50'>
+                                <path d='M5 30 L 20 45 L 45 5'></path>
+                              </svg>
+                            </label> */}
 
                             {`${task}\n`}
                           </span>
