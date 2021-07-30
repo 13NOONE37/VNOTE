@@ -96,15 +96,12 @@
 .tasksList span {
   margin: 8px 0;
 }
-.tasksList .taskParent span {
-  width: calc(100% - 40px);
-}
-.taskParent span {
-  width: calc(100% - 40px);
-}
 .taskParent {
   display: flex;
   position: relative;
+}
+.taskParent span {
+  width: calc(100% - 40px);
 }
 .doneTask {
   text-decoration: line-through;
