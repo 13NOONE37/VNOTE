@@ -20,7 +20,6 @@ export default function CategoryPage() {
     categoriesTable,
     setcategoriesTable,
   ] = useContext(AppContext);
-
   const { id } = useParams();
   const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);

@@ -94,18 +94,21 @@ export default function EditNote({
 
         <span className='noteContent scrollClass'>
           {note.content && note.isCheckboxList ? (
-            <div className='tasksList'>
+            <span className='tasksList'>
               {note.content.split('\n').map(
                 (task, n) =>
                   task.length > 0 && (
-                    <div className='taskParent' key={n}>
-                      <input
-                        tabIndex='-1'
-                        checked={note.doneTasks[n]}
-                        type='checkbox'
-                        onChange={() => handleChangeCheckboxState(id, n)}
-                      />
-
+                    <div className=' task' key={n}>
+                      <span className='bounce'>
+                        <input
+                          checked={note.doneTasks[n]}
+                          type='checkbox'
+                          onChange={() => handleChangeCheckboxState(note.id, n)}
+                        />
+                        <svg viewBox='0 0 21 21'>
+                          <polyline points='5 10.75 8.5 14.25 16 6'></polyline>
+                        </svg>
+                      </span>
                       <ContentEditable
                         className={`${note.doneTasks[n] ? 'doneTask' : null}`}
                         html={task}
@@ -144,7 +147,7 @@ export default function EditNote({
                     </div>
                   ),
               )}
-            </div>
+            </span>
           ) : (
             <textarea
               className='scrollClass'

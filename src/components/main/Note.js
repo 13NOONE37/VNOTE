@@ -153,25 +153,23 @@ export default function Note({
                         task.length > 0 && (
                           <span
                             key={n}
-                            className={`${
+                            className={`task ${
                               item.doneTasks[n] ? 'doneTask' : null
                             }`}
                           >
-                            <input
-                              // id={`check${n}`}
-                              // disabled={`${!item.isDeleted}`}
-                              checked={item.doneTasks[n]}
-                              type='checkbox'
-                              onClick={(e) => e.stopPropagation()}
-                              onChange={() =>
-                                handleChangeCheckboxState(item.id, n)
-                              }
-                            />
-                            {/* <label for={`check${n}`}>
-                              <svg viewBox='0,0,50,50'>
-                                <path d='M5 30 L 20 45 L 45 5'></path>
+                            <span className='bounce'>
+                              <input
+                                checked={item.doneTasks[n]}
+                                type='checkbox'
+                                onClick={(e) => e.stopPropagation()}
+                                onChange={() =>
+                                  handleChangeCheckboxState(item.id, n)
+                                }
+                              />
+                              <svg viewBox='0 0 21 21'>
+                                <polyline points='5 10.75 8.5 14.25 16 6'></polyline>
                               </svg>
-                            </label> */}
+                            </span>
 
                             {`${task}\n`}
                           </span>
