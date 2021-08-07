@@ -32,11 +32,11 @@ export default function SideBar() {
         icon: 'far fa-sticky-note',
         link: '/notes',
       },
-      // {
-      //   name: 'Notebooks',
-      //   icon: 'fas fa-book',
-      //   link: '/notebooks',
-      // },
+      {
+        name: 'Notebooks',
+        icon: 'fas fa-book',
+        link: '/notebooks',
+      },
       // {
       //   name: 'Secrets',
       //   icon: 'fas fa-key',

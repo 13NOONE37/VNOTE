@@ -23,11 +23,6 @@ export default function NotesPage() {
     setcategoriesTable,
   ] = useContext(AppContext);
 
-  const [isEmpty, setisEmpty] = useState(1);
-  useEffect(() => {
-    setisEmpty(isEmpty + 1);
-  }, [notes]);
-
   const handleShowEmpty = () => {
     let state = false;
     notes.map((item) => {

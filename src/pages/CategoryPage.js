@@ -24,11 +24,6 @@ export default function CategoryPage() {
   const [isNewNote, setisNewNote] = useState(false);
   const itemsGallery = useRef(null);
 
-  const [isEmpty, setisEmpty] = useState(1);
-  useEffect(() => {
-    setisEmpty(isEmpty + 1);
-  }, [notes]);
-
   const handleShowEmpty = () => {
     let state = false;
     notes.map((item) => {
