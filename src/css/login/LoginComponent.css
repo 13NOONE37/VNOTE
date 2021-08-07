@@ -82,7 +82,7 @@
 }
 .buttons button {
   cursor: pointer;
-  width: calc(50%-12px);
+  /* width: calc(50%-12px); */
   height: 40px;
   padding: 6px;
   margin: 12px;
