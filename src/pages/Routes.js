@@ -27,11 +27,11 @@ export default [
     component: () => <NotesPage />,
     protected: 'auth',
   },
-  // {
-  //   path: '/notebooks',
-  //   component: () => <NotebooksPage />,
-  //   protected: 'auth',
-  // },
+  {
+    path: '/notebooks',
+    component: () => <NotebooksPage />,
+    protected: 'auth',
+  },
   // {
   //   path: '/secrets',
   //   component: () => <SecretPage />,
