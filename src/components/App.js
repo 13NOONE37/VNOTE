@@ -25,7 +25,6 @@ function App() {
   const [categoriesTable, setcategoriesTable] = useState([]);
 
   useEffect(() => {
-    console.log('useeffect z app');
     CheckSession(
       setLoggedIn,
       setuser,

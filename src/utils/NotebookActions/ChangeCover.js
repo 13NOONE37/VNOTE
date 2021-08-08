@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../../../../../../css/Apps/VNote/Actions/ChangeCover.css';
 
-export default function ChangeCover({ notebooksArray, setnotebooksArray, id }) {
+export default function ChangeCover({ notebooks, setnotebooks, id }) {
   const backgrounds = [
     'point-stars',
     'anchors-away',
@@ -28,11 +28,11 @@ export default function ChangeCover({ notebooksArray, setnotebooksArray, id }) {
   ];
 
   const [numberBackground, setnumberBackground] = useState(
-    backgrounds.indexOf(notebooksArray[id - 1].bgImage),
+    backgrounds.indexOf(notebooks[id - 1].bgImage),
   );
 
   useEffect(() => {
-    const tempNoteBooks = notebooksArray.map((item) => {
+    const tempNoteBooks = notebooks.map((item) => {
       if (item.id == id) {
         item.bgImage = backgrounds[numberBackground];
         // item.color = e.target.value;
@@ -40,7 +40,7 @@ export default function ChangeCover({ notebooksArray, setnotebooksArray, id }) {
 
       return item;
     });
-    setnotebooksArray(tempNoteBooks);
+    setnotebooks(tempNoteBooks);
   }, [numberBackground]);
 
   const handleChangeBg = (isDirectionLeft) => {
@@ -57,20 +57,18 @@ export default function ChangeCover({ notebooksArray, setnotebooksArray, id }) {
     }
   };
 
-  const [currentColor, setcurrentColor] = useState(
-    notebooksArray[id - 1].color,
-  );
+  const [currentColor, setcurrentColor] = useState(notebooks[id - 1].color);
 
   const handleChangeValue = (e) => {
     setcurrentColor(e.target.value);
 
-    const beforeEl = notebooksArray.slice(0, id - 1);
-    const afterEl = notebooksArray.slice(id);
-    let currentNotebook = notebooksArray.slice(id - 1, id);
+    const beforeEl = notebooks.slice(0, id - 1);
+    const afterEl = notebooks.slice(id);
+    let currentNotebook = notebooks.slice(id - 1, id);
     currentNotebook[0].color = e.target.value;
     currentNotebook[0].color = e.target.value;
 
-    setnotebooksArray([...beforeEl, ...currentNotebook, ...afterEl]);
+    setnotebooks([...beforeEl, ...currentNotebook, ...afterEl]);
   };
 
   return (

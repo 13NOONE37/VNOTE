@@ -8,7 +8,6 @@ export default async function UpdateUserData(
 ) {
   const db = firebase.firestore();
   // db.settings({ timestampsInSnapshots: true, merge: true });
-  console.log('updateUserData');
   await db
     .collection('users')
     .doc(user.uid)
@@ -18,6 +17,6 @@ export default async function UpdateUserData(
       notebooks: notebooks,
     })
     .catch((err) => {
-      console.log(`Err: ${err.message}`);
+      // console.log(`Err: ${err.message}`);
     });
 }

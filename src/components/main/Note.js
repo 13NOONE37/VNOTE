@@ -105,7 +105,7 @@ export default function Note({
           ) && (
             <div
               key={index}
-              tabIndex={index}
+              // tabIndex={index}
               onClick={(e) => {
                 setshowEditedNote(true);
                 setidShowEditedNote(item.id);

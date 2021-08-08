@@ -14,15 +14,15 @@ export default function signInWithGoogle(setLoggedIn, setuser) {
 
       console.log(result.user.metadata.a, result.user.metadata.b);
       if (result.user.metadata.a == result.user.metadata.b) {
-        console.log(
-          'if statement🐀',
-          result.user.metadata,
-          result.user.metadata.a,
-          result.user.metadata.b,
-        );
+        // console.log(
+        //   'if statement🐀',
+        //   result.user.metadata,
+        //   result.user.metadata.a,
+        //   result.user.metadata.b,
+        // );
         OnAccountCreate(result.user);
       } else {
-        console.log('else statement');
+        // console.log('else statement');
       }
 
       setLoggedIn(true);
