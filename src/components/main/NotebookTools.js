@@ -21,17 +21,23 @@ export default function NoteTools({ item }) {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className='noteTools'
+      className='notebookTools'
     >
+      <button aria-label='Open notebook' className='tooltipParent notebookItem'>
+        <i class='fas fa-door-open'></i>
+        <span className='tooltip'>Open notebook</span>
+      </button>
+
       <button
-        aria-label='Change Cover'
-        className='tooltipParent noteItem'
+        aria-label='Change appearance'
+        className='tooltipParent notebookItem'
         onClick={() => setshowCoverBox(!showCoverBox)}
       >
-        <i className='fas fa-share'></i>
-        <span className='tooltip'>Change Cover</span>
+        <i className='fas fa-palette'></i>
+        <span className='tooltip'>Change appearance</span>
         <ChangeCover
-          notesArray={notes}
+          notebooks={notebooks}
+          setnotebooks={setnotebooks}
           id={item.id}
           showCoverBox={showCoverBox}
           setshowCoverBox={setshowCoverBox}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../../../../../css/Apps/VNote/Actions/ChangeCover.css';
+import 'css/actions/ChangeCover.css';
 
 export default function ChangeCover({ notebooks, setnotebooks, id }) {
   const backgrounds = [

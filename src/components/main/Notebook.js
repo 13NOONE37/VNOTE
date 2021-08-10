@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import NotebookTools from 'components/main/NotebookTools';
 
 import 'css/main/Notebook.css';
+import 'css/other/noteBackgrounds.css';
 import Masonry from 'react-masonry-css';
 
 export default function Notebook({
@@ -42,34 +43,33 @@ export default function Notebook({
       setisNewNotebook(!isNewNotebook);
     }
   }, [isNewNotebook]);
-  useEffect(() => {
-    console.log(notebooks);
-  }, []);
 
   return (
-    <div>
-      {notebooks.map((item, index) => {
-        return (
-          <div
-            key={index}
-            // tabIndex={index}
-            onClick={(e) => {
-              console.log('redirect to notebook editor');
-            }}
-            key={index}
-            className='notebook'
-            style={{
-              backgroundColor: `hsl(${item.color},45%,14%)`,
-            }}
-          >
-            <span>Title: ${item.title}</span>
-            <span>Date: ${item.date}</span>
-            <span>Bg: ${item.bgImage}</span>
-            <NotebookTools item={item} />
+    <Masonry
+      breakpointCols={breakpointColumnsObj}
+      className='my-masonry-grid'
+      columnClassName='my-masonry-grid_column'
+    >
+      {notebooks.map((item, index) => (
+        <div
+          key={index}
+          // tabIndex={index}
+          onClick={(e) => {
+            console.log('redirect to notebook editor');
+          }}
+          key={index}
+          className={`notebook ${item.bgImage}`}
+          style={{
+            backgroundColor: `hsl(${item.color},45%,10%)`,
+          }}
+        >
+          <div className='notebookInfo'>
+            <span className='title'>Title: {item.title}</span>
+            <span className='date'>Date: {item.date}</span>
           </div>
-        );
-      })}
-      <h1>{notebooks.length}</h1>
-    </div>
+          <NotebookTools item={item} />
+        </div>
+      ))}
+    </Masonry>
   );
 }
