@@ -108,15 +108,21 @@ export default function SearchNote({
                   task.length > 0 && (
                     <span
                       key={n}
-                      className={`${item.doneTasks[n] ? 'doneTask' : null}`}
+                      className={`task ${
+                        item.doneTasks[n] ? 'doneTask' : null
+                      }`}
                     >
-                      <input
-                        // disabled={`${!item.isDeleted}`}
-                        checked={item.doneTasks[n]}
-                        type='checkbox'
-                        onClick={(e) => e.stopPropagation()}
-                        onChange={() => handleChangeCheckboxState(item.id, n)}
-                      />
+                      <span className='bounce'>
+                        <input
+                          checked={item.doneTasks[n]}
+                          type='checkbox'
+                          onClick={(e) => e.stopPropagation()}
+                          onChange={() => handleChangeCheckboxState(item.id, n)}
+                        />
+                        <svg viewBox='0 0 21 21'>
+                          <polyline points='5 10.75 8.5 14.25 16 6'></polyline>
+                        </svg>
+                      </span>
 
                       {`${task}\n`}
                     </span>
