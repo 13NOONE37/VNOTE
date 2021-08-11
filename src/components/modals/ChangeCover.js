@@ -62,15 +62,16 @@ export default function ChangeCover({
   }, []);
 
   useEffect(() => {
-    setnotebooks(
-      notebooks.map((item) => {
-        if (item.id == id) {
-          item.color = currentColor;
-          item.bgImage = backgrounds[numberBackground];
-        }
-        return item;
-      }),
-    );
+    currentColor != '' &&
+      setnotebooks(
+        notebooks.map((item) => {
+          if (item.id == id) {
+            item.color = currentColor;
+            item.bgImage = backgrounds[numberBackground];
+          }
+          return item;
+        }),
+      );
   }, [currentColor, numberBackground]);
 
   const handleBackgroundChange = (directRight) => {
