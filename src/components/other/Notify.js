@@ -7,7 +7,9 @@ export default function Notify({ notifyType, notifyContent, notifyTime }) {
     notifyTime <= 100 ? notifyTime : 100,
   );
   const [showDiv, setshowDiv] = useState(true);
-  const handleHideNotify = () => setleftTime(-1);
+  const handleHideNotify = () => {
+    setleftTime(-1);
+  };
 
   useEffect(() => {
     if (leftTime >= 0) {

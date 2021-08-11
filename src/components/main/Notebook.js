@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import NotebookTools from 'components/main/NotebookTools';
 
@@ -33,8 +33,7 @@ export default function Notebook({
       );
       temp.unshift({
         id: newId,
-        title: 'JS tips',
-        date: '03.02.2019',
+        title: 'Your notebook',
         color: 236,
         bgImage: 'hexagons',
       });
@@ -64,8 +63,7 @@ export default function Notebook({
           }}
         >
           <div className='notebookInfo'>
-            <span className='title'>Title: {item.title}</span>
-            <span className='date'>Date: {item.date}</span>
+            <span className='title'>{item.title}</span>
           </div>
           <NotebookTools item={item} />
         </div>

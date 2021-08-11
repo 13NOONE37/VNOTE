@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import 'css/modals/ColorModal.css';
+import 'css/actions/ChangeCover.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import handleContentChange from 'utils/Global/handleContentChange';
 
@@ -41,7 +42,6 @@ export default function ChangeCover({
     'random-shapes',
     'skulls',
     'temple',
-    'texture',
     'tic-tac-toe',
     'topography',
     'wiggle',
@@ -50,35 +50,52 @@ export default function ChangeCover({
   const box = useRef(null);
 
   const [currentColor, setcurrentColor] = useState('');
-  const [currentBackground, setcurrentBackground] = useState('');
+  const [numberBackground, setnumberBackground] = useState(0);
 
   useEffect(() => {
     notebooks.map((item) => {
       if (item.id == id) {
         setcurrentColor(item.color);
-        setcurrentBackground(item.bgImage);
+        setnumberBackground(backgrounds.indexOf(item.bgImage));
       }
     });
   }, []);
+
   useEffect(() => {
-    console.log(currentColor, currentBackground);
     setnotebooks(
       notebooks.map((item) => {
         if (item.id == id) {
           item.color = currentColor;
-          // item.bgImage = backgrounds[numberBackground];
+          item.bgImage = backgrounds[numberBackground];
         }
         return item;
       }),
     );
-  }, [currentColor]);
+  }, [currentColor, numberBackground]);
+
+  const handleBackgroundChange = (directRight) => {
+    if (directRight) {
+      if (numberBackground > 19) {
+        setnumberBackground(0);
+      } else {
+        setnumberBackground(numberBackground + 1);
+      }
+    } else {
+      if (numberBackground < 1) {
+        setnumberBackground(20);
+      } else {
+        setnumberBackground(numberBackground - 1);
+      }
+    }
+  };
 
   return createPortal(
     <>
       {showCoverBox && (
         <div
           ref={box}
-          onClick={(e) => handleClickOutside(e, box, setshowCoverBox)}
+          onClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => handleClickOutside(e, box, setshowCoverBox)}
           className='modalBox'
         >
           <div className='colorBox'>
@@ -114,6 +131,18 @@ export default function ChangeCover({
                 value={currentColor}
                 onChange={(e) => handleContentChange(e, setcurrentColor)}
               />
+            </span>
+            <span className='backgroundPicker'>
+              <button className='arrowButton' onClick={handleBackgroundChange}>
+                <i class='fas fa-arrow-circle-left'></i>
+              </button>
+              <div
+                className={`backgroundPreview ${backgrounds[numberBackground]}`}
+                style={{ backgroundColor: `hsl(${currentColor}, 45%, 12%)` }}
+              ></div>
+              <button className='arrowButton' onClick={handleBackgroundChange}>
+                <i class='fas fa-arrow-circle-right'></i>
+              </button>
             </span>
           </div>
         </div>

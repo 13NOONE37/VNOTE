@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.1s ease-in;
+  /* transition: all 0.1s ease-in; */
 
   margin: var(--size-3);
 }
@@ -37,16 +37,12 @@
 .notebook .title {
   font-weight: 700;
   letter-spacing: 0.5px;
-  font-size: 18px;
+  font-size: 20px;
   white-space: break-spaces;
   word-wrap: break-word;
 
   max-width: calc(var(--note-width) - 40px);
   padding: var(--size-3);
-}
-
-.notebook .date {
-  font-weight: 600;
 }
 
 /* notetools */
