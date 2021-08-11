@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import ChangeCover from 'components/modals/ChangeCover';
 import AppContext from 'store/appContext';
+import ConfirmModal from 'components/modals/ConfirmModal';
 
 export default function NoteTools({ item }) {
   const [
@@ -15,6 +16,10 @@ export default function NoteTools({ item }) {
     setcategoriesTable,
   ] = useContext(AppContext);
   const [showCoverBox, setshowCoverBox] = useState(false);
+  const [showConfirmModal, setshowConfirmModal] = useState(false);
+
+  const handleRemoveNotebook = () =>
+    setnotebooks(notebooks.filter((n) => n.id !== item.id));
 
   return (
     <div
@@ -25,7 +30,7 @@ export default function NoteTools({ item }) {
     >
       <button aria-label='Open notebook' className='tooltipParent notebookItem'>
         <i class='fas fa-door-open'></i>
-        <span className='tooltip'>Open notebook</span>
+        <span className='tooltip'>Open</span>
       </button>
 
       <button
@@ -34,13 +39,29 @@ export default function NoteTools({ item }) {
         onClick={() => setshowCoverBox(!showCoverBox)}
       >
         <i className='fas fa-palette'></i>
-        <span className='tooltip'>Change appearance</span>
+        <span className='tooltip'>Appearance</span>
         <ChangeCover
           notebooks={notebooks}
           setnotebooks={setnotebooks}
           id={item.id}
           showCoverBox={showCoverBox}
           setshowCoverBox={setshowCoverBox}
+        />
+      </button>
+
+      <button
+        aria-label='Delete Notebook'
+        className='tooltipParent notebookItem'
+        onClick={() => setshowConfirmModal(!showConfirmModal)}
+      >
+        <i className='far fa-trash-alt'></i>
+        <span className='tooltip'>Delete</span>
+        <ConfirmModal
+          color={'error'}
+          text={`Notebook will be delete permanently.`}
+          confirmAction={handleRemoveNotebook}
+          showBox={showConfirmModal}
+          setshowBox={setshowConfirmModal}
         />
       </button>
     </div>

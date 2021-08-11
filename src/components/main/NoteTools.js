@@ -62,7 +62,7 @@ export default function NoteTools({
             ) : (
               <>
                 <i className='fas fa-pen'></i>
-                <span className='tooltip'>Edit note</span>
+                <span className='tooltip'>Edit</span>
               </>
             )}
           </button>
@@ -73,7 +73,7 @@ export default function NoteTools({
             onClick={() => setshowColorModal(true)}
           >
             <i className='fas fa-palette'></i>
-            <span className='tooltip'>Change color</span>
+            <span className='tooltip'>Appearance</span>
             <ColorModal
               setnotesArray={setnotes}
               notesArray={notes}
@@ -126,7 +126,7 @@ export default function NoteTools({
             onClick={() => setshowShareBox(!showShareBox)}
           >
             <i className='fas fa-share'></i>
-            <span className='tooltip'>Share note</span>
+            <span className='tooltip'>Share</span>
             <Share
               notesArray={notes}
               id={item.id}
@@ -140,7 +140,7 @@ export default function NoteTools({
             className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='fas fa-archive'></i>
-            <span className='tooltip'>Archive note</span>
+            <span className='tooltip'>Archive</span>
             <ArchiveNote
               setnotesArray={setnotes}
               notesArray={notes}
@@ -153,7 +153,7 @@ export default function NoteTools({
             className='tooltipParent categoryDeleteButton noteItem'
           >
             <i className='far fa-trash-alt'></i>
-            <span className='tooltip'>Delete note</span>
+            <span className='tooltip'>Delete</span>
             <PreDelete
               setnotesArray={setnotes}
               notesArray={notes}
