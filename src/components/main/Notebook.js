@@ -5,6 +5,7 @@ import NotebookTools from 'components/main/NotebookTools';
 import 'css/main/Notebook.css';
 import 'css/other/noteBackgrounds.css';
 import Masonry from 'react-masonry-css';
+import { useHistory } from 'react-router';
 
 export default function Notebook({
   notebooks,
@@ -12,6 +13,10 @@ export default function Notebook({
   isNewNotebook,
   setisNewNotebook,
 }) {
+  const history = useHistory();
+
+  const redirectToEdit = (id) => history.push(`/notebooks/edit/${id}`);
+
   const breakpointColumnsObj = {
     default: 5,
     1550: 4,
@@ -53,9 +58,7 @@ export default function Notebook({
         <div
           key={index}
           // tabIndex={index}
-          onClick={(e) => {
-            console.log('redirect to notebook editor');
-          }}
+          onDoubleClick={() => redirectToEdit(item.id)}
           key={index}
           className={`notebook ${item.bgImage}`}
           style={{
@@ -65,7 +68,7 @@ export default function Notebook({
           <div className='notebookInfo'>
             <span className='title'>{item.title}</span>
           </div>
-          <NotebookTools item={item} />
+          <NotebookTools item={item} redirectToEdit={redirectToEdit} />
         </div>
       ))}
     </Masonry>

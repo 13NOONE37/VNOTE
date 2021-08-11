@@ -4,7 +4,7 @@ import ChangeCover from 'components/modals/ChangeCover';
 import AppContext from 'store/appContext';
 import ConfirmModal from 'components/modals/ConfirmModal';
 
-export default function NoteTools({ item }) {
+export default function NoteTools({ item, redirectToEdit }) {
   const [
     loggedIn,
     user,
@@ -28,7 +28,11 @@ export default function NoteTools({ item }) {
       }}
       className='notebookTools'
     >
-      <button aria-label='Open notebook' className='tooltipParent notebookItem'>
+      <button
+        aria-label='Open notebook'
+        className='tooltipParent notebookItem'
+        onClick={() => redirectToEdit(item.id)}
+      >
         <i class='fas fa-door-open'></i>
         <span className='tooltip'>Open</span>
       </button>

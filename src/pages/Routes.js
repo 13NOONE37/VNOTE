@@ -9,6 +9,7 @@ import SharePage from './SharePage';
 import ArchivePage from './ArchivePage';
 import TrashPage from './TrashPage';
 import CategoryPage from './CategoryPage';
+import NotebookEditPage from './NotebookEditPage';
 
 export default [
   {
@@ -30,6 +31,11 @@ export default [
   {
     path: '/notebooks',
     component: () => <NotebooksPage />,
+    protected: 'auth',
+  },
+  {
+    path: '/notebooks/edit/:id',
+    component: () => <NotebookEditPage />,
     protected: 'auth',
   },
   // {
