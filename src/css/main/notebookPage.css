@@ -22,3 +22,76 @@
 }
 .notebookPage aside {
 }
+.controlPageCount {
+  display: flex;
+  gap: 4px;
+}
+.controlPageCount input {
+  -moz-appearance: textfield;
+  height: 40px;
+  width: 60px;
+
+  outline: none;
+  border: 2px solid var(--blue-8);
+  background-color: transparent;
+  color: #fff;
+  font-size: var(--size-7);
+  text-align: center;
+}
+.controlPageCount input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.controlPageCount input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.controlPageCount button {
+  cursor: pointer;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  border: none;
+
+  font-size: var(--size-7);
+  color: #fff;
+  background: linear-gradient(180deg, var(--blue-8) 0%, var(--blue-10) 100%);
+}
+.controlPageCount button,
+input {
+  box-shadow: inset -20px -20px 5px rgba(255, 255, 255, 0);
+  transition: all 0.25s ease-in;
+}
+.controlPageCount button:hover,
+.controlPageCount input:hover,
+.controlPageCount button:focus,
+.controlPageCount input:focus {
+  box-shadow: inset 40px 40px 5px rgba(255, 255, 255, 0.1);
+}
+.controlPageCount button:hover {
+  color: var(--positive);
+}
+.controlPageCount .skewButton:hover {
+  color: var(--warning);
+}
+
+.controlPageCount button i {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.controlPageCount .skewButton:nth-child(1)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 14px solid #000e14;
+  border-right: 14px solid transparent;
+}
+.controlPageCount .skewButton:nth-child(5)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-bottom: 14px solid #000e14;
+  border-left: 14px solid transparent;
+}

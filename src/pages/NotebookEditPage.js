@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router';
 import AppContext from 'store/appContext';
 import 'css/main/notebookPage.css';
 import 'css/main/SideBar.css';
-import { ReactComponent as VNoteLogo } from 'resources/SVG/logo.svg';
-import { NavLink } from 'react-router-dom';
 
 export default function NotebookEditPage() {
   const { id } = useParams();
@@ -21,17 +19,6 @@ export default function NotebookEditPage() {
 
   return (
     <div className='notebookPage scrollClass'>
-      <header>
-        <NavLink
-          className='logoLink'
-          activeClassName='logoLink'
-          to='/'
-          exact='true'
-        >
-          <VNoteLogo />
-          <h1>VNote</h1>
-        </NavLink>
-      </header>
       <aside>
         main actions{' '}
         <svg
@@ -49,7 +36,22 @@ export default function NotebookEditPage() {
       </aside>
       <main>
         <div>notebook</div>
-        <div>control panel</div>
+
+        <div className='controlPageCount'>
+          <button className='skewButton'>
+            <i className='fas fa-backward'></i>
+          </button>
+          <button>
+            <i className='fas fa-angle-left'></i>
+          </button>
+          <input type='number' min={0} />
+          <button>
+            <i className='fas fa-angle-right'></i>
+          </button>
+          <button className='skewButton'>
+            <i className='fas fa-forward'></i>
+          </button>
+        </div>
       </main>
     </div>
   );
