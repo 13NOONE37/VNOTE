@@ -16,18 +16,18 @@
   justify-content: flex-start;
   align-items: center;
 }
-.SideTop .logoLink {
+.logoLink {
   width: auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
 }
-.SideTop .logoLink h1 {
+.logoLink h1 {
   color: #fff;
 }
 
-.SideTop .logoLink svg {
+.logoLink svg {
   width: 60px;
   height: 60px;
 }

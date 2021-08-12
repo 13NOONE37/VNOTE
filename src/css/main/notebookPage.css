@@ -1,0 +1,24 @@
+.notebookPage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden auto;
+  background-color: #000e14;
+  z-index: 12;
+  /*tymczasowo, trzeba to zrobić inaczej aby wyświetlało się zamiast tamtych; ewentualnie pokazać sam header */
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+}
+.notebookPage header {
+  grid-area: 1 / 1 / 1 / 2 span;
+
+  background-color: var(--blue-3);
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+}
+.notebookPage aside {
+}
