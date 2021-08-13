@@ -1,5 +1,7 @@
 import React from 'react';
 import 'css/main/NotebookSideActions.css';
+import { ReactComponent as VNoteLogo } from 'resources/SVG/logo2.svg';
+import { NavLink } from 'react-router-dom';
 
 function NotebookSideActions() {
   const notebookSideActions = [
@@ -96,13 +98,26 @@ function NotebookSideActions() {
     },
   ];
   return (
-    <aside className='sideNotebookActions'>
-      {notebookSideActions.map((item, index) => (
-        <button key={index} className='action'>
-          <i className={item.icon}></i>
-          <span>{item.name}</span>
-        </button>
-      ))}
+    <aside className='sideNotebook'>
+      <span>
+        <NavLink
+          className='logoLink'
+          activeClassName='logoLink'
+          to='/'
+          exact='true'
+        >
+          <VNoteLogo style={{ width: '50px', marginBottom: '30px' }} />
+        </NavLink>
+      </span>
+
+      <span className='sideNotebookActions'>
+        {notebookSideActions.map((item, index) => (
+          <button key={index} className='action'>
+            <i className={item.icon}></i>
+            <span>{item.name}</span>
+          </button>
+        ))}
+      </span>
     </aside>
   );
 }

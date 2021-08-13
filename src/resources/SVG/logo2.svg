@@ -1,26 +1,3 @@
-
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="1000px" height="1000px" viewBox="0 0 1000 1000">
-<defs>
-<g id="Layer0_0_FILL">
-<path fill="#FFFFFF" stroke="none" d="
-M 652.15 641.3
-Q 706.8 586.65 706.8 509.4 706.8 432.15 652.15 377.5 597.5 322.85 520.25 322.85 443 322.85 388.35 377.5 333.7 432.15 333.7 509.4 333.7 586.65 388.35 641.3 394.05 647 400 652.1 413.25 663.5 427.7 671.9
-L 612.8 671.9
-Q 627.25 663.5 640.5 652.1 646.45 647 652.15 641.3 Z"/>
-</g>
-
-<path id="Layer0_0_1_STROKES" stroke="#FFFFFF" stroke-width="27" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3" fill="none" d="
-M 579.7 771.45
-L 460.75 771.45
-M 598.75 723.1
-L 441.6 723.1
-M 555.65 818
-L 484.85 818"/>
-</defs>
-
-<g transform="matrix( 1, 0, 0, 1, 0,0) ">
-<use xlink:href="#Layer0_0_FILL"/>
-
-<use xlink:href="#Layer0_0_1_STROKES"/>
-</g>
+<svg width="374" height="509" viewBox="0 0 374 509" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M373.1 186.55C373.1 238.05 354.883 282.017 318.45 318.45C314.65 322.25 310.767 325.85 306.8 329.25C297.967 336.85 288.733 343.45 279.1 349.05H94C84.3667 343.45 75.1333 336.85 66.3 329.25C62.3333 325.85 58.45 322.25 54.65 318.45C18.2167 282.017 0 238.05 0 186.55C0 135.05 18.2167 91.0833 54.65 54.65C91.0833 18.2167 135.05 0 186.55 0C238.05 0 282.017 18.2167 318.45 54.65C354.883 91.0833 373.1 135.05 373.1 186.55ZM107.9 413.75H265.05V386.75H107.9V413.75ZM127.05 462.1H246V435.1H127.05V462.1ZM151.15 481.65H137.65V508.65H151.15H221.95H235.45V481.65H221.95H151.15Z" fill="white"/>
 </svg>
