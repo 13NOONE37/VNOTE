@@ -5,6 +5,7 @@ import 'css/main/notebookPage.css';
 import 'css/main/SideBar.css';
 import ControPageCount from 'components/main/ControPageCount';
 import NotebookSideActions from 'components/main/NotebookSideActions';
+import NotebookEdit from 'components/main/NotebookEdit';
 
 export default function NotebookEditPage() {
   const { id } = useParams();
@@ -23,8 +24,7 @@ export default function NotebookEditPage() {
     <div className='notebookPage scrollClass'>
       <NotebookSideActions />
       <main>
-        <div>notebook</div>
-
+        <NotebookEdit />
         <ControPageCount />
       </main>
     </div>

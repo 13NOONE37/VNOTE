@@ -1,6 +1,6 @@
 import React from 'react';
 import 'css/main/NotebookSideActions.css';
-import { ReactComponent as VNoteLogo } from 'resources/SVG/logo2.svg';
+import { ReactComponent as VNoteLogo } from 'resources/SVG/logo.svg';
 import { NavLink } from 'react-router-dom';
 
 function NotebookSideActions() {
@@ -106,7 +106,7 @@ function NotebookSideActions() {
           to='/'
           exact='true'
         >
-          <VNoteLogo style={{ width: '50px', marginBottom: '30px' }} />
+          <VNoteLogo style={{ width: '40px', marginBottom: '30px' }} />
         </NavLink>
       </span>
 
