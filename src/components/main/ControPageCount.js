@@ -10,7 +10,7 @@ function ControPageCount() {
       <button>
         <i className='fas fa-angle-left'></i>
       </button>
-      <input type='number' min={0} />
+      <input type='number' min={0} placeholder='0-99' />
       <button>
         <i className='fas fa-angle-right'></i>
       </button>

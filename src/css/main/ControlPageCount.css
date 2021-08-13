@@ -1,6 +1,13 @@
 .controlPageCount {
   display: flex;
+  justify-content: center;
   gap: 4px;
+
+  padding: var(--size-6);
+  background-color: var(--blue-2);
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.5),
+    -1px -1px 4px rgba(10, 10, 10, 0.2);
 }
 .controlPageCount input {
   -moz-appearance: textfield;
@@ -60,7 +67,7 @@ input {
   position: absolute;
   left: 0;
   bottom: 0;
-  border-bottom: 14px solid #000e14;
+  border-bottom: 14px solid var(--blue-2);
   border-right: 14px solid transparent;
 }
 .controlPageCount .skewButton:nth-child(5)::after {
@@ -68,6 +75,6 @@ input {
   position: absolute;
   right: 0;
   bottom: 0;
-  border-bottom: 14px solid #000e14;
+  border-bottom: 14px solid var(--blue-2);
   border-left: 14px solid transparent;
 }
