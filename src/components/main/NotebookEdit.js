@@ -8,9 +8,12 @@ function NotebookEdit() {
         <span className='pageTitle'>Dobre praktyki JS: Destrukturyzacja</span>
         <span className='pageDate'>25.05.1410</span>
       </span>
-      <span className='content graphPaper'>Hello code</span>
+      <span className='content linePaper' contentEditable='true'>
+        <b>Szczury</b> <br /> Pewnego dnia przybył szczur do wioski i rzekł
+        Szczury to koxy.
+      </span>
       <span className='bottomMargin'>
-        <span className='PageCount'>1</span>
+        <span className='PageCount'>54</span>
       </span>
     </div>
   );

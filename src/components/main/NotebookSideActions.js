@@ -97,6 +97,11 @@ function NotebookSideActions() {
       },
     },
   ];
+
+  const handleToggleView = () => {
+    console.log('Toogle view');
+  };
+
   return (
     <aside className='sideNotebook'>
       <span>
@@ -114,7 +119,7 @@ function NotebookSideActions() {
         {notebookSideActions.map((item, index) => (
           <button key={index} className='action'>
             <i className={item.icon}></i>
-            <span>{item.name}</span>
+            <span className='sideNotebookTooltip'>{item.name}</span>
           </button>
         ))}
       </span>
