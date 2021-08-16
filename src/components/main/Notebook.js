@@ -41,6 +41,8 @@ export default function Notebook({
         title: 'Your notebook',
         color: 236,
         bgImage: 'hexagons',
+        paperType: 'linePaper',
+        cards: [],
       });
 
       setnotebooks(temp);

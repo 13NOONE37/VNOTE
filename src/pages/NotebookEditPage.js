@@ -22,9 +22,17 @@ export default function NotebookEditPage() {
 
   return (
     <div className='notebookPage scrollClass'>
-      <NotebookSideActions />
+      <NotebookSideActions
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+      />
       <main>
-        <NotebookEdit />
+        <NotebookEdit
+          notebooks={notebooks}
+          setnotebooks={setnotebooks}
+          id={id}
+        />
         <ControPageCount />
       </main>
     </div>

@@ -5,12 +5,12 @@ import 'css/actions/ChangeCover.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import handleContentChange from 'utils/Global/handleContentChange';
 
-export default function ChangeCover({
+export default function TogglePaper({
   notebooks,
   setnotebooks,
   id,
-  showCoverBox,
-  setshowCoverBox,
+  showBox,
+  setshowBox,
 }) {
   const colorsArray = [
     '19',
@@ -92,11 +92,11 @@ export default function ChangeCover({
 
   return createPortal(
     <>
-      {showCoverBox && (
+      {showBox && (
         <div
           ref={box}
           onClick={(e) => e.stopPropagation()}
-          onMouseDown={(e) => handleClickOutside(e, box, setshowCoverBox)}
+          onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
           className='modalBox'
         >
           <div className='colorBox'>
