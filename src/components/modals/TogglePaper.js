@@ -97,7 +97,7 @@ export default function TogglePaper({
           ref={box}
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
-          className='modalBox'
+          className='modalBox modalNoBackdrop'
         >
           <div className='colorBox'>
             <span className='colorStatic'>

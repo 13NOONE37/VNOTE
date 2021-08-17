@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router';
 import AppContext from 'store/appContext';
 import 'css/main/notebookPage.css';
