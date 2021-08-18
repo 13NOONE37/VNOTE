@@ -42,6 +42,7 @@ export default function Notebook({
         color: 236,
         bgImage: 'hexagons',
         paperType: 'linePaper',
+        paperColor: 75,
         cards: [],
       });
 

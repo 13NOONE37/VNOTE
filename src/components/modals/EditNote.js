@@ -131,6 +131,7 @@ export default function EditNote({
                       <button
                         tabIndex='-1'
                         contentEditable='false'
+                        suppressContentEditableWarning={true}
                         onClick={() =>
                           handleDeleteTask(
                             n,

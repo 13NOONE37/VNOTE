@@ -34,7 +34,7 @@ export default function TogglePaper({
       setnotebooks(
         notebooks.map((item) => {
           if (item.id == id) {
-            item.color = currentColor;
+            item.paperColor = currentColor;
             item.paperType = currentPaper;
           }
           return item;
@@ -62,7 +62,7 @@ export default function TogglePaper({
                     value={item}
                     name='color'
                     onClick={(e) => handleContentChange(e, setcurrentColor)}
-                    style={{ backgroundColor: `hsl(${item}, 30%, 30%)` }}
+                    style={{ backgroundColor: `hsl(${item}, 30%, 45%)` }}
                   />
                 </>
               ))}
@@ -71,13 +71,13 @@ export default function TogglePaper({
               {paperArray.map((item, index) => (
                 <input
                   className={`paperRadio ${item}`}
-                  defaultChecked={item == currentColor}
+                  defaultChecked={item == currentPaper}
                   key={index}
                   type='radio'
                   value={item}
                   name='paper'
                   onClick={(e) => handleContentChange(e, setcurrentPaper)}
-                  style={{ backgroundColor: `hsl(${currentColor}, 30%, 30%)` }}
+                  style={{ backgroundColor: `hsl(${currentColor}, 30%, 45%)` }}
                 />
               ))}
             </span>

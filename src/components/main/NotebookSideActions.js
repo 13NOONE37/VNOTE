@@ -7,20 +7,6 @@ import DrawNotebook from 'components/modals/DrawNotebook';
 import TogglePaper from 'components/modals/TogglePaper';
 
 function NotebookSideActions({ notebooks, setnotebooks, id }) {
-  const [notebook, setnotebook] = useState(
-    notebooks.filter((item) => item.id == id),
-  );
-  useEffect(() => {
-    notebook &&
-      setnotebooks(
-        notebooks.map((item) => {
-          if (item.id == id) {
-            item = notebook;
-          }
-        }),
-      );
-  }, [notebook]);
-
   const [showImageBox, setshowImageBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
   const [showChartBox, setshowChartBox] = useState(false);

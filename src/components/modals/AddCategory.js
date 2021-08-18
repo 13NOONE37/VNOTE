@@ -118,6 +118,7 @@ export default function AddCategory({
                     </button>
                     <span
                       contentEditable='true'
+                      suppressContentEditableWarning={true}
                       onBlur={(e) => handleBlur(e, index)}
                     >
                       {item.name}
