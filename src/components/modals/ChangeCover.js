@@ -135,14 +135,14 @@ export default function ChangeCover({
             </span>
             <span className='backgroundPicker'>
               <button className='arrowButton' onClick={handleBackgroundChange}>
-                <i class='fas fa-arrow-circle-left'></i>
+                <i className='fas fa-arrow-circle-left'></i>
               </button>
               <div
                 className={`backgroundPreview ${backgrounds[numberBackground]}`}
                 style={{ backgroundColor: `hsl(${currentColor}, 45%, 12%)` }}
               ></div>
               <button className='arrowButton' onClick={handleBackgroundChange}>
-                <i class='fas fa-arrow-circle-right'></i>
+                <i className='fas fa-arrow-circle-right'></i>
               </button>
             </span>
           </div>

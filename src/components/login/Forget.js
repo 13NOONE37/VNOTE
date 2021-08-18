@@ -62,7 +62,7 @@ export default function Forget(props) {
               </div>
             </span>
 
-            <span class='buttons'>
+            <span className='buttons'>
               {isSubmitting ? (
                 <i className='fas fa-spinner'></i> //or any diffrent loading
               ) : (

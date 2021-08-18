@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'css/main/NotebookSideActions.css';
 import { ReactComponent as VNoteLogo } from 'resources/SVG/logo.svg';
 import { NavLink } from 'react-router-dom';
 import ShareNotebook from 'components/modals/ShareNotebook';
-import PrintNotebook from 'components/modals/PrintNotebook';
 import DrawNotebook from 'components/modals/DrawNotebook';
 import TogglePaper from 'components/modals/TogglePaper';
 
 function NotebookSideActions({ notebooks, setnotebooks, id }) {
+  const [notebook, setnotebook] = useState(
+    notebooks.filter((item) => item.id == id),
+  );
+  useEffect(() => {
+    notebook &&
+      setnotebooks(
+        notebooks.map((item) => {
+          if (item.id == id) {
+            item = notebook;
+          }
+        }),
+      );
+  }, [notebook]);
+
   const [showImageBox, setshowImageBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
   const [showChartBox, setshowChartBox] = useState(false);
@@ -24,7 +37,12 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const handleDrawNotebook = () => setshowDrawBox(true);
   const handleInsertIframe = () => setshowIframeBox(true);
   const handleChooseTypeOfPaper = () => setshowPaperBox(true);
-  const handlePrintNotebook = () => setshowPrintBox(true);
+  const handlePrintNotebook = () => {
+    alert(
+      'przygotować strone w css do druku(ukryć wszyskie elementy poza contentem oraz skolejkować wszyskie strony',
+    );
+    window.print();
+  };
   const handleShareNotebook = () => setshowShareBox(true);
 
   const notebookSideActions = [
@@ -138,13 +156,6 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showPaperBox}
         setshowBox={setshowPaperBox}
-      />
-      <PrintNotebook
-        notebooks={notebooks}
-        setnotebooks={setnotebooks}
-        id={id}
-        showBox={showPrintBox}
-        setshowBox={setshowPrintBox}
       />
       <ShareNotebook
         notebooks={notebooks}

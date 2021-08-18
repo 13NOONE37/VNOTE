@@ -33,7 +33,7 @@ export default function NoteTools({ item, redirectToEdit }) {
         className='tooltipParent notebookItem'
         onClick={() => redirectToEdit(item.id)}
       >
-        <i class='fas fa-door-open'></i>
+        <i className='fas fa-door-open'></i>
         <span className='tooltip'>Open</span>
       </button>
 

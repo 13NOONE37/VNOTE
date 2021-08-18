@@ -10,7 +10,7 @@
   backdrop-filter: brightness(0.5);
 }
 .modalNoBackdrop {
-  /* backdrop-filter: brightness(0.9) !important; */
+  backdrop-filter: unset !important;
 }
 .titleSection {
   width: 100%;

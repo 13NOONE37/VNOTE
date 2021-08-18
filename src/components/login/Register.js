@@ -118,7 +118,7 @@ export default function Register({ setcurrentWindow }) {
               </div>
             </span>
 
-            <span class='buttons'>
+            <span className='buttons'>
               <button type='submit' className='registerButton'>
                 Create Account
               </button>

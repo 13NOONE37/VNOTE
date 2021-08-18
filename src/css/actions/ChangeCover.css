@@ -24,3 +24,17 @@
 .backgroundPicker button:focus {
   color: var(--blue-10);
 }
+.paperRadio {
+  width: 70px;
+  height: 70px;
+  margin: 4px;
+  -webkit-appearance: none;
+  border: 3px solid transparent;
+}
+.paperRadio:focus,
+.paperRadio:hover {
+  border: 1px solid var(--grey-2);
+}
+.paperRadio:checked {
+  border: 3px solid var(--grey-2);
+}

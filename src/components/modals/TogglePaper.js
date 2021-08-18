@@ -12,51 +12,19 @@ export default function TogglePaper({
   showBox,
   setshowBox,
 }) {
-  const colorsArray = [
-    '19',
-    '45',
-    '75',
-    '165',
-    '195',
-    '225',
-    '255',
-    '315',
-    '345',
-  ];
-  const backgrounds = [
-    'point-stars',
-    'anchors-away',
-    'jigsaw',
-    'brick-wall',
-    'bubbles',
-    'circuit-board',
-    'curtain',
-    'dominos',
-    'falling-traingles',
-    'floating-cogs',
-    'floor-tile',
-    'glamorous',
-    'hexagons',
-    'food',
-    'overlapping-circles',
-    'random-shapes',
-    'skulls',
-    'temple',
-    'tic-tac-toe',
-    'topography',
-    'wiggle',
-  ];
+  const colorsArray = ['45', '75', '165', '221'];
+  const paperArray = ['linePaper', 'graphPaper', 'texturePaper'];
 
   const box = useRef(null);
 
   const [currentColor, setcurrentColor] = useState('');
-  const [numberBackground, setnumberBackground] = useState(0);
+  const [currentPaper, setcurrentPaper] = useState('');
 
   useEffect(() => {
     notebooks.map((item) => {
       if (item.id == id) {
         setcurrentColor(item.color);
-        setnumberBackground(backgrounds.indexOf(item.bgImage));
+        setcurrentPaper(item.paperType);
       }
     });
   }, []);
@@ -67,28 +35,12 @@ export default function TogglePaper({
         notebooks.map((item) => {
           if (item.id == id) {
             item.color = currentColor;
-            item.bgImage = backgrounds[numberBackground];
+            item.paperType = currentPaper;
           }
           return item;
         }),
       );
-  }, [currentColor, numberBackground]);
-
-  const handleBackgroundChange = (directRight) => {
-    if (directRight) {
-      if (numberBackground > 19) {
-        setnumberBackground(0);
-      } else {
-        setnumberBackground(numberBackground + 1);
-      }
-    } else {
-      if (numberBackground < 1) {
-        setnumberBackground(20);
-      } else {
-        setnumberBackground(numberBackground - 1);
-      }
-    }
-  };
+  }, [currentColor, currentPaper]);
 
   return createPortal(
     <>
@@ -110,40 +62,24 @@ export default function TogglePaper({
                     value={item}
                     name='color'
                     onClick={(e) => handleContentChange(e, setcurrentColor)}
-                    style={{ backgroundColor: `hsl(${item}, 45%, 12%)` }}
+                    style={{ backgroundColor: `hsl(${item}, 30%, 30%)` }}
                   />
                 </>
               ))}
             </span>
-            <span className='colorPicker'>
-              <input
-                placeholder='0-360'
-                type='number'
-                min='0'
-                max='360'
-                value={currentColor}
-                onChange={(e) => handleContentChange(e, setcurrentColor)}
-              />
-              <input
-                style={{ '--thumb-color': currentColor }}
-                type='range'
-                min='0'
-                max='360'
-                value={currentColor}
-                onChange={(e) => handleContentChange(e, setcurrentColor)}
-              />
-            </span>
             <span className='backgroundPicker'>
-              <button className='arrowButton' onClick={handleBackgroundChange}>
-                <i class='fas fa-arrow-circle-left'></i>
-              </button>
-              <div
-                className={`backgroundPreview ${backgrounds[numberBackground]}`}
-                style={{ backgroundColor: `hsl(${currentColor}, 45%, 12%)` }}
-              ></div>
-              <button className='arrowButton' onClick={handleBackgroundChange}>
-                <i class='fas fa-arrow-circle-right'></i>
-              </button>
+              {paperArray.map((item, index) => (
+                <input
+                  className={`paperRadio ${item}`}
+                  defaultChecked={item == currentColor}
+                  key={index}
+                  type='radio'
+                  value={item}
+                  name='paper'
+                  onClick={(e) => handleContentChange(e, setcurrentPaper)}
+                  style={{ backgroundColor: `hsl(${currentColor}, 30%, 30%)` }}
+                />
+              ))}
             </span>
           </div>
         </div>

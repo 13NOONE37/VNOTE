@@ -18,7 +18,7 @@ export default function LandingSquare() {
           <ImageLaptop />
           <span>
             <button>Read more</button>
-            <button class='singInButton'>Sign in</button>
+            <button classn='singInButton'>Sign in</button>
           </span>
         </div>
       </main>

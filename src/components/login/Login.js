@@ -94,7 +94,7 @@ export default function Login({ setcurrentWindow }) {
               </div>
             </span>
 
-            <span class='buttons'>
+            <span className='buttons'>
               <button
                 className='forgetButton'
                 type='button'

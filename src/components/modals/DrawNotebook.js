@@ -38,12 +38,12 @@ export default function DrawNotebook({
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
         >
-          <div className='shareBox '>
-            Nowa Warstwa na stronie zeszytu którą można skalować a na niej
+          <div className='notebookEdit '>
+            {/* Nowa Warstwa na stronie zeszytu którą można skalować a na niej
             rysujemy; Przy takim założeniu trzeba stworzyć system warstw których
             kolejność możnaby zmieniać na jakimś pasku po prawej; Trzeba też
             dodać opcje zwijania poszególnych pasków a nie tyko hide gui które
-            jest realizowane poprzez 1 opcje na pasku
+            jest realizowane poprzez 1 opcje na pasku */}
           </div>
         </div>
       )}
