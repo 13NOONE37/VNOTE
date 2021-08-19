@@ -13,25 +13,49 @@ export default function DrawNotebook({
   const box = useRef(null);
   const notebook = notebooks.filter((item) => item.id == id);
 
-  const canvasRef = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }, []);
-
+  // Draw stuff
   const [isDrawing, setisDrawing] = useState(false);
-  const handleMove = (e) => {
+  const [drawColor, setdrawColor] = useState('#000');
+  const [drawWidth, setdrawWidth] = useState('5');
+  const canvasRef = useRef(null);
+  const contextRef = useRef(null);
+
+  useEffect(() => {
+    if (showBox) {
+      const canvas = canvasRef.current;
+      canvas.width = 700;
+      canvas.height = 915;
+
+      const context = canvas.getContext('2d');
+
+      // context.scale(2, 2);
+      context.lineCap = 'round';
+      context.strokeStyle = drawColor;
+      context.lineWidth = drawWidth;
+
+      contextRef.current = context;
+    }
+  }, [showBox]);
+
+  const handleDraw = ({ nativeEvent }) => {
     if (isDrawing) {
-      const { left, top } = canvasRef.current.getBoundingClientRect();
-      const xPos = e.clientX - left;
-      const yPos = e.clientY - top;
-      console.log(xPos, yPos);
+      const { offsetX, offsetY } = nativeEvent;
+      contextRef.current.lineTo(offsetX, offsetY);
+      contextRef.current.stroke();
     }
   };
-  const handleStart = () => setisDrawing(true);
-  const handleStop = () => setisDrawing(false);
+
+  const handleStartDrawing = ({ nativeEvent }) => {
+    const { offsetX, offsetY } = nativeEvent;
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(offsetX, offsetY);
+    setisDrawing(true);
+  };
+
+  const handleStopDrawing = () => {
+    contextRef.current.closePath();
+    setisDrawing(false);
+  };
   return createPortal(
     <>
       {showBox && (
@@ -41,17 +65,35 @@ export default function DrawNotebook({
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
         >
+          <div className='controlDraw'>
+            {/* <input
+              defaultChecked={item == drawColor}
+              key={index}
+              type='radio'
+              value={item}
+              name='color'
+              onClick={(e) => handleContentChange(e, setcurrentColor)}
+              style={{ backgroundColor: `hsl(${item}, 30%, 45%)` }}
+            /> */}
+
+            <input type='range' />
+          </div>
           <div className='notebookEdit'>
             <canvas
               ref={canvasRef}
               style={{ width: '100%', height: '100%' }}
-              onMouseMove={handleMove}
-              onTouchMove={handleMove}
-              onMouseDown={handleStart}
-              onTouchStart={handleStart}
-              onMouseUp={handleStop}
-              onMouseOut={handleStop}
-              onTouchEnd={handleStop}
+              onMouseMove={handleDraw}
+              onTouchMove={handleDraw}
+              onMouseDown={handleStartDrawing}
+              onTouchStart={handleStartDrawing}
+              onMouseUp={handleStopDrawing}
+              onMouseOut={() => {
+                isDrawing && contextRef.current.closePath();
+              }}
+              onMouseEnter={() => {
+                isDrawing && contextRef.current.beginPath();
+              }}
+              onTouchEnd={handleStopDrawing}
             ></canvas>
             {/* Nowa Warstwa na stronie zeszytu którą można skalować a na niej
             rysujemy; Przy takim założeniu trzeba stworzyć system warstw których
