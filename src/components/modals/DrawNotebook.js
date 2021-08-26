@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import 'css/modals/ShareNote.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
+import handleContentChange from 'utils/Global/handleContentChange';
 
 export default function DrawNotebook({
   notebooks,
@@ -14,9 +15,14 @@ export default function DrawNotebook({
   const notebook = notebooks.filter((item) => item.id == id);
 
   // Draw stuff
+  const [restoreArray, setrestoreArray] = useState([]);
+  const [colorsArray, setcolorsArray] = useState(['#000000', '#ffffff']);
+
+  let index = -1;
+
   const [isDrawing, setisDrawing] = useState(false);
-  const [drawColor, setdrawColor] = useState('#000');
-  const [drawWidth, setdrawWidth] = useState('5');
+  const [drawColor, setdrawColor] = useState('#000000');
+  const [drawWidth, setdrawWidth] = useState(5);
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
@@ -32,6 +38,7 @@ export default function DrawNotebook({
       context.lineCap = 'round';
       context.strokeStyle = drawColor;
       context.lineWidth = drawWidth;
+      context.lineJoin = 'bevel';
 
       contextRef.current = context;
     }
@@ -47,6 +54,9 @@ export default function DrawNotebook({
 
   const handleStartDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
+    contextRef.current.lineWidth = drawWidth;
+    contextRef.current.strokeStyle = drawColor;
+
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setisDrawing(true);
@@ -55,6 +65,20 @@ export default function DrawNotebook({
   const handleStopDrawing = () => {
     contextRef.current.closePath();
     setisDrawing(false);
+
+    index = restoreArray.length;
+    restoreArray.push(
+      contextRef.current.getImageData(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height,
+      ),
+    );
+    console.log(restoreArray);
+  };
+  const handleRedraw = () => {
+    contextRef.current.putImageData(restoreArray[index], 0, 0);
   };
   return createPortal(
     <>
@@ -66,17 +90,52 @@ export default function DrawNotebook({
           onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
         >
           <div className='controlDraw'>
-            {/* <input
-              defaultChecked={item == drawColor}
-              key={index}
-              type='radio'
-              value={item}
-              name='color'
-              onClick={(e) => handleContentChange(e, setcurrentColor)}
-              style={{ backgroundColor: `hsl(${item}, 30%, 45%)` }}
-            /> */}
-
-            <input type='range' />
+            <button
+              onClick={() => {
+                index - 1 < 0 ? (index = 0) : index--;
+                handleRedraw();
+              }}
+            >
+              Undo
+            </button>
+            <button
+              onClick={() => {
+                index + 1 > restoreArray.length - 1
+                  ? (index = restoreArray.length - 1)
+                  : index++;
+                handleRedraw();
+              }}
+            >
+              Redo
+            </button>
+            <input
+              type='range'
+              min={0.1}
+              max={100}
+              step={0.1}
+              onChange={(e) => handleContentChange(e, setdrawWidth)}
+              value={drawWidth}
+            />
+            <input
+              type='color'
+              value={drawColor}
+              onChange={(e) => handleContentChange(e, setdrawColor)}
+            />
+            <span className='colorStatic'>
+              {colorsArray.map((item, index) => (
+                <>
+                  <input
+                    defaultChecked={item == drawColor}
+                    key={index}
+                    type='radio'
+                    value={item}
+                    name='color'
+                    onClick={(e) => handleContentChange(e, setdrawColor)}
+                    style={{ backgroundColor: `${item}` }}
+                  />
+                </>
+              ))}
+            </span>
           </div>
           <div className='notebookEdit'>
             <canvas
@@ -89,6 +148,16 @@ export default function DrawNotebook({
               onMouseUp={handleStopDrawing}
               onMouseOut={() => {
                 isDrawing && contextRef.current.closePath();
+
+                index = restoreArray.length;
+                restoreArray.push(
+                  contextRef.current.getImageData(
+                    0,
+                    0,
+                    canvasRef.current.width,
+                    canvasRef.current.height,
+                  ),
+                );
               }}
               onMouseEnter={() => {
                 isDrawing && contextRef.current.beginPath();
