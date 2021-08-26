@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'css/main/NotebookEdit.css';
-import ShowBasicEditBox from 'components/modals/ShowBasicEditBox';
+import MoveableComponent from 'components/modals/MoveableComponent';
 
 function NotebookEdit({ notebooks, setnotebooks, id }) {
-  const [showBasicEditBox, setshowBasicEditBox] = useState(false);
-
   return notebooks.map(
     (notebook, index) =>
       notebook.id == id && (
@@ -14,13 +12,7 @@ function NotebookEdit({ notebooks, setnotebooks, id }) {
             backgroundColor: `hsl(${notebook.paperColor}deg, 30%, 45%)`,
           }}
         >
-          <button onClick={() => setshowBasicEditBox(!showBasicEditBox)}>
-            toggle
-          </button>
-          <ShowBasicEditBox
-            showBox={showBasicEditBox}
-            setshowBox={setshowBasicEditBox}
-          />
+          <MoveableComponent />
 
           <span className='topMargin'>
             <span className='pageTitle'>{`${notebook.title}: Destrukturyzacja`}</span>
