@@ -1,0 +1,46 @@
+.BasicEditBox {
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background: var(--blue-3);
+  position: absolute;
+  box-sizing: content-box;
+  transform-origin: center;
+}
+.BasicEditBox.ActiveBasicEditBox button {
+  opacity: 1;
+  visibility: visible;
+}
+.BasicEditBox button {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s linear;
+  position: absolute;
+}
+.BasicEditBox .lt {
+  top: 0;
+  left: -20px;
+}
+.BasicEditBox .lb {
+  bottom: 0;
+  left: -20px;
+}
+.BasicEditBox .rt {
+  top: 0;
+  right: -20px;
+}
+.BasicEditBox .rb {
+  bottom: 0;
+  right: -20px;
+}
+
+.BasicEditBox .rotate {
+  right: -20px;
+  top: calc(100% / 2 - 10px);
+}
+.ActiveBasicEditBox {
+  border: 2px solid green;
+}

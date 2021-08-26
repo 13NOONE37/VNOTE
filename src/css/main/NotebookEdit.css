@@ -1,4 +1,5 @@
 .notebookEdit {
+  position: relative;
   width: 700px;
   height: 915px;
   max-width: 100vw;
