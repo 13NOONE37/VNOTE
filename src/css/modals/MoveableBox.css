@@ -48,3 +48,19 @@
 .ActiveBasicEditBox {
   border: 2px solid green;
 } */
+.container {
+  position: relative;
+}
+.container .target {
+  position: fixed;
+}
+/* .container:hover .moveable-control,
+.moveable-rotation,
+.moveable-line {
+  visibility: visible;
+}
+.moveable-control,
+.moveable-rotation,
+.moveable-line {
+  visibility: hidden;
+} */
