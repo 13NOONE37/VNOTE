@@ -49,18 +49,7 @@
   border: 2px solid green;
 } */
 .container {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
-.container .target {
-  position: fixed;
-}
-/* .container:hover .moveable-control,
-.moveable-rotation,
-.moveable-line {
-  visibility: visible;
-}
-.moveable-control,
-.moveable-rotation,
-.moveable-line {
-  visibility: hidden;
-} */
