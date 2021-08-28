@@ -23,8 +23,8 @@ export default function TogglePaper({
   useEffect(() => {
     notebooks.map((item) => {
       if (item.id == id) {
-        setcurrentColor(item.color);
-        setcurrentPaper(item.paperType);
+        currentColor != '' && setcurrentColor(item.color);
+        currentPaper != '' && setcurrentPaper(item.paperType);
       }
     });
   }, []);

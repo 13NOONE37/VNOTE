@@ -17,7 +17,7 @@ export default function LayersRenderComponent() {
       },
       value: (
         <img
-          src='https://kiwwwi.pl/wp-content/uploads/2020/10/cat-grafika-wektorowa.png"'
+          src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
           style={{ width: '100%', height: '100%' }}
         />
       ),

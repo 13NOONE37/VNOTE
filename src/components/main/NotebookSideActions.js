@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import ShareNotebook from 'components/modals/ShareNotebook';
 import DrawNotebook from 'components/modals/DrawNotebook';
 import TogglePaper from 'components/modals/TogglePaper';
+import InsertImage from 'components/modals/InsertImage';
 
 function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const [showImageBox, setshowImageBox] = useState(false);
@@ -129,6 +130,13 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         ))}
       </span>
 
+      <InsertImage
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showImageBox}
+        setshowBox={setshowImageBox}
+      />
       <DrawNotebook
         notebooks={notebooks}
         setnotebooks={setnotebooks}
