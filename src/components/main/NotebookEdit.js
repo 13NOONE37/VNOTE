@@ -1,6 +1,6 @@
 import React from 'react';
 import 'css/main/NotebookEdit.css';
-import MoveableComponent from 'components/modals/MoveableComponent';
+import LayersRenderComponent from './LayersRenderComponent';
 
 function NotebookEdit({ notebooks, setnotebooks, id }) {
   return notebooks.map(
@@ -21,7 +21,7 @@ function NotebookEdit({ notebooks, setnotebooks, id }) {
             // contentEditable='true'
             // suppressContentEditableWarning={true}
           >
-            <MoveableComponent />
+            <LayersRenderComponent />
             {/* <b>Szczury</b> <br /> Pewnego dnia przybył szczur do wioski i rzekł
             Szczury to koxy. */}
           </span>
