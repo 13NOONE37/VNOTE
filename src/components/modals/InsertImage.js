@@ -4,6 +4,7 @@ import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
 
 import { ReactComponent as UploadTemp } from 'resources/SVG/uploadTemp.svg';
+import handleContentChange from 'utils/Global/handleContentChange';
 
 export default function InsertImage({
   notebooks,
@@ -16,6 +17,7 @@ export default function InsertImage({
   const uploadRef = useRef(null);
   const [showURLField, setshowURLField] = useState(false);
   const [uploadedImage, setuploadedImage] = useState('');
+  const [urlImage, seturlImage] = useState('');
 
   const handleFileUpload = (data) => {
     const file = data[0];
@@ -51,7 +53,23 @@ export default function InsertImage({
     setuploadedImage(e.target.value);
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (showURLField) {
+      if (urlImage != '') {
+        //set image from url
+        console.log('url');
+      } else {
+        //set image from upload
+        console.log('upload');
+      }
+    } else {
+      if (uploadedImage != '') {
+        //set image from upload
+        console.log('upload');
+      } else {
+        //set image from url
+        console.log('url');
+      }
+    }
   };
 
   return createPortal(
@@ -88,10 +106,11 @@ export default function InsertImage({
                   <input
                     type='text'
                     placeholder='Paste URL or Base64'
-                    onLoad={(e) => e.currentTarget.focus()}
+                    value={urlImage}
+                    onChange={(e) => handleContentChange(e, seturlImage)}
                   />
-                  {uploadedImage != '' && (
-                    <img src={uploadedImage} style={{ marginTop: '20px' }} />
+                  {urlImage != '' && (
+                    <img src={urlImage} style={{ marginTop: '20px' }} />
                   )}
                 </>
               ) : (
