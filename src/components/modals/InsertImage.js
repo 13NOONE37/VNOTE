@@ -14,6 +14,7 @@ export default function InsertImage({
 }) {
   const box = useRef(null);
   const uploadRef = useRef(null);
+  const [showURLField, setshowURLField] = useState(false);
   const [uploadedImage, setuploadedImage] = useState('');
 
   const handleFileUpload = (data) => {
@@ -46,6 +47,12 @@ export default function InsertImage({
   const handleChange = (e) => {
     handleFileUpload(e.target.files);
   };
+  const handleURL = (e) => {
+    setuploadedImage(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return createPortal(
     <>
@@ -58,12 +65,17 @@ export default function InsertImage({
         >
           <div className='imageBox'>
             <div className='topBar'>
-              <button onClick={() => uploadRef.current.click()}>Upload</button>
-              <button>URL</button>
-              <button>Stock</button>
+              <button
+                onClick={() => {
+                  setshowURLField(false);
+                }}
+              >
+                Upload
+              </button>
+              <button onClick={() => setshowURLField(true)}>URL</button>
             </div>
             <div
-              className='imagePreview'
+              className='imagePreview scrollClass'
               onDragEnter={handleDragEnter}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
@@ -71,10 +83,28 @@ export default function InsertImage({
                 e.currentTarget.classList.remove('dragOverClass');
               }}
             >
-              {uploadedImage == '' ? (
-                <UploadTemp />
+              {showURLField ? (
+                <>
+                  <input
+                    type='text'
+                    placeholder='Paste URL or Base64'
+                    onLoad={(e) => e.currentTarget.focus()}
+                  />
+                  {uploadedImage != '' && (
+                    <img src={uploadedImage} style={{ marginTop: '20px' }} />
+                  )}
+                </>
               ) : (
-                <img src={uploadedImage} />
+                <>
+                  {uploadedImage == '' ? (
+                    <>
+                      <UploadTemp />
+                      <span>Click or Drag and drop</span>
+                    </>
+                  ) : (
+                    <img src={uploadedImage} />
+                  )}
+                </>
               )}
               <input
                 type='file'
@@ -84,8 +114,15 @@ export default function InsertImage({
               />
             </div>
             <div className='bottomBar'>
-              <button onClick={() => setshowBox(false)}>Cancel</button>
-              <button>Add</button>
+              <button
+                onClick={() => {
+                  setuploadedImage('');
+                  setshowBox(false);
+                }}
+              >
+                Cancel
+              </button>
+              <button onClick={handleSubmit}>Add</button>
             </div>
           </div>
         </div>
