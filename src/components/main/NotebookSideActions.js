@@ -6,6 +6,7 @@ import ShareNotebook from 'components/modals/ShareNotebook';
 import DrawNotebook from 'components/modals/DrawNotebook';
 import TogglePaper from 'components/modals/TogglePaper';
 import InsertImage from 'components/modals/InsertImage';
+import InsertShape from 'components/modals/InsertShape';
 
 function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const [showImageBox, setshowImageBox] = useState(false);
@@ -136,6 +137,13 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showImageBox}
         setshowBox={setshowImageBox}
+      />
+      <InsertShape
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showShapeBox}
+        setshowBox={setshowShapeBox}
       />
       <DrawNotebook
         notebooks={notebooks}
