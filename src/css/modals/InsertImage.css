@@ -35,6 +35,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+.topBar span {
+  color: #fff;
+  text-align: center;
+  grid-area: 1 /2 span;
+  font-size: var(--size-7);
+  padding: var(--size-4);
+  font-weight: 600;
+}
 .topBar button:focus {
   color: var(--positive);
 }
@@ -105,4 +113,92 @@
 .imagePreview img {
   width: 100%;
   z-index: 2;
+}
+.shapePreview {
+  max-height: 100vh;
+  height: 600px;
+  padding: var(--size-8);
+  overflow: hidden auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-8);
+}
+.shapePreview .shapeBox {
+  height: unset;
+  width: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.shapeBox span {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.shapeBox svg:nth-child(0) {
+  fill: red !important;
+}
+.shapeBox:hover,
+.shapeBox:focus {
+  outline: 1px solid #fff;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: var(--size-4);
+}
+.filterBar h1 {
+  font-size: var(--size-7);
+}
+.filterBar .filter {
+  position: relative;
+  width: 80px;
+  height: 30px;
+}
+.filterBar .filter span {
+  display: none !important;
+  touch-action: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.filterBar .filter input {
+  border-radius: 8px;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+  -webkit-appearance: none;
+  background-color: var(--grey-3);
+}
+.filterBar .filter input::before {
+  content: 'Grayscale';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+.filterBar .filter:nth-child(2) input::before {
+  content: 'Sepia';
+}
+.filterBar .filter input:checked {
+  background-color: var(--neutral);
 }

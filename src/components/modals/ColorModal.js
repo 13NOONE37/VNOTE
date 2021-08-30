@@ -43,7 +43,7 @@ export default function ColorModal({
         <div
           ref={box}
           onClick={(e) => handleClickOutside(e, box, setshowColorModal)}
-          className='modalBox'
+          className='modalBox noBackdrop'
         >
           <div className='colorBox'>
             <span className='colorStatic'>
