@@ -74,7 +74,7 @@ export default function App({
       keepRatio={false}
       throttleResize={0}
       renderDirections={['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se']}
-      edge={false}
+      edge={true}
       zoom={1}
       origin={false}
       padding={{ left: 0, top: 0, right: 0, bottom: 0 }}

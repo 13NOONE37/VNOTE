@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import 'css/modals/InsertImage.css';
+import 'css/modals/InsertShape.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
 
@@ -127,7 +128,7 @@ export default function InsertShape({
       {showBox && (
         <div
           ref={box}
-          className='modalBox'
+          className='modalBox '
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
         >

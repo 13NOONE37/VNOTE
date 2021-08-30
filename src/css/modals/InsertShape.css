@@ -1,0 +1,29 @@
+.shapePreview {
+  max-height: 100vh;
+  height: 600px;
+  padding: var(--size-8);
+  overflow: hidden auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-8);
+}
+.shapePreview .shapeBox {
+  height: unset;
+  width: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.shapeBox span {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.shapeBox svg:nth-child(0) {
+  fill: red !important;
+}
+.shapeBox:hover,
+.shapeBox:focus {
+  outline: 1px solid #fff;
+}

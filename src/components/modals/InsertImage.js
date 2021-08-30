@@ -92,17 +92,7 @@ export default function InsertImage({
               </button>
               <button onClick={() => setshowURLField(true)}>URL</button>
             </div>
-            <div className='filterBar'>
-              <h1>Add filter:</h1>
-              <span className='filter'>
-                <span>Grayscale</span>{' '}
-                <input type='radio' name='filter' value='grayscale' />
-              </span>
-              <span className='filter'>
-                <span>Sepia</span>{' '}
-                <input type='radio' name='filter' value='grayscale' />
-              </span>
-            </div>
+
             <div
               className='imagePreview scrollClass'
               onDragEnter={handleDragEnter}
