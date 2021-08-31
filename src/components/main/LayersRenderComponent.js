@@ -42,7 +42,6 @@ export default function LayersRenderComponent() {
       className='layerContainer scrollClass'
       ref={containerRef}
       onClick={(e) => {
-        console.log(e.target);
         e.target == containerRef.current && setTarget(null);
       }}
     >

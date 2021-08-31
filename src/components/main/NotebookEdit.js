@@ -9,7 +9,7 @@ function NotebookEdit({ notebooks, setnotebooks, id }) {
         <div
           className='notebookEdit'
           style={{
-            backgroundColor: `hsl(${notebook.paperColor}deg, 30%, 45%)`,
+            backgroundColor: `hsl(${notebook.paperColor}deg, 30%, 75%)`,
           }}
         >
           <span className='topMargin'>

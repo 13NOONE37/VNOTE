@@ -1,0 +1,93 @@
+.chartPreview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden auto;
+}
+.chartPreview h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: var(--size-7);
+}
+.chartPreview .collpaseButton {
+  margin-right: 5px;
+  font-size: 28px;
+  transition: all 0.3s ease-in;
+}
+.collpaseButton:hover,
+.collpaseButton:focus {
+  color: var(--positive);
+}
+.collapsed {
+  transform: scaleY(0);
+}
+.visible {
+  transform: scaleY(1);
+}
+
+.titleInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  padding: var(--size-3);
+  font-size: var(--size_4);
+  letter-spacing: 0.5px;
+  width: 95%;
+  height: 48px;
+
+  color: var(--grey-2);
+  background-color: #002b3d;
+  border: 3px solid #001b29;
+  outline: none;
+}
+.titleInput:focus {
+  box-shadow: var(--box-shadow-1);
+  transition: all 0.2s ease-in;
+}
+
+.chartTypes {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-8);
+}
+.chartTypes .type {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chartTypes .type input {
+  -webkit-appearance: none;
+}
+.chartTypes .type input:checked {
+  background-color: red;
+}
+
+/*
+<div className='dataField'>
+  <div className='dataset'>
+    <input
+      type='text'
+      className='item'
+      placeholder='Type to add...'
+    />
+    <input type='text' className='value' placeholder='8%' />
+    <button className='deleteData'>
+      {' '}
+      <i className='far fa-trash-alt'></i>
+    </button>
+  </div>
+  <button className='newData'>
+    <i className='fas fa-plus'></i>Add dataset
+  </button>
+</div> */

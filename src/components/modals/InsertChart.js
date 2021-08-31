@@ -30,17 +30,63 @@ export default function InsertChart({
               <span>Enter data</span>
             </div>
             <div className='chartPreview scrollClass'>
-              <h1>Configuration:</h1>
-              <input type='text' placeholder='Chart Title' />
+              <input
+                type='text'
+                placeholder='Chart Title'
+                className='titleInput'
+              />
               <span className='chartTypes'>
-                <input type='radio' name='chartType' value='x' />
-                <input type='radio' name='chartType' value='x' />
-                <input type='radio' name='chartType' value='x' />
-                <input type='radio' name='chartType' value='x' />
-                <input type='radio' name='chartType' value='x' />
-                <input type='radio' name='chartType' value='x' />
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='verticalBar' />
+                </span>
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='horizontalBar' />
+                </span>
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='line' />
+                </span>
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='multiLine' />
+                </span>
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='doughnut' />
+                </span>
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='pie' />
+                </span>
+                <span className='type'>
+                  <span>Name</span>
+                  <input type='radio' name='chartType' value='polar' />
+                </span>
               </span>
-              <h1>Data:</h1>
+              <h1>
+                <button className='collpaseButton'>
+                  <i class='fas fa-caret-down'></i>
+                </button>
+                Data:
+              </h1>
+              <div className='dataField'>
+                <div className='dataset'>
+                  <input
+                    type='text'
+                    className='item'
+                    placeholder='Type to add...'
+                  />
+                  <input type='text' className='value' placeholder='8%' />
+                  <button className='deleteData'>
+                    <i className='far fa-trash-alt'></i>
+                  </button>
+                </div>
+                <button className='newData'>
+                  <i className='fas fa-plus'></i>Add dataset
+                </button>
+              </div>
             </div>
             <div className='bottomBar'>
               <button

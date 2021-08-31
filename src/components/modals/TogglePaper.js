@@ -62,7 +62,10 @@ export default function TogglePaper({
                     value={item}
                     name='color'
                     onClick={(e) => handleContentChange(e, setcurrentColor)}
-                    style={{ backgroundColor: `hsl(${item}, 30%, 45%)` }}
+                    style={{
+                      backgroundColor: `hsl(${item}, 30%, 75%)`,
+                      border: 'none',
+                    }}
                   />
                 </>
               ))}
@@ -77,7 +80,7 @@ export default function TogglePaper({
                   value={item}
                   name='paper'
                   onClick={(e) => handleContentChange(e, setcurrentPaper)}
-                  style={{ backgroundColor: `hsl(${currentColor}, 30%, 45%)` }}
+                  style={{ backgroundColor: `hsl(${currentColor}, 30%, 75%)` }}
                 />
               ))}
             </span>
