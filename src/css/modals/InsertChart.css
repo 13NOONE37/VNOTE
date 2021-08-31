@@ -60,14 +60,15 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--size-8);
 }
+
 .chartTypes .type {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .chartTypes .type input {
-  -webkit-appearance: none;
 }
 .chartTypes .type input:checked {
   background-color: red;
@@ -83,7 +84,6 @@
     />
     <input type='text' className='value' placeholder='8%' />
     <button className='deleteData'>
-      {' '}
       <i className='far fa-trash-alt'></i>
     </button>
   </div>

@@ -1,0 +1,46 @@
+.embedField {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--size-4);
+  overflow: hidden auto;
+}
+.embedField .iframeBox {
+  width: 100%;
+}
+.embedField .iframeBox iframe {
+  max-width: 100%;
+}
+.embedField span {
+  font-size: var(--size-7);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 50px 0 10px 0;
+}
+.embedInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  padding: var(--size-3);
+  font-size: var(--size_4);
+  letter-spacing: 0.5px;
+  width: 95%;
+  height: 48px;
+
+  color: var(--grey-2);
+  background-color: #002b3d;
+  border: 3px solid #001b29;
+  outline: none;
+}
+.embedInput:focus {
+  box-shadow: var(--box-shadow-1);
+  transition: all 0.2s ease-in;
+}

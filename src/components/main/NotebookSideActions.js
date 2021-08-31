@@ -8,6 +8,7 @@ import TogglePaper from 'components/modals/TogglePaper';
 import InsertImage from 'components/modals/InsertImage';
 import InsertShape from 'components/modals/InsertShape';
 import InsertChart from 'components/modals/InsertChart';
+import InsertIframe from 'components/modals/InsertIframe';
 
 function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const [showImageBox, setshowImageBox] = useState(false);
@@ -159,6 +160,13 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showDrawBox}
         setshowBox={setshowDrawBox}
+      />
+      <InsertIframe
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showIframeBox}
+        setshowBox={setshowIframeBox}
       />
       <TogglePaper
         notebooks={notebooks}
