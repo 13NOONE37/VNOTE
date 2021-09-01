@@ -21,7 +21,6 @@ export default function InsertIframe({
       console.log(currentIframe);
     }
   };
-  alert('react monaco editor');
   return createPortal(
     <>
       {showBox && (
