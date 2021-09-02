@@ -30,14 +30,8 @@
 
 .titleInput {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 15px;
-  margin-bottom: 50px;
   padding: var(--size-3);
   font-size: var(--size_4);
   letter-spacing: 0.5px;
@@ -55,39 +49,49 @@
 }
 
 .chartTypes {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--size-8);
+  height: 400px;
+  overflow: hidden auto;
 }
 
-.chartTypes .type {
+.dataField {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.dataField .dataset {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+}
+.dataField .dataset input {
+  display: flex;
+
+  padding: var(--size-3);
+  font-size: var(--size_4);
+  letter-spacing: 0.5px;
+  height: 48px;
+
+  color: var(--grey-2);
+  background-color: #002b3d;
+  border: 3px solid #001b29;
+  outline: none;
+}
+.dataField .newData {
+  display: flex;
+  justify-content: center;
   align-items: center;
-}
+  margin: 10px 100px;
+  padding: var(--size-3);
+  font-size: var(--size_4);
+  letter-spacing: 0.5px;
+  height: 48px;
 
-.chartTypes .type input {
+  color: var(--grey-2);
+  background-color: var(--neutral);
+  border: 3px solid #001b29;
+  outline: none;
 }
-.chartTypes .type input:checked {
-  background-color: red;
-}
-
-/*
-<div className='dataField'>
-  <div className='dataset'>
-    <input
-      type='text'
-      className='item'
-      placeholder='Type to add...'
-    />
-    <input type='text' className='value' placeholder='8%' />
-    <button className='deleteData'>
-      <i className='far fa-trash-alt'></i>
-    </button>
-  </div>
-  <button className='newData'>
-    <i className='fas fa-plus'></i>Add dataset
-  </button>
-</div> */

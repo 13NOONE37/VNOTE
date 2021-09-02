@@ -3,7 +3,17 @@ import 'css/modals/InsertImage.css';
 import 'css/modals/InsertChart.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
-import * as Chart from 'chart.js';
+import {
+  Doughnut,
+  Bar,
+  PolarArea,
+  Line,
+  Radar,
+  Bubble,
+  Pie,
+  Scatter,
+} from 'react-chartjs-2';
+import handleContentChange from 'utils/Global/handleContentChange';
 
 export default function InsertChart({
   notebooks,
@@ -13,6 +23,43 @@ export default function InsertChart({
   setshowBox,
 }) {
   const box = useRef(null);
+
+  const [currentTitle, setcurrentTitle] = useState('');
+  const [currentLabel, setcurrentLabel] = useState('');
+  const [chartValues, setchartValues] = useState([]);
+
+  const data = {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [
+      {
+        label: currentLabel,
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.8)',
+          'rgba(54, 162, 235, 0.8)',
+          'rgba(255, 206, 86, 0.8)',
+          'rgba(75, 192, 192, 0.8)',
+          'rgba(153, 102, 255, 0.8)',
+          'rgba(255, 159, 64, 0.8)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const handleSubmitDataset = (e) => {
+    e.preventDefault();
+
+    console.log(chartValues);
+  };
 
   const handleSubmit = () => {};
 
@@ -34,37 +81,27 @@ export default function InsertChart({
                 type='text'
                 placeholder='Chart Title'
                 className='titleInput'
+                value={currentTitle}
+                onChange={(e) => handleContentChange(e, setcurrentTitle)}
               />
-              <span className='chartTypes'>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='verticalBar' />
-                </span>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='horizontalBar' />
-                </span>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='line' />
-                </span>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='multiLine' />
-                </span>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='doughnut' />
-                </span>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='pie' />
-                </span>
-                <span className='type'>
-                  <span>Name</span>
-                  <input type='radio' name='chartType' value='polar' />
-                </span>
-              </span>
+              <input
+                type='text'
+                placeholder='Set label'
+                className='titleInput'
+                value={currentLabel}
+                onChange={(e) => handleContentChange(e, setcurrentLabel)}
+              />
+
+              <div className='chartTypes scrollClass'>
+                <Line data={data} />
+                <Radar data={data} />
+                <PolarArea data={data} />
+                <Bubble data={data} />
+                <Pie data={data} />
+                <Scatter data={data} />
+                <Doughnut data={data} />
+                <Bar data={data} width={400} height={200} />
+              </div>
               <h1>
                 <button className='collpaseButton'>
                   <i class='fas fa-caret-down'></i>
@@ -72,7 +109,7 @@ export default function InsertChart({
                 Data:
               </h1>
               <div className='dataField'>
-                <div className='dataset'>
+                <form className='dataset' onSubmit={handleSubmitDataset}>
                   <input
                     type='text'
                     className='item'
@@ -82,7 +119,8 @@ export default function InsertChart({
                   <button className='deleteData'>
                     <i className='far fa-trash-alt'></i>
                   </button>
-                </div>
+                </form>
+
                 <button className='newData'>
                   <i className='fas fa-plus'></i>Add dataset
                 </button>
