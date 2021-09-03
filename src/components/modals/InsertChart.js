@@ -26,7 +26,12 @@ export default function InsertChart({
 
   const [currentTitle, setcurrentTitle] = useState('');
   const [currentLabel, setcurrentLabel] = useState('');
-  const [chartValues, setchartValues] = useState([]);
+  const [chartValues, setchartValues] = useState([
+    {
+      name: '',
+      value: '',
+    },
+  ]);
 
   const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -55,10 +60,27 @@ export default function InsertChart({
     ],
   };
 
+  const [currentNameOfDataset, setcurrentNameOfDataset] = useState('');
+  const [currentValueOfDataset, setcurrentValueOfDataset] = useState('');
+
+  const handleAddEmpty = () => {
+    const temp = [...chartValues];
+    temp.push({
+      name: '',
+      value: '',
+    });
+    setchartValues(temp);
+  };
   const handleSubmitDataset = (e) => {
     e.preventDefault();
+    if (currentNameOfDataset.trim() != '') {
+      const temp = [...chartValues];
+      temp.push({ name: currentNameOfDataset, value: currentValueOfDataset });
+      setchartValues(temp);
 
-    console.log(chartValues);
+      setcurrentNameOfDataset('');
+      setcurrentValueOfDataset('');
+    }
   };
 
   const handleSubmit = () => {};
@@ -109,19 +131,50 @@ export default function InsertChart({
                 Data:
               </h1>
               <div className='dataField'>
+                {chartValues.map((item, index) => (
+                  <div className='dataset' key={index}>
+                    <input
+                      type='text'
+                      className='item'
+                      placeholder='Name...'
+                      value={item.name}
+                    />
+                    <input
+                      type='text'
+                      className='value'
+                      placeholder='Value...'
+                      value={item.value}
+                    />
+                    <button className='deleteData'>
+                      <i className='far fa-trash-alt'></i>
+                    </button>
+                  </div>
+                ))}
                 <form className='dataset' onSubmit={handleSubmitDataset}>
                   <input
                     type='text'
                     className='item'
-                    placeholder='Type to add...'
+                    placeholder='Name...'
+                    value={currentNameOfDataset}
+                    onChange={(e) =>
+                      handleContentChange(e, setcurrentNameOfDataset)
+                    }
                   />
-                  <input type='text' className='value' placeholder='8%' />
+                  <input
+                    type='text'
+                    className='value'
+                    placeholder='Value...'
+                    value={currentValueOfDataset}
+                    onChange={(e) =>
+                      handleContentChange(e, setcurrentValueOfDataset)
+                    }
+                  />
                   <button className='deleteData'>
                     <i className='far fa-trash-alt'></i>
                   </button>
                 </form>
 
-                <button className='newData'>
+                <button className='newData' onClick={handleAddEmpty}>
                   <i className='fas fa-plus'></i>Add dataset
                 </button>
               </div>
