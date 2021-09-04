@@ -26,6 +26,7 @@ export default function InsertChart({
 
   const [currentTitle, setcurrentTitle] = useState('');
   const [currentLabel, setcurrentLabel] = useState('');
+
   const [chartValues, setchartValues] = useState([
     {
       name: '',
@@ -34,11 +35,11 @@ export default function InsertChart({
   ]);
 
   const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: chartValues.map((item) => item.name),
     datasets: [
       {
         label: currentLabel,
-        data: [12, 19, 3, 5, 2, 3],
+        data: chartValues.map((item) => item.value),
         backgroundColor: [
           'rgba(255, 99, 132, 0.8)',
           'rgba(54, 162, 235, 0.8)',
@@ -60,9 +61,6 @@ export default function InsertChart({
     ],
   };
 
-  const [currentNameOfDataset, setcurrentNameOfDataset] = useState('');
-  const [currentValueOfDataset, setcurrentValueOfDataset] = useState('');
-
   const handleAddEmpty = () => {
     const temp = [...chartValues];
     temp.push({
@@ -71,18 +69,39 @@ export default function InsertChart({
     });
     setchartValues(temp);
   };
-  const handleSubmitDataset = (e) => {
+  const handleSubmitDataset = (e, index) => {
     e.preventDefault();
-    if (currentNameOfDataset.trim() != '') {
-      const temp = [...chartValues];
-      temp.push({ name: currentNameOfDataset, value: currentValueOfDataset });
-      setchartValues(temp);
-
-      setcurrentNameOfDataset('');
-      setcurrentValueOfDataset('');
-    }
+    console.log(chartValues);
+    // let temp = [...chartValues];
+    // console.log(temp, chartValues);
+    // temp.splice(index, 0, { name: '', value: '' });
+    // console.log(temp);
+    // setchartValues(temp);
   };
 
+  const handleChangeName = (e, index) => {
+    setchartValues(
+      chartValues.map((item, n) => {
+        if (index == n) {
+          item.name = e.target.value;
+        }
+        return item;
+      }),
+    );
+  };
+  const handleChangeValue = (e, index) => {
+    setchartValues(
+      chartValues.map((item, n) => {
+        if (index == n) {
+          item.value = e.target.value;
+        }
+        return item;
+      }),
+    );
+  };
+  const handleDeleteDataset = (index) => {
+    setchartValues(chartValues.filter((item, n) => n != index));
+  };
   const handleSubmit = () => {};
 
   return createPortal(
@@ -115,64 +134,50 @@ export default function InsertChart({
               />
 
               <div className='chartTypes scrollClass'>
-                <Line data={data} />
+                {/* <Line data={data} />
                 <Radar data={data} />
                 <PolarArea data={data} />
                 <Bubble data={data} />
                 <Pie data={data} />
                 <Scatter data={data} />
-                <Doughnut data={data} />
+                <Doughnut data={data} /> */}
                 <Bar data={data} width={400} height={200} />
               </div>
-              <h1>
-                <button className='collpaseButton'>
-                  <i class='fas fa-caret-down'></i>
-                </button>
-                Data:
-              </h1>
+              <h1>Data:</h1>
               <div className='dataField'>
                 {chartValues.map((item, index) => (
-                  <div className='dataset' key={index}>
+                  <form
+                    className='dataset'
+                    key={index}
+                    onSubmit={(e) => handleSubmitDataset(e, index)}
+                  >
                     <input
                       type='text'
                       className='item'
                       placeholder='Name...'
+                      p
                       value={item.name}
+                      onChange={(e) => {
+                        handleChangeName(e, index);
+                      }}
                     />
                     <input
                       type='text'
                       className='value'
                       placeholder='Value...'
                       value={item.value}
+                      onChange={(e) => {
+                        handleChangeValue(e, index);
+                      }}
                     />
-                    <button className='deleteData'>
+                    <button
+                      className='deleteData'
+                      onClick={() => handleDeleteDataset(index)}
+                    >
                       <i className='far fa-trash-alt'></i>
                     </button>
-                  </div>
+                  </form>
                 ))}
-                <form className='dataset' onSubmit={handleSubmitDataset}>
-                  <input
-                    type='text'
-                    className='item'
-                    placeholder='Name...'
-                    value={currentNameOfDataset}
-                    onChange={(e) =>
-                      handleContentChange(e, setcurrentNameOfDataset)
-                    }
-                  />
-                  <input
-                    type='text'
-                    className='value'
-                    placeholder='Value...'
-                    value={currentValueOfDataset}
-                    onChange={(e) =>
-                      handleContentChange(e, setcurrentValueOfDataset)
-                    }
-                  />
-                  <button className='deleteData'>
-                    <i className='far fa-trash-alt'></i>
-                  </button>
-                </form>
 
                 <button className='newData' onClick={handleAddEmpty}>
                   <i className='fas fa-plus'></i>Add dataset

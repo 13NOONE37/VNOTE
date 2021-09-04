@@ -12,21 +12,6 @@
   font-weight: 600;
   font-size: var(--size-7);
 }
-.chartPreview .collpaseButton {
-  margin-right: 5px;
-  font-size: 28px;
-  transition: all 0.3s ease-in;
-}
-.collpaseButton:hover,
-.collpaseButton:focus {
-  color: var(--positive);
-}
-.collapsed {
-  transform: scaleY(0);
-}
-.visible {
-  transform: scaleY(1);
-}
 
 .titleInput {
   display: flex;
@@ -65,7 +50,9 @@
 .dataField .dataset {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr 48px;
+  grid-gap: 5px;
+  margin: 2.5px 0;
 }
 .dataField .dataset input {
   display: flex;
@@ -77,7 +64,7 @@
 
   color: var(--grey-2);
   background-color: #002b3d;
-  border: 3px solid #001b29;
+  border: none;
   outline: none;
 }
 .dataField .newData {
@@ -92,6 +79,22 @@
 
   color: var(--grey-2);
   background-color: var(--neutral);
-  border: 3px solid #001b29;
+  border: none;
   outline: none;
+}
+.deleteData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--size-3);
+  font-size: 24px !important;
+  height: 48px !important;
+
+  background-color: transparent;
+  border: none;
+}
+.deleteData:focus,
+.newData:focus {
+  outline: 1px solid white;
 }
