@@ -9,11 +9,11 @@ import {
   PolarArea,
   Line,
   Radar,
-  Bubble,
   Pie,
   Scatter,
 } from 'react-chartjs-2';
 import handleContentChange from 'utils/Global/handleContentChange';
+import ChartTemplate from 'components/main/ChartTemplate';
 
 export default function InsertChart({
   notebooks,
@@ -24,6 +24,8 @@ export default function InsertChart({
 }) {
   const box = useRef(null);
 
+  const chartTypes = ['line', 'radar', 'polar', 'pie', 'doughtnut', 'bar'];
+  const [currentChartType, setcurrentChartType] = useState(5);
   const [currentTitle, setcurrentTitle] = useState('');
   const [currentLabel, setcurrentLabel] = useState('');
 
@@ -61,6 +63,17 @@ export default function InsertChart({
     ],
   };
 
+  const handleChangeChart = (isLeft) => {
+    if (isLeft) {
+      currentChartType <= 0
+        ? setcurrentChartType(5)
+        : setcurrentChartType(currentChartType - 1);
+    } else {
+      currentChartType >= 5
+        ? setcurrentChartType(0)
+        : setcurrentChartType(currentChartType + 1);
+    }
+  };
   const handleAddEmpty = () => {
     const temp = [...chartValues];
     temp.push({
@@ -71,14 +84,10 @@ export default function InsertChart({
   };
   const handleSubmitDataset = (e, index) => {
     e.preventDefault();
-    console.log(chartValues);
-    // let temp = [...chartValues];
-    // console.log(temp, chartValues);
-    // temp.splice(index, 0, { name: '', value: '' });
-    // console.log(temp);
-    // setchartValues(temp);
+    let temp = [...chartValues];
+    temp.splice(index + 1, 0, { name: '', value: '' });
+    setchartValues(temp);
   };
-
   const handleChangeName = (e, index) => {
     setchartValues(
       chartValues.map((item, n) => {
@@ -100,6 +109,7 @@ export default function InsertChart({
     );
   };
   const handleDeleteDataset = (index) => {
+    console.log('deleteing dataset');
     setchartValues(chartValues.filter((item, n) => n != index));
   };
   const handleSubmit = () => {};
@@ -132,19 +142,20 @@ export default function InsertChart({
                 value={currentLabel}
                 onChange={(e) => handleContentChange(e, setcurrentLabel)}
               />
-
+              <h1>Change chart type</h1>
+              <span className='changeChartType'>
+                <button onClick={() => handleChangeChart(true)}>
+                  <i className='fas fa-angle-left'></i>
+                </button>
+                <button onClick={() => handleChangeChart(false)}>
+                  <i className='fas fa-angle-right'></i>
+                </button>
+              </span>
               <div className='chartTypes scrollClass'>
-                {/* <Line data={data} />
-                <Radar data={data} />
-                <PolarArea data={data} />
-                <Bubble data={data} />
-                <Pie data={data} />
-                <Scatter data={data} />
-                <Doughnut data={data} /> */}
-                <Bar data={data} width={400} height={200} />
+                <ChartTemplate data={data} type={currentChartType} />
               </div>
               <h1>Data:</h1>
-              <div className='dataField'>
+              <div className='dataField scrollClass'>
                 {chartValues.map((item, index) => (
                   <form
                     className='dataset'
@@ -171,16 +182,19 @@ export default function InsertChart({
                       }}
                     />
                     <button
+                      type='button'
                       className='deleteData'
                       onClick={() => handleDeleteDataset(index)}
                     >
                       <i className='far fa-trash-alt'></i>
                     </button>
+                    <button type='submit' style={{ display: 'none' }}></button>
                   </form>
                 ))}
 
                 <button className='newData' onClick={handleAddEmpty}>
-                  <i className='fas fa-plus'></i>Add dataset
+                  <i className='fas fa-plus'></i>
+                  <span>Add new</span>
                 </button>
               </div>
             </div>

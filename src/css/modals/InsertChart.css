@@ -1,7 +1,6 @@
 .chartPreview {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   overflow: hidden auto;
 }
@@ -11,6 +10,7 @@
   align-items: center;
   font-weight: 600;
   font-size: var(--size-7);
+  margin: 15px 0 5px 0;
 }
 
 .titleInput {
@@ -38,16 +38,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 400px;
-  overflow: hidden auto;
 }
 
 .dataField {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  min-height: 200px;
+  max-height: 500px;
+  overflow: hidden auto;
+  padding: var(--size-3);
 }
 .dataField .dataset {
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 48px;
@@ -82,6 +84,9 @@
   border: none;
   outline: none;
 }
+.dataField .newData span {
+  margin-left: 10px;
+}
 .deleteData {
   display: flex;
   justify-content: center;
@@ -97,4 +102,31 @@
 .deleteData:focus,
 .newData:focus {
   outline: 1px solid white;
+}
+
+.changeChartType button {
+  cursor: pointer;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  border: none;
+
+  font-size: var(--size-7);
+  color: #fff;
+  background: linear-gradient(180deg, var(--blue-8) 0%, var(--blue-10) 100%);
+  box-shadow: inset -20px -20px 5px rgba(255, 255, 255, 0);
+  transition: all 0.25s ease-in;
+}
+
+.changeChartType button:hover,
+.changeChartType button:focus {
+  box-shadow: inset 40px 40px 5px rgba(255, 255, 255, 0.1);
+}
+.changeChartType button:hover {
+  color: var(--warning);
+}
+
+.changeChartType button i {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }

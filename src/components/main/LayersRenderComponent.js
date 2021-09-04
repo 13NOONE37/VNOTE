@@ -35,6 +35,19 @@ export default function LayersRenderComponent() {
         </span>
       ),
     },
+    {
+      type: 'image',
+      frame: {
+        translate: [0, 0],
+        rotate: 0,
+      },
+      value: (
+        <img
+          src='https://wedel.pl/uploads/media/default/0001/02/39381df179e04212e6b22902fbee2f7ceb0caac6.png'
+          style={{ width: '100%', height: '100%' }}
+        />
+      ),
+    },
   ]);
 
   return (
@@ -56,7 +69,7 @@ export default function LayersRenderComponent() {
         <div
           className='target'
           key={index}
-          //   style={{ zIndex: index + 1 }}
+          style={{ zIndex: index + 1 }}
           onClick={(e) => {
             setTarget(e.currentTarget);
             setnumberOfElement(index);
