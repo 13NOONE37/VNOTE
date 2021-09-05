@@ -1,0 +1,11 @@
+.codeField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden auto;
+}
+.codeField .options {
+  padding: var(--size-4);
+}
+.codeField .options .option {
+}

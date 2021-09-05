@@ -15,7 +15,6 @@
 }
 .imageBox button {
   cursor: pointer;
-  outline: none;
   border: none;
   height: 40px;
   background-color: transparent;
@@ -34,6 +33,9 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.topBar button {
+  outline: none;
 }
 .topBar span {
   color: #fff;
@@ -114,7 +116,7 @@
   color: var(--grey-2);
   background-color: #002b3d;
   border: 3px solid #001b29;
-  outline: none;
+  /* outline: none; */
 }
 .imagePreview input[type='text']:focus {
   box-shadow: var(--box-shadow-1);

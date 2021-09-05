@@ -9,6 +9,7 @@ import InsertImage from 'components/modals/InsertImage';
 import InsertShape from 'components/modals/InsertShape';
 import InsertChart from 'components/modals/InsertChart';
 import InsertIframe from 'components/modals/InsertIframe';
+import InsertCode from 'components/modals/InsertCode';
 
 function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const [showImageBox, setshowImageBox] = useState(false);
@@ -16,6 +17,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const [showChartBox, setshowChartBox] = useState(false);
   const [showDrawBox, setshowDrawBox] = useState(false);
   const [showIframeBox, setshowIframeBox] = useState(false);
+  const [showCodeBox, setshowCodeBox] = useState(false);
   const [showPaperBox, setshowPaperBox] = useState(false);
   const [showShareBox, setshowShareBox] = useState(false);
   const [showPrintBox, setshowPrintBox] = useState(false);
@@ -26,6 +28,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
   const handleInsertChart = () => setshowChartBox(true);
   const handleDrawNotebook = () => setshowDrawBox(true);
   const handleInsertIframe = () => setshowIframeBox(true);
+  const handleCodeBox = () => setshowCodeBox(true);
   const handleChooseTypeOfPaper = () => setshowPaperBox(true);
   const handlePrintNotebook = () => {
     alert(
@@ -76,9 +79,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
     {
       name: 'Insert code',
       icon: 'fas fa-code',
-      action: () => {
-        console.log('action executed');
-      },
+      action: handleCodeBox,
     },
     {
       name: 'Insert table',
@@ -168,6 +169,14 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         showBox={showIframeBox}
         setshowBox={setshowIframeBox}
       />
+      <InsertCode
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showCodeBox}
+        setshowBox={setshowCodeBox}
+      />
+
       <TogglePaper
         notebooks={notebooks}
         setnotebooks={setnotebooks}
