@@ -64,6 +64,27 @@ export default function App({
       // });
     }
   };
+
+  const [keepRatio, setkeepRatio] = useState(false);
+  useEffect(() => {
+    console.log('adding event listener');
+    const buttons = [
+      document.querySelector('.moveable-nw'),
+      document.querySelector('.moveable-ne'),
+      document.querySelector('.moveable-sw'),
+      document.querySelector('.moveable-se'),
+    ];
+
+    buttons.forEach((item) => {
+      item.addEventListener('mousedown', () => {
+        setkeepRatio(true);
+      });
+    });
+    window.addEventListener('mouseup', () => {
+      setkeepRatio(false);
+    });
+  }, []);
+
   return (
     <Moveable
       //Resize
@@ -71,7 +92,7 @@ export default function App({
       container={containerRef.current}
       scrollContainer={containerRef.current}
       resizable={true}
-      keepRatio={false}
+      keepRatio={keepRatio}
       throttleResize={0}
       renderDirections={['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se']}
       edge={true}
@@ -91,6 +112,7 @@ export default function App({
         e.target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)`;
       }}
       //Rotate
+
       rotatable={true}
       throttleRotate={0}
       rotationPosition={'top'}
