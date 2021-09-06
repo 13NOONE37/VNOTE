@@ -42,7 +42,6 @@ export default function InsertCode({
             <div className='codeField scrollClass'>
               <div className='options'>
                 <span className='option'>
-                  <span>Language:</span>
                   <select
                     onChange={(e) => {
                       setcurrentLanguage(e.target.value);
@@ -67,7 +66,6 @@ export default function InsertCode({
                   </select>
                 </span>
                 <span className='option'>
-                  <span>Theme:</span>
                   <select
                     onChange={(e) => {
                       setcurrentTheme(e.target.value);
@@ -85,9 +83,10 @@ export default function InsertCode({
                     <option value='terminal'>terminal</option>
                   </select>
                 </span>
-                <span className='option'>
-                  <span>Font size:</span>
-                  <input type='number' />
+                <span className='option fontSizeField' title='Font size'>
+                  <button>
+                    <i className='fas fa-minus'></i>
+                  </button>
                   <select
                     onChange={(e) => {
                       setcurrentFontSize(parseInt(e.target.value));
@@ -106,13 +105,16 @@ export default function InsertCode({
                     <option>44</option>
                     <option>52</option>
                   </select>
+                  <button>
+                    <i className='fas fa-plus'></i>
+                  </button>
                 </span>
               </div>
 
               <AceEditor
                 mode={currentLanguage}
                 theme={currentTheme}
-                name='blah2'
+                name='editorExample'
                 onChange={handleOnChange}
                 width={'100%'}
                 fontSize={currentFontSize}

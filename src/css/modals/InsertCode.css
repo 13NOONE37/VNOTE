@@ -6,6 +6,47 @@
 }
 .codeField .options {
   padding: var(--size-4);
+  display: flex;
+  gap: 15px;
 }
 .codeField .options .option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.codeField select {
+  height: 30px;
+  outline: none;
+  background-color: var(--blue-9);
+  color: #fff;
+  border: 1px solid var(--blue-2);
+}
+.codeField .options input {
+  background-color: var(--blue-1);
+  color: #fff;
+  width: 50px;
+}
+.fontSizeField {
+}
+.fontSizeField select {
+  width: 40px;
+}
+.fontSizeField button {
+  width: 30px;
+  height: 30px;
+  background-color: var(--blue-9);
+  border: 1px solid var(--blue-2);
+}
+.fontSizeField button:focus,
+.fontSizeField select:focus {
+  border: 1px solid var(--blue-11);
+}
+select option:hover {
+  background-color: blueviolet !important;
+}
+.fontSizeField button:nth-child(1):focus {
+  color: var(--error);
+}
+.fontSizeField button:nth-child(3):focus {
+  color: var(--positive);
 }
