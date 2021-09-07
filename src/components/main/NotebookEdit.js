@@ -2,7 +2,7 @@ import React from 'react';
 import 'css/main/NotebookEdit.css';
 import LayersRenderComponent from './LayersRenderComponent';
 
-function NotebookEdit({ notebooks, setnotebooks, id }) {
+function NotebookEdit({ notebooks, setnotebooks, id, currentPage }) {
   return notebooks.map(
     (notebook, index) =>
       notebook.id == id && (
@@ -22,11 +22,9 @@ function NotebookEdit({ notebooks, setnotebooks, id }) {
             // suppressContentEditableWarning={true}
           >
             <LayersRenderComponent />
-            {/* <b>Szczury</b> <br /> Pewnego dnia przybył szczur do wioski i rzekł
-            Szczury to koxy. */}
           </span>
           <span className='bottomMargin'>
-            <span className='PageCount'>54</span>
+            <span className='PageCount'>{currentPage}</span>
           </span>
         </div>
       ),

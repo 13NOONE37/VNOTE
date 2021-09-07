@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
 import AppContext from 'store/appContext';
 import 'css/main/notebookPage.css';
@@ -20,6 +20,8 @@ export default function NotebookEditPage() {
     setcategoriesTable,
   ] = useContext(AppContext);
 
+  const [currentPage, setcurrentPage] = useState(1);
+
   return (
     <div className='notebookPage scrollClass'>
       <NotebookSideActions
@@ -32,8 +34,14 @@ export default function NotebookEditPage() {
           notebooks={notebooks}
           setnotebooks={setnotebooks}
           id={id}
+          currentPage={currentPage}
         />
-        <ControPageCount />
+        <ControPageCount
+          notebooks={notebooks}
+          id={id}
+          currentPage={currentPage}
+          setcurrentPage={setcurrentPage}
+        />
       </main>
     </div>
   );
