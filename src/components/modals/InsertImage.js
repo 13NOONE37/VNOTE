@@ -52,21 +52,27 @@ export default function InsertImage({
   const handleURL = (e) => {
     setuploadedImage(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
+    const pushFrame = (frame) => {};
+
     if (showURLField) {
       if (urlImage != '') {
         //set image from url
+        pushFrame(urlImage);
         console.log('url');
       } else {
         //set image from upload
+        pushFrame(uploadedImage);
         console.log('upload');
       }
     } else {
       if (uploadedImage != '') {
         //set image from upload
+        pushFrame(uploadedImage);
         console.log('upload');
       } else {
         //set image from url
+        pushFrame(urlImage);
         console.log('url');
       }
     }

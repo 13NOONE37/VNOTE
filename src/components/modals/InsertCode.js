@@ -47,22 +47,22 @@ export default function InsertCode({
                       setcurrentLanguage(e.target.value);
                     }}
                   >
-                    <option value='javascript'>javascript</option>
-                    <option value='java'>java</option>
-                    <option value='python'>python</option>
-                    <option value='xml'>xml</option>
-                    <option value='ruby'>ruby</option>
-                    <option value='sass'>sass</option>
-                    <option value='markdown'>markdown</option>
-                    <option value='mysql'>mysql</option>
-                    <option value='json'>json</option>
                     <option value='html'>html</option>
-                    <option value='handlebars'>handlebars</option>
+                    <option value='javascript'>javascript</option>
+                    <option value='typescript'>typescript</option>
+                    <option value='sass'>sass</option>
+                    <option value='css'>css</option>
+                    <option value='python'>python</option>
+                    <option value='java'>java</option>
+                    <option value='ruby'>ruby</option>
                     <option value='golang'>golang</option>
                     <option value='csharp'>c#</option>
+                    <option value='mysql'>mysql</option>
+                    <option value='json'>json</option>
+                    <option value='xml'>xml</option>
+                    <option value='markdown'>markdown</option>
+                    <option value='handlebars'>handlebars</option>
                     <option value='elixir'>elixir</option>
-                    <option value='typescript'>typescript</option>
-                    <option value='css'>css</option>
                   </select>
                 </span>
                 <span className='option'>
@@ -71,6 +71,7 @@ export default function InsertCode({
                       setcurrentTheme(e.target.value);
                     }}
                   >
+                    <option value='terminal'>terminal</option>
                     <option value='monokai'>monokai</option>
                     <option value='github'>github</option>
                     <option value='tomorrow'>tomorrow</option>
@@ -80,7 +81,6 @@ export default function InsertCode({
                     <option value='textmate'>textmate</option>
                     <option value='solarized_dark'>solarized_dark</option>
                     <option value='solarized_light'>solarized_light</option>
-                    <option value='terminal'>terminal</option>
                   </select>
                 </span>
                 <span className='option fontSizeField' title='Font size'>
