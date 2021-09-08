@@ -17,7 +17,7 @@ function ControPageCount({ notebooks, id, currentPage, setcurrentPage }) {
         value={currentPage}
         onChange={(e) => setcurrentPage(Math.max(1, e.target.value))}
       />
-      <button onClick={() => setcurrentPage(currentPage++)}>
+      <button onClick={() => setcurrentPage(currentPage + 1)}>
         <i className='fas fa-angle-right'></i>
       </button>
       <button
