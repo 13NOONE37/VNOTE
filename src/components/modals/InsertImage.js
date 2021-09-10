@@ -12,6 +12,7 @@ export default function InsertImage({
   id,
   showBox,
   setshowBox,
+  currentPage,
 }) {
   const box = useRef(null);
   const uploadRef = useRef(null);
@@ -53,7 +54,34 @@ export default function InsertImage({
     setuploadedImage(e.target.value);
   };
   const handleSubmit = () => {
-    const pushFrame = (frame) => {};
+    const pushFrame = (frame) => {
+      setnotebooks(
+        notebooks.map((item1, index1) => {
+          if (item1.id == id) {
+            item1.cards.map((item2, index2) => {
+              if (index2 + 1 == currentPage) {
+                item2.elements.push({
+                  type: 'image',
+                  frame: {
+                    translate: [0, 0],
+                    rotate: 0,
+                  },
+                  value: (
+                    <img
+                      src={frame}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  ),
+                });
+              }
+              return item2;
+            });
+          }
+          return item1;
+        }),
+      );
+      setshowBox(false);
+    };
 
     if (showURLField) {
       if (urlImage != '') {

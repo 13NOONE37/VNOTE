@@ -11,7 +11,7 @@ import InsertChart from 'components/modals/InsertChart';
 import InsertIframe from 'components/modals/InsertIframe';
 import InsertCode from 'components/modals/InsertCode';
 
-function NotebookSideActions({ notebooks, setnotebooks, id }) {
+function NotebookSideActions({ notebooks, setnotebooks, id, currentPage }) {
   const [showImageBox, setshowImageBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
   const [showChartBox, setshowChartBox] = useState(false);
@@ -140,6 +140,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showImageBox}
         setshowBox={setshowImageBox}
+        currentPage={currentPage}
       />
       <InsertShape
         notebooks={notebooks}
@@ -147,6 +148,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showShapeBox}
         setshowBox={setshowShapeBox}
+        currentPage={currentPage}
       />
       <InsertChart
         notebooks={notebooks}
@@ -154,6 +156,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showChartBox}
         setshowBox={setshowChartBox}
+        currentPage={currentPage}
       />
       <DrawNotebook
         notebooks={notebooks}
@@ -161,6 +164,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showDrawBox}
         setshowBox={setshowDrawBox}
+        currentPage={currentPage}
       />
       <InsertIframe
         notebooks={notebooks}
@@ -168,6 +172,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showIframeBox}
         setshowBox={setshowIframeBox}
+        currentPage={currentPage}
       />
       <InsertCode
         notebooks={notebooks}
@@ -175,6 +180,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showCodeBox}
         setshowBox={setshowCodeBox}
+        currentPage={currentPage}
       />
 
       <TogglePaper
@@ -183,6 +189,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showPaperBox}
         setshowBox={setshowPaperBox}
+        currentPage={currentPage}
       />
       <ShareNotebook
         notebooks={notebooks}
@@ -190,6 +197,7 @@ function NotebookSideActions({ notebooks, setnotebooks, id }) {
         id={id}
         showBox={showShareBox}
         setshowBox={setshowShareBox}
+        currentPage={currentPage}
       />
     </aside>
   );

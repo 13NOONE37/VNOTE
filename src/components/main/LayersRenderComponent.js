@@ -1,54 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MoveableComponent from 'components/main/MoveableComponent';
 import 'css/main/MoveableBox.css';
 
-export default function LayersRenderComponent() {
+export default function LayersRenderComponent({
+  notebooks,
+  setnotebooks,
+  id,
+  currentPage,
+}) {
   const [target, setTarget] = useState(null);
   const [numberOfElement, setnumberOfElement] = useState(null);
 
   const containerRef = useRef(null);
 
-  const [elements, setelements] = useState([
-    {
-      type: 'image',
-      frame: {
-        translate: [0, 0],
-        rotate: 0,
-      },
-      value: (
-        <img
-          src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
-          style={{ width: '100%', height: '100%' }}
-        />
-      ),
-    },
-    {
-      type: 'text',
-      frame: {
-        translate: [0, 0],
-        rotate: 0,
-      },
-      value: (
-        <span>
-          <b>szczur</b>
-          <i> lur</i>
-        </span>
-      ),
-    },
-    {
-      type: 'image',
-      frame: {
-        translate: [0, 0],
-        rotate: 0,
-      },
-      value: (
-        <img
-          src='https://wedel.pl/uploads/media/default/0001/02/39381df179e04212e6b22902fbee2f7ceb0caac6.png'
-          style={{ width: '100%', height: '100%' }}
-        />
-      ),
-    },
-  ]);
+  const [elements, setelements] = useState(
+    notebooks
+      .find((item, index) => item.id == id)
+      .cards.find((item, index) => index + 1 == currentPage).elements,
+  );
 
   return (
     <div

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'css/main/ControlPageCount.css';
 
 function ControPageCount({ notebooks, id, currentPage, setcurrentPage }) {
+  const [lengthOfNotebook, setlengthOfNotebook] = useState(
+    notebooks.find((item) => item.id == id).cards.length,
+  );
+
   return (
     <div className='controlPageCount'>
       <button className='skewButton' onClick={() => setcurrentPage(1)}>
@@ -13,18 +17,25 @@ function ControPageCount({ notebooks, id, currentPage, setcurrentPage }) {
       <input
         type='number'
         min={0}
+        max={lengthOfNotebook}
         placeholder='0-99'
         value={currentPage}
-        onChange={(e) => setcurrentPage(Math.max(1, e.target.value))}
+        onChange={(e) =>
+          setcurrentPage(
+            Math.min(Math.max(1, e.target.value), lengthOfNotebook),
+          )
+        }
       />
-      <button onClick={() => setcurrentPage(currentPage + 1)}>
+      <button
+        onClick={() =>
+          setcurrentPage(Math.min(currentPage + 1, lengthOfNotebook))
+        }
+      >
         <i className='fas fa-angle-right'></i>
       </button>
       <button
         className='skewButton'
-        onClick={() =>
-          setcurrentPage(notebooks.find((item) => item.id == id).cards.length)
-        }
+        onClick={() => setcurrentPage(lengthOfNotebook)}
       >
         <i className='fas fa-forward'></i>
       </button>

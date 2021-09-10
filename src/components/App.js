@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     //Dodać te dane do localstorage zamiast do firebase a niżej wysyłac do firebase
-    UpdateUserData(user, notes, notebooks, categoriesTable);
+    // UpdateUserData(user, notes, notebooks, categoriesTable);
   }, [notes, notebooks, categoriesTable]);
 
   // useEffect(() => {

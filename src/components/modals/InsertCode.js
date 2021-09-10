@@ -13,6 +13,7 @@ export default function InsertCode({
   id,
   showBox,
   setshowBox,
+  currentPage,
 }) {
   const box = useRef(null);
 
@@ -25,7 +26,51 @@ export default function InsertCode({
     console.log(currentCode);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    setnotebooks(
+      notebooks.map((item1, index1) => {
+        if (item1.id == id) {
+          item1.cards.map((item2, index2) => {
+            if (index2 + 1 == currentPage) {
+              item2.elements.push({
+                type: 'code',
+                frame: {
+                  translate: [0, 0],
+                  rotate: 0,
+                },
+                value: (
+                  <AceEditor
+                    mode={`${currentLanguage}`}
+                    theme={`${currentTheme}`}
+                    name='editorExample'
+                    onChange={handleOnChange}
+                    width={'100%'}
+                    fontSize={currentFontSize}
+                    showPrintMargin={true}
+                    showGutter={true}
+                    highlightActiveLine={true}
+                    value={`${currentCode}`}
+                    setOptions={{
+                      enableBasicAutocompletion: true,
+                      enableLiveAutocompletion: true,
+                      enableSnippets: true,
+                      showLineNumbers: true,
+                      tabSize: 2,
+                      wrapBehavioursEnabled: true,
+                      wrap: true,
+                    }}
+                  />
+                ),
+              });
+            }
+            return item2;
+          });
+        }
+        return item1;
+      }),
+    );
+    setshowBox(false);
+  };
   return createPortal(
     <>
       {showBox && (
@@ -84,7 +129,9 @@ export default function InsertCode({
                   </select>
                 </span>
                 <span className='option fontSizeField' title='Font size'>
-                  <button>
+                  <button
+                    onClick={() => setcurrentFontSize(currentFontSize - 1)}
+                  >
                     <i className='fas fa-minus'></i>
                   </button>
                   <select
@@ -95,7 +142,7 @@ export default function InsertCode({
                     <option>12</option>
                     <option>14</option>
                     <option>16</option>
-                    <option selected>18</option>
+                    <option>18</option>
                     <option>20</option>
                     <option>22</option>
                     <option>24</option>
@@ -105,7 +152,9 @@ export default function InsertCode({
                     <option>44</option>
                     <option>52</option>
                   </select>
-                  <button>
+                  <button
+                    onClick={() => setcurrentFontSize(currentFontSize + 1)}
+                  >
                     <i className='fas fa-plus'></i>
                   </button>
                 </span>

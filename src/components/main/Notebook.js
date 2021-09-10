@@ -39,15 +39,67 @@ export default function Notebook({
       temp.unshift({
         id: newId,
         title: 'Your notebook',
-        color: 236,
+        color: 75,
         bgImage: 'hexagons',
         paperType: 'linePaper',
         paperColor: 75,
-        cards: [],
+        cards: [
+          {
+            date: '1.01.2001',
+            titleOfPage: 'Destrukturyzacja',
+            elements: [
+              {
+                type: 'image',
+                frame: {
+                  translate: [0, 0],
+                  rotate: 0,
+                },
+                value: (
+                  <img
+                    src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                ),
+              },
+              {
+                type: 'image',
+                frame: {
+                  translate: [0, 0],
+                  rotate: 0,
+                },
+                value: (
+                  <img
+                    src='https://wedel.pl/uploads/media/default/0001/02/39381df179e04212e6b22902fbee2f7ceb0caac6.png'
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                ),
+              },
+            ],
+          },
+          {
+            date: '2.02.2002',
+            titleOfPage: 'OOP in JS',
+            elements: [
+              {
+                type: 'text',
+                frame: {
+                  translate: [0, 0],
+                  rotate: 0,
+                },
+                value: (
+                  <span>
+                    <b>szczur</b>
+                    <i> lur</i>
+                  </span>
+                ),
+              },
+            ],
+          },
+        ],
       });
 
       setnotebooks(temp);
-      setisNewNotebook(!isNewNotebook);
+      setisNewNotebook(false);
     }
   }, [isNewNotebook]);
 

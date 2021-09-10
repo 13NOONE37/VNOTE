@@ -19,9 +19,7 @@ export default function App({
   useEffect(() => {
     numberOfElement != null && setFrame(elements[numberOfElement].frame);
   }, [numberOfElement]);
-  // alert(
-  //   'https://daybrush.com/moveable/storybook/?path=/story/basic--rotatable',
-  // );
+
   const handleClickDecide = (e) => {
     setTarget(e.currentTarget);
     const styles = getComputedStyle(e.currentTarget, null);
@@ -33,7 +31,7 @@ export default function App({
       styles.getPropertyValue('-o-transform') ||
       styles.getPropertyValue('transform') ||
       'none';
-    console.log(matrix, styles);
+    // console.log(matrix, styles);
 
     if (matrix != 'none') {
       let values = matrix.split('(')[1];
@@ -53,10 +51,10 @@ export default function App({
 
       //Rotate
       const angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-      console.log(`Rotate: ${angle}deg`);
+      // console.log(`Rotate: ${angle}deg`);
 
       //Translate
-      console.log(`Translate: X ${e}, Y ${f}`);
+      // console.log(`Translate: X ${e}, Y ${f}`);
 
       // setFrame({
       //   translate: [e, f],

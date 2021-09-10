@@ -10,6 +10,7 @@ export default function InsertShape({
   id,
   showBox,
   setshowBox,
+  currentPage,
 }) {
   const box = useRef(null);
   const [currentShape, setcurrentShape] = useState(null);
@@ -119,7 +120,34 @@ export default function InsertShape({
 
   const handleSubmit = () => {
     if (currentShape) {
-      console.log(currentShape);
+      setnotebooks(
+        notebooks.map((item1, index1) => {
+          if (item1.id == id) {
+            item1.cards.map((item2, index2) => {
+              if (index2 + 1 == currentPage) {
+                item2.elements.push({
+                  type: 'svg',
+                  frame: {
+                    translate: [0, 0],
+                    rotate: 0,
+                  },
+                  value: (
+                    <svg
+                      props={currentShape.props}
+                      style={{ width: '100%', height: '100%' }}
+                    >
+                      {currentShape.props.children}
+                    </svg>
+                  ),
+                });
+              }
+              return item2;
+            });
+          }
+          return item1;
+        }),
+      );
+      setshowBox(false);
     }
   };
 
