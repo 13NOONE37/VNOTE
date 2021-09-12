@@ -19,6 +19,8 @@ export default function InsertShape({
       name: 'Rectangle',
       shape: (
         <svg
+          width='100%'
+          preserveAspectRatio='none'
           viewBox='0 0 100 100'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
@@ -117,6 +119,7 @@ export default function InsertShape({
       ),
     },
   ];
+  console.log(shapes);
 
   const handleSubmit = () => {
     if (currentShape) {
@@ -133,8 +136,9 @@ export default function InsertShape({
                   },
                   value: (
                     <svg
-                      props={currentShape.props}
+                      preserveAspectRatio='none'
                       style={{ width: '100%', height: '100%' }}
+                      viewBox={currentShape.props.viewBox}
                     >
                       {currentShape.props.children}
                     </svg>
