@@ -39,27 +39,38 @@ export default function InsertCode({
                   rotate: 0,
                 },
                 value: (
-                  <AceEditor
-                    mode={`${currentLanguage}`}
-                    theme={`${currentTheme}`}
-                    name='editorExample'
-                    onChange={handleOnChange}
-                    width={'100%'}
-                    fontSize={currentFontSize}
-                    showPrintMargin={true}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    value={`${currentCode}`}
-                    setOptions={{
-                      enableBasicAutocompletion: true,
-                      enableLiveAutocompletion: true,
-                      enableSnippets: true,
-                      showLineNumbers: true,
-                      tabSize: 2,
-                      wrapBehavioursEnabled: true,
-                      wrap: true,
+                  <div
+                    style={{
+                      border: '5px solid #333',
+                      width: '100%',
+                      height: '100%',
+                      padding: '0',
+                      margin: '0',
                     }}
-                  />
+                    className='iframeBox'
+                  >
+                    <AceEditor
+                      mode={currentLanguage}
+                      theme={currentTheme}
+                      name='editorExample'
+                      onChange={handleOnChange}
+                      width={'100%'}
+                      fontSize={currentFontSize}
+                      showPrintMargin={true}
+                      showGutter={true}
+                      highlightActiveLine={true}
+                      value={currentCode}
+                      setOptions={{
+                        enableBasicAutocompletion: true,
+                        enableLiveAutocompletion: true,
+                        enableSnippets: true,
+                        showLineNumbers: true,
+                        tabSize: 2,
+                        wrapBehavioursEnabled: true,
+                        wrap: true,
+                      }}
+                    />
+                  </div>
                 ),
               });
             }
