@@ -21,6 +21,7 @@ export default function InsertChart({
   id,
   showBox,
   setshowBox,
+  currentPage,
 }) {
   const box = useRef(null);
 
@@ -112,7 +113,46 @@ export default function InsertChart({
     console.log('deleteing dataset');
     setchartValues(chartValues.filter((item, n) => n != index));
   };
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (chartValues.length > 1) {
+      setnotebooks(
+        notebooks.map((item1, index1) => {
+          if (item1.id == id) {
+            item1.cards.map((item2, index2) => {
+              if (index2 + 1 == currentPage) {
+                item2.elements.push({
+                  type: 'chart',
+                  frame: {
+                    translate: [0, 0],
+                    rotate: 0,
+                  },
+                  value: (
+                    <div
+                      style={{
+                        background: '#f8f8ff',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        padding: '10px',
+                      }}
+                    >
+                      <h1 style={{ color: '#333', marginBottom: '15px' }}>
+                        {currentTitle}
+                      </h1>
+                      <ChartTemplate data={data} type={currentChartType} />
+                    </div>
+                  ),
+                });
+              }
+              return item2;
+            });
+          }
+          return item1;
+        }),
+      );
+      setshowBox(false);
+    }
+  };
 
   return createPortal(
     <>
