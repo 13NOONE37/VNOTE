@@ -53,13 +53,14 @@ export default function InsertCode({
                       mode={currentLanguage}
                       theme={currentTheme}
                       name='editorExample'
-                      onChange={handleOnChange}
-                      width={'100%'}
+                      style={{ width: '100%' }}
+                      // width={'500px'}
                       fontSize={currentFontSize}
                       showPrintMargin={true}
                       showGutter={true}
                       highlightActiveLine={true}
                       value={currentCode}
+                      wrapEnabled={true}
                       setOptions={{
                         enableBasicAutocompletion: true,
                         enableLiveAutocompletion: true,

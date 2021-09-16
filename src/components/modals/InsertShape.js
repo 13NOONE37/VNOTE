@@ -119,7 +119,6 @@ export default function InsertShape({
       ),
     },
   ];
-  console.log(shapes);
 
   const handleSubmit = () => {
     if (currentShape) {

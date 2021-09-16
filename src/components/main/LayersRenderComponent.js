@@ -18,6 +18,21 @@ export default function LayersRenderComponent({
       .find((item, index) => item.id == id)
       .cards.find((item, index) => index + 1 == currentPage).elements,
   );
+  useEffect(() => {
+    setnotebooks(
+      notebooks.map((item1, index1) => {
+        if (item1.id == id) {
+          item1.cards.map((item2, index2) => {
+            if (index2 + 1 == currentPage) {
+              item2.elements = elements;
+            }
+            return item2;
+          });
+        }
+        return item1;
+      }),
+    );
+  }, [elements]);
 
   return (
     <div

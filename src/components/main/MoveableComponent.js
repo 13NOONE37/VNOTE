@@ -18,6 +18,7 @@ export default function App({
   });
   useEffect(() => {
     numberOfElement != null && setFrame(elements[numberOfElement].frame);
+    console.log(frame);
   }, [numberOfElement]);
 
   const handleClickDecide = (e) => {
@@ -134,6 +135,16 @@ export default function App({
       onRender={(e) => {
         const { translate, rotate } = frame;
         e.target.style.transform = `translate(${translate[0]}px, ${translate[1]}px) rotate(${rotate}deg)`;
+      }}
+      onRenderEnd={() => {
+        setelements(
+          elements.map((element, index) => {
+            if (index == numberOfElement) {
+              element.frame = frame;
+            }
+            return element;
+          }),
+        );
       }}
     />
   );
