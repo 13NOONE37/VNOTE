@@ -39,6 +39,7 @@ export default function NotebookEditPage() {
         />
         <ControPageCount
           notebooks={notebooks}
+          setnotebooks={setnotebooks}
           id={id}
           currentPage={currentPage}
           setcurrentPage={setcurrentPage}

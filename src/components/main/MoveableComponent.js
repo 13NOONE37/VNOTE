@@ -16,9 +16,9 @@ export default function App({
     translate: [0, 0],
     rotate: 0,
   });
+
   useEffect(() => {
     numberOfElement != null && setFrame(elements[numberOfElement].frame);
-    console.log(frame);
   }, [numberOfElement]);
 
   const handleClickDecide = (e) => {
