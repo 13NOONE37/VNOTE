@@ -62,7 +62,8 @@ input {
 .controlPageCount button i {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
-.controlPageCount .skewButton:nth-child(1)::after {
+.controlPageCount .skewButton:nth-child(1)::after,
+.controlPageCount .skewButton:nth-child(6)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -77,4 +78,7 @@ input {
   bottom: 0;
   border-bottom: 14px solid var(--blue-2);
   border-left: 14px solid transparent;
+}
+.controlPageCount .skewButton:nth-child(6):hover {
+  color: var(--positive);
 }

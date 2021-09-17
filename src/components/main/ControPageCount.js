@@ -12,46 +12,41 @@ function ControPageCount({
     notebooks.find((item) => item.id == id).cards.length,
   );
   const handleAddPage = () => {
-    // setnotebooks(
-    //   notebooks.map((item, index) => {
-    //     if (item.id === id) {
-    //       item.card.push({
-    //         date: '1.01.2001',
-    //         titleOfPage: 'Destrukturyzacja',
-    //         elements: [
-    //           {
-    //             type: 'image',
-    //             frame: {
-    //               translate: [0, 0],
-    //               rotate: 0,
-    //             },
-    //             value: (
-    //               <img
-    //               src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
-    //               style={{ width: '100%', height: '100%' }}
-    //               />
-    //               ),
-    //             },
-    //             {
-    //               type: 'image',
-    //               frame: {
-    //                 translate: [0, 0],
-    //                 rotate: 0,
-    //               },
-    //               value: (
-    //                 <img
-    //                 src='https://wedel.pl/uploads/media/default/0001/02/39381df179e04212e6b22902fbee2f7ceb0caac6.png'
-    //                 style={{ width: '100%', height: '100%' }}
-    //                 />
-    //                 ),
-    //               },
-    //             ],
-    //           });
-    //         }
-    //         return item;
-    //       }),
-    //       );
-    //       console.log('add', notebooks);
+    console.log('handleAddPage');
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    setnotebooks(
+      notebooks.map((item, index) => {
+        if (item.id == id) {
+          let temp = item.cards;
+          temp.push({
+            date: `${day}.${month > 9 ? month : `0${month}`}.${year}'`,
+            titleOfPage: 'Click here to set topic',
+            elements: [
+              {
+                type: 'image',
+                frame: {
+                  translate: [0, 0],
+                  rotate: 0,
+                },
+                value: (
+                  <img
+                    src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                ),
+              },
+            ],
+          });
+          console.log(temp);
+          item.cards = temp;
+        }
+        return item;
+      }),
+    );
   };
 
   return (

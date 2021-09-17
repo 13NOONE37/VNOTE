@@ -51,3 +51,6 @@
   outline: none;
   position: relative;
 }
+.notebookEdit .pageTitle {
+  max-width: 85%;
+}
