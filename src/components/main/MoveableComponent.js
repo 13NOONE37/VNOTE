@@ -65,8 +65,9 @@ export default function App({
   };
 
   const [keepRatio, setkeepRatio] = useState(false);
+
   useEffect(() => {
-    console.log('adding event listener');
+    //possible memory leak
     const buttons = [
       document.querySelector('.moveable-nw'),
       document.querySelector('.moveable-ne'),
@@ -74,14 +75,19 @@ export default function App({
       document.querySelector('.moveable-se'),
     ];
 
+    console.log('add event listener');
     buttons.forEach((item) => {
-      item.addEventListener('mousedown', () => {
-        setkeepRatio(true);
-      });
+      item.addEventListener('mousedown', () => setkeepRatio(true));
     });
-    window.addEventListener('mouseup', () => {
-      setkeepRatio(false);
-    });
+    window.addEventListener('mouseup', () => setkeepRatio(false));
+
+    // if (!target) {
+    //   console.log('remove event listener');
+    //   buttons.forEach((item) => {
+    //     item.removeEventListener('mousedown', handleSetKeepRatio);
+    //   });
+    //   window.removeEventListener('mouseup', handleSetKeepRatio);
+    // }
   }, []);
 
   return (

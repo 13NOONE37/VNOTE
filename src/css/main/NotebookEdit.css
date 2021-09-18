@@ -53,4 +53,12 @@
 }
 .notebookEdit .pageTitle {
   max-width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.notebookEdit .titleEditable {
+  max-width: 100%;
+}
+.notebookEdit .titleEditable:nth-child(2) {
+  margin-left: 10px;
 }
