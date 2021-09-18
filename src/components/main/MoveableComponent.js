@@ -15,6 +15,8 @@ export default function App({
   const [frame, setFrame] = useState({
     translate: [0, 0],
     rotate: 0,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {
@@ -114,6 +116,9 @@ export default function App({
         frame.translate = beforeTranslate;
         e.target.style.width = `${e.width}px`;
         e.target.style.height = `${e.height}px`;
+        frame.width = e.width;
+        frame.height = e.height;
+
         e.target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)`;
       }}
       //Rotate

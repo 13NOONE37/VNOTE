@@ -18,20 +18,14 @@ function NotebookEdit({ notebooks, setnotebooks, id, currentPage }) {
   };
 
   const handleChangeSubTitle = (e) => {
-    // setnotebooks(
-    notebooks.map((item, index) => {
-      if (item.id === id) {
-        console.log(item, currentPage);
-        item.cards.map((item2, index2) => {
-          if (index2 + 1 == currentPage) {
-            item2.titleOfpage = e.target.value;
-            // console.log(item2.titleOfPage);
-          }
-        });
-      }
-      return item;
-    });
-    // );
+    setnotebooks(
+      notebooks.map((item, index) => {
+        if (item.id == id) {
+          item.title = e.target.value;
+        }
+        return item;
+      }),
+    );
   };
 
   return notebooks.map(

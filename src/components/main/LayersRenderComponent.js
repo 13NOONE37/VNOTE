@@ -56,6 +56,8 @@ export default function LayersRenderComponent({
           style={{
             zIndex: index + 1,
             transform: `translate(${element.frame.translate[0]}px, ${element.frame.translate[1]}px ) rotate(${element.frame.rotate}deg) `,
+            width: `${element.frame.width}px`,
+            height: `${element.frame.height}px`,
           }}
           onClick={(e) => {
             setTarget(e.currentTarget);
