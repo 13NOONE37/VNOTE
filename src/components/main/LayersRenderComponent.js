@@ -53,7 +53,10 @@ export default function LayersRenderComponent({
         <div
           className='target'
           key={index}
-          style={{ zIndex: index + 1 }}
+          style={{
+            zIndex: index + 1,
+            transform: `translate(${element.frame.translate[0]}px, ${element.frame.translate[1]}px ) rotate(${element.frame.rotate}deg) `,
+          }}
           onClick={(e) => {
             setTarget(e.currentTarget);
             setnumberOfElement(index);
