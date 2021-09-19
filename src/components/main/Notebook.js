@@ -53,9 +53,8 @@ export default function Notebook({
                 frame: {
                   translate: [0, 0],
                   rotate: 0,
-
-                  width: 0,
-                  height: 0,
+                  width: null,
+                  height: null,
                 },
                 value: (
                   <img
@@ -69,8 +68,8 @@ export default function Notebook({
                 frame: {
                   translate: [0, 0],
                   rotate: 0,
-                  width: 0,
-                  height: 0,
+                  width: null,
+                  height: null,
                 },
                 value: (
                   <img

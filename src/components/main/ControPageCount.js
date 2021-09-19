@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'css/main/ControlPageCount.css';
 
 function ControPageCount({
@@ -8,14 +8,11 @@ function ControPageCount({
   currentPage,
   setcurrentPage,
 }) {
-  const [lengthOfNotebook, setlengthOfNotebook] = useState(
-    notebooks.find((item) => item.id == id).cards.length,
-  );
   const handleAddPage = () => {
     console.log('handleAddPage');
     const date = new Date();
     const day = date.getDate();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
     setnotebooks(
@@ -23,7 +20,7 @@ function ControPageCount({
         if (item.id == id) {
           let temp = item.cards;
           temp.push({
-            date: `${day}.${month > 9 ? month : `0${month}`}.${year}'`,
+            date: `${day}.${month > 9 ? month : `0${month}`}.${year}`,
             titleOfPage: 'Click here to set topic',
             elements: [
               {
@@ -31,8 +28,8 @@ function ControPageCount({
                 frame: {
                   translate: [0, 0],
                   rotate: 0,
-                  width: 0,
-                  height: 0,
+                  width: null,
+                  height: null,
                 },
                 value: (
                   <img
@@ -62,25 +59,35 @@ function ControPageCount({
       <input
         type='number'
         min={0}
-        max={lengthOfNotebook}
+        max={notebooks.find((item) => item.id == id).cards.length}
         placeholder='0-99'
         value={currentPage}
         onChange={(e) =>
           setcurrentPage(
-            Math.min(Math.max(1, e.target.value), lengthOfNotebook),
+            Math.min(
+              Math.max(1, e.target.value),
+              notebooks.find((item) => item.id == id).cards.length,
+            ),
           )
         }
       />
       <button
         onClick={() =>
-          setcurrentPage(Math.min(currentPage + 1, lengthOfNotebook))
+          setcurrentPage(
+            Math.min(
+              currentPage + 1,
+              notebooks.find((item) => item.id == id).cards.length,
+            ),
+          )
         }
       >
         <i className='fas fa-angle-right'></i>
       </button>
       <button
         className='skewButton'
-        onClick={() => setcurrentPage(lengthOfNotebook)}
+        onClick={() =>
+          setcurrentPage(notebooks.find((item) => item.id == id).cards.length)
+        }
       >
         <i className='fas fa-forward'></i>
       </button>

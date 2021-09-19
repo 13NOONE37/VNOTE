@@ -34,8 +34,8 @@ export default function InsertIframe({
                   frame: {
                     translate: [0, 0],
                     rotate: 0,
-                    width: 0,
-                    height: 0,
+                    width: null,
+                    height: null,
                   },
                   value: (
                     <div

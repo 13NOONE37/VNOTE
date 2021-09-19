@@ -21,7 +21,12 @@ function NotebookEdit({ notebooks, setnotebooks, id, currentPage }) {
     setnotebooks(
       notebooks.map((item, index) => {
         if (item.id == id) {
-          item.title = e.target.value;
+          item.cards.map((item2, index2) => {
+            if (index2 + 1 == currentPage) {
+              item2.titleOfPage = e.target.value;
+            }
+            return item2;
+          });
         }
         return item;
       }),
