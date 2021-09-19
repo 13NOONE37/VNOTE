@@ -22,25 +22,8 @@ function ControPageCount({
           temp.push({
             date: `${day}.${month > 9 ? month : `0${month}`}.${year}`,
             titleOfPage: 'Click here to set topic',
-            elements: [
-              {
-                type: 'image',
-                frame: {
-                  translate: [0, 0],
-                  rotate: 0,
-                  width: null,
-                  height: null,
-                },
-                value: (
-                  <img
-                    src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                ),
-              },
-            ],
+            elements: [],
           });
-          console.log(temp);
           item.cards = temp;
         }
         return item;
