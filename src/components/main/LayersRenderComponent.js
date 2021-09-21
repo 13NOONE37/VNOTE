@@ -34,9 +34,28 @@ export default function LayersRenderComponent({
     );
   }, [elements]);
 
+  useEffect(() => {
+    //memory leak
+    window.addEventListener('keydown', (e) => {
+      console.log('Execution of eventListener', e);
+      if (e.ctrlKey && e.code == 'KeyX') {
+        console.log('cut', target);
+      }
+      if (e.ctrlKey && e.code == 'KeyC') {
+        console.log('copy', target);
+      }
+      if (e.ctrlKey && e.code == 'KeyV') {
+        console.log('paste', target);
+      }
+      if (e.code == 'Delete') {
+        console.log('delete', target);
+      }
+    });
+  }, []);
+
   return (
     <div
-      className='layerContainer scrollClass'
+      className='layerContainer '
       ref={containerRef}
       onClick={(e) => {
         e.target == containerRef.current && setTarget(null);
