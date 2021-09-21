@@ -26,14 +26,15 @@ export default function LayersRenderComponent({
 
   const containerRef = useRef(null);
 
-
   const [data, setdata] = useState({});
   const handleClickEdit = () => {
-    setdata(notebooks
-    .filter((item) => item.id == id)[0]
-    .cards[currentPage - 1].elements.filter(
-      (item, index) => index == numberOfElement,
-    )[0])
+    setdata(
+      notebooks
+        .filter((item) => item.id == id)[0]
+        .cards[currentPage - 1].elements.filter(
+          (item, index) => index == numberOfElement,
+        )[0],
+    );
 
     switch (
       notebooks

@@ -17,22 +17,57 @@ export default function InsertCode({
   numberOfElement,
   data,
 }) {
-  console.log(data);
   const box = useRef(null);
 
+  const languages = [
+    'html',
+    'javascript',
+    'typescript',
+    'sass',
+    'css',
+    'python',
+    'java',
+    'ruby',
+    'golang',
+    'c#',
+    'mysql',
+    'json',
+    'xml',
+    'markdown',
+    'handlebars',
+    'elixir',
+  ];
+  const themes = [
+    'terminal',
+    'monokai',
+    'github',
+    'tommorow',
+    'kuroir',
+    'twilight',
+    'xcode',
+    'textmate',
+    'solarized_dark',
+    'solarized_light',
+  ];
+  const sizes = [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 44, 52];
+
   const [currentFontSize, setcurrentFontSize] = useState(
-    data.data.fontSize | 18,
+    data && data.data ? data.data.fontSize : 18,
   );
   const [currentLanguage, setcurrentLanguage] = useState(
-    data.data.mode | 'javascript',
+    data && data.data ? data.data.mode : 'javascript',
   );
   const [currentTheme, setcurrentTheme] = useState(
-    data.data.theme | 'terminal',
+    data && data.data ? data.data.theme : 'terminal',
   );
-  const [currentCode, setcurrentCode] = useState(data.data.value | '');
+  const [currentCode, setcurrentCode] = useState(
+    data && data.data ? data.data.value : '',
+  );
+  if (data && data.data) {
+    console.log(data.data.value, 'remi');
+  }
   const handleOnChange = (newValue) => {
     setcurrentCode(newValue);
-    console.log(currentCode);
   };
 
   const handleSubmit = () => {
@@ -181,22 +216,11 @@ export default function InsertCode({
                       setcurrentLanguage(e.target.value);
                     }}
                   >
-                    <option value='html'>html</option>
-                    <option value='javascript'>javascript</option>
-                    <option value='typescript'>typescript</option>
-                    <option value='sass'>sass</option>
-                    <option value='css'>css</option>
-                    <option value='python'>python</option>
-                    <option value='java'>java</option>
-                    <option value='ruby'>ruby</option>
-                    <option value='golang'>golang</option>
-                    <option value='csharp'>c#</option>
-                    <option value='mysql'>mysql</option>
-                    <option value='json'>json</option>
-                    <option value='xml'>xml</option>
-                    <option value='markdown'>markdown</option>
-                    <option value='handlebars'>handlebars</option>
-                    <option value='elixir'>elixir</option>
+                    {languages.map((item) => (
+                      <option selected={currentLanguage == item} value={item}>
+                        {item}
+                      </option>
+                    ))}
                   </select>
                 </span>
                 <span className='option'>
@@ -205,16 +229,11 @@ export default function InsertCode({
                       setcurrentTheme(e.target.value);
                     }}
                   >
-                    <option value='terminal'>terminal</option>
-                    <option value='monokai'>monokai</option>
-                    <option value='github'>github</option>
-                    <option value='tomorrow'>tomorrow</option>
-                    <option value='kuroir'>kuroir</option>
-                    <option value='twilight'>twilight</option>
-                    <option value='xcode'>xcode</option>
-                    <option value='textmate'>textmate</option>
-                    <option value='solarized_dark'>solarized_dark</option>
-                    <option value='solarized_light'>solarized_light</option>
+                    {themes.map((item) => (
+                      <option selected={currentTheme == item} value={item}>
+                        {item}
+                      </option>
+                    ))}
                   </select>
                 </span>
                 <span className='option fontSizeField' title='Font size'>
@@ -228,18 +247,9 @@ export default function InsertCode({
                       setcurrentFontSize(parseInt(e.target.value));
                     }}
                   >
-                    <option>12</option>
-                    <option>14</option>
-                    <option>16</option>
-                    <option>18</option>
-                    <option>20</option>
-                    <option>22</option>
-                    <option>24</option>
-                    <option>28</option>
-                    <option>32</option>
-                    <option>36</option>
-                    <option>44</option>
-                    <option>52</option>
+                    {sizes.map((item) => (
+                      <option value={item}>{item}</option>
+                    ))}
                   </select>
                   <button
                     onClick={() => setcurrentFontSize(currentFontSize + 1)}
@@ -248,7 +258,7 @@ export default function InsertCode({
                   </button>
                 </span>
               </div>
-
+              <h1>{currentCode}</h1>
               <AceEditor
                 mode={currentLanguage}
                 theme={currentTheme}
