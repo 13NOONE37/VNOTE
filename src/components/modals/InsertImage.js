@@ -82,6 +82,9 @@ export default function InsertImage({
           return item1;
         }),
       );
+      setshowURLField(false);
+      setuploadedImage('');
+      seturlImage('');
       setshowBox(false);
     };
 
@@ -119,13 +122,7 @@ export default function InsertImage({
         >
           <div className='imageBox'>
             <div className='topBar'>
-              <button
-                onClick={() => {
-                  setshowURLField(false);
-                }}
-              >
-                Upload
-              </button>
+              <button onClick={() => setshowURLField(false)}>Upload </button>
               <button onClick={() => setshowURLField(true)}>URL</button>
             </div>
 

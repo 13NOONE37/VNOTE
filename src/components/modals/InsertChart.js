@@ -152,6 +152,14 @@ export default function InsertChart({
           return item1;
         }),
       );
+      setchartValues([
+        {
+          name: '',
+          value: '',
+        },
+      ]);
+      setcurrentTitle('');
+      setcurrentLabel('');
       setshowBox(false);
     }
   };

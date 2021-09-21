@@ -58,6 +58,7 @@ export default function InsertIframe({
           return item1;
         }),
       );
+      setcurrentIframe('');
       setshowBox(false);
     }
   };

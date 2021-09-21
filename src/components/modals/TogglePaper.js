@@ -78,7 +78,6 @@ export default function TogglePaper({
                 />
               ))}
             </span>
-            <h1>{`hsl(${currentColor}, 30%, 75%)`}</h1>
           </div>
         </div>
       )}

@@ -83,6 +83,7 @@ export default function InsertCode({
         return item1;
       }),
     );
+    setcurrentCode('');
     setshowBox(false);
   };
   return createPortal(
