@@ -17,29 +17,23 @@ export default function TogglePaper({
 
   const box = useRef(null);
 
-  const [currentColor, setcurrentColor] = useState('');
-  const [currentPaper, setcurrentPaper] = useState('');
+  const [currentColor, setcurrentColor] = useState(
+    notebooks.find((item) => item.id == id).paperColor,
+  );
+  const [currentPaper, setcurrentPaper] = useState(
+    notebooks.find((item) => item.id == id).paperType,
+  );
 
   useEffect(() => {
-    notebooks.map((item) => {
-      if (item.id == id) {
-        currentColor != '' && setcurrentColor(item.color);
-        currentPaper != '' && setcurrentPaper(item.paperType);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    currentColor != '' &&
-      setnotebooks(
-        notebooks.map((item) => {
-          if (item.id == id) {
-            item.paperColor = currentColor;
-            item.paperType = currentPaper;
-          }
-          return item;
-        }),
-      );
+    setnotebooks(
+      notebooks.map((item) => {
+        if (item.id == id) {
+          item.paperColor = currentColor;
+          item.paperType = currentPaper;
+        }
+        return item;
+      }),
+    );
   }, [currentColor, currentPaper]);
 
   return createPortal(
@@ -84,6 +78,7 @@ export default function TogglePaper({
                 />
               ))}
             </span>
+            <h1>{`hsl(${currentColor}, 30%, 75%)`}</h1>
           </div>
         </div>
       )}

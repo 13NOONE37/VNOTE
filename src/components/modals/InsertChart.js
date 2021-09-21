@@ -25,8 +25,8 @@ export default function InsertChart({
 }) {
   const box = useRef(null);
 
-  const chartTypes = ['line', 'radar', 'polar', 'pie', 'doughtnut', 'bar'];
-  const [currentChartType, setcurrentChartType] = useState(5);
+  const chartTypes = ['line', 'polar', 'pie', 'doughtnut', 'bar'];
+  const [currentChartType, setcurrentChartType] = useState(4);
   const [currentTitle, setcurrentTitle] = useState('');
   const [currentLabel, setcurrentLabel] = useState('');
 
@@ -67,10 +67,10 @@ export default function InsertChart({
   const handleChangeChart = (isLeft) => {
     if (isLeft) {
       currentChartType <= 0
-        ? setcurrentChartType(5)
+        ? setcurrentChartType(4)
         : setcurrentChartType(currentChartType - 1);
     } else {
-      currentChartType >= 5
+      currentChartType >= 4
         ? setcurrentChartType(0)
         : setcurrentChartType(currentChartType + 1);
     }
@@ -114,7 +114,7 @@ export default function InsertChart({
     setchartValues(chartValues.filter((item, n) => n != index));
   };
   const handleSubmit = () => {
-    if (chartValues.length > 1) {
+    if (chartValues.length >= 1) {
       setnotebooks(
         notebooks.map((item1, index1) => {
           if (item1.id == id) {
