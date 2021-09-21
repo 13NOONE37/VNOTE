@@ -14,75 +14,149 @@ export default function InsertCode({
   showBox,
   setshowBox,
   currentPage,
+  numberOfElement,
+  data,
 }) {
+  console.log(data);
   const box = useRef(null);
 
-  const [currentFontSize, setcurrentFontSize] = useState(18);
-  const [currentLanguage, setcurrentLanguage] = useState('javascript');
-  const [currentTheme, setcurrentTheme] = useState('terminal');
-  const [currentCode, setcurrentCode] = useState('');
+  const [currentFontSize, setcurrentFontSize] = useState(
+    data.data.fontSize | 18,
+  );
+  const [currentLanguage, setcurrentLanguage] = useState(
+    data.data.mode | 'javascript',
+  );
+  const [currentTheme, setcurrentTheme] = useState(
+    data.data.theme | 'terminal',
+  );
+  const [currentCode, setcurrentCode] = useState(data.data.value | '');
   const handleOnChange = (newValue) => {
     setcurrentCode(newValue);
     console.log(currentCode);
   };
 
   const handleSubmit = () => {
-    setnotebooks(
-      notebooks.map((item1, index1) => {
-        if (item1.id == id) {
-          item1.cards.map((item2, index2) => {
-            if (index2 + 1 == currentPage) {
-              item2.elements.push({
-                type: 'code',
-                frame: {
-                  translate: [0, 0],
-                  rotate: 0,
-                  width: null,
-                  height: null,
-                },
-                value: (
-                  <div
-                    style={{
-                      border: '5px solid #333',
-                      width: '100%',
-                      height: '100%',
-                      padding: '0',
-                      margin: '0',
-                    }}
-                    className='iframeBox'
-                  >
-                    <AceEditor
-                      mode={currentLanguage}
-                      theme={currentTheme}
-                      name='editorExample'
-                      style={{ width: '100%' }}
-                      // width={'500px'}
-                      fontSize={currentFontSize}
-                      showPrintMargin={true}
-                      showGutter={true}
-                      highlightActiveLine={true}
-                      value={currentCode}
-                      wrapEnabled={true}
-                      setOptions={{
-                        enableBasicAutocompletion: true,
-                        enableLiveAutocompletion: true,
-                        enableSnippets: true,
-                        showLineNumbers: true,
-                        tabSize: 2,
-                        wrapBehavioursEnabled: true,
-                        wrap: true,
-                      }}
-                    />
-                  </div>
-                ),
+    numberOfElement
+      ? setnotebooks(
+          notebooks.map((item1, index1) => {
+            if (item1.id == id) {
+              item1.cards.map((item2, index2) => {
+                if (index2 + 1 == currentPage) {
+                  item2.elements[numberOfElement] = {
+                    type: 'code',
+                    frame: data.frame,
+                    value: (
+                      <div
+                        style={{
+                          border: '5px solid #333',
+                          width: '100%',
+                          height: '100%',
+                          padding: '0',
+                          margin: '0',
+                        }}
+                        className='iframeBox'
+                      >
+                        <AceEditor
+                          mode={currentLanguage}
+                          theme={currentTheme}
+                          name='editorExample'
+                          style={{ width: '100%' }}
+                          // width={'500px'}
+                          fontSize={currentFontSize}
+                          showPrintMargin={true}
+                          showGutter={true}
+                          highlightActiveLine={true}
+                          value={currentCode}
+                          wrapEnabled={true}
+                          setOptions={{
+                            enableBasicAutocompletion: true,
+                            enableLiveAutocompletion: true,
+                            enableSnippets: true,
+                            showLineNumbers: true,
+                            tabSize: 2,
+                            wrapBehavioursEnabled: true,
+                            wrap: true,
+                          }}
+                        />
+                      </div>
+                    ),
+                    data: {
+                      mode: currentLanguage,
+                      theme: currentTheme,
+                      fontSize: currentFontSize,
+                      value: currentCode,
+                    },
+                  };
+                }
+                return item2;
               });
             }
-            return item2;
-          });
-        }
-        return item1;
-      }),
-    );
+            return item1;
+          }),
+        )
+      : setnotebooks(
+          notebooks.map((item1, index1) => {
+            if (item1.id == id) {
+              item1.cards.map((item2, index2) => {
+                if (index2 + 1 == currentPage) {
+                  item2.elements.push({
+                    type: 'code',
+                    frame: {
+                      translate: [0, 0],
+                      rotate: 0,
+                      width: null,
+                      height: null,
+                    },
+                    value: (
+                      <div
+                        style={{
+                          border: '5px solid #333',
+                          width: '100%',
+                          height: '100%',
+                          padding: '0',
+                          margin: '0',
+                        }}
+                        className='iframeBox'
+                      >
+                        <AceEditor
+                          mode={currentLanguage}
+                          theme={currentTheme}
+                          name='editorExample'
+                          style={{ width: '100%' }}
+                          // width={'500px'}
+                          fontSize={currentFontSize}
+                          showPrintMargin={true}
+                          showGutter={true}
+                          highlightActiveLine={true}
+                          value={currentCode}
+                          wrapEnabled={true}
+                          setOptions={{
+                            enableBasicAutocompletion: true,
+                            enableLiveAutocompletion: true,
+                            enableSnippets: true,
+                            showLineNumbers: true,
+                            tabSize: 2,
+                            wrapBehavioursEnabled: true,
+                            wrap: true,
+                          }}
+                        />
+                      </div>
+                    ),
+                    data: {
+                      mode: currentLanguage,
+                      theme: currentTheme,
+                      fontSize: currentFontSize,
+                      value: currentCode,
+                    },
+                  });
+                }
+                return item2;
+              });
+            }
+            return item1;
+          }),
+        );
+
     setcurrentCode('');
     setshowBox(false);
   };

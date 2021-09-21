@@ -7,3 +7,32 @@
 .target {
   position: absolute;
 }
+.editButton {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--blue-1);
+  color: #fff;
+  border-radius: 50%;
+  border: 3px solid var(--blue-11);
+
+  font-size: 16px;
+  line-height: 25px;
+  width: 70px;
+  height: 70px;
+
+  position: fixed;
+  z-index: 9999;
+
+  transition: ease-in 0.2s;
+}
+.editButton:hover {
+  border: 3px solid var(--warning);
+  color: var(--error);
+}
+.editButton i {
+  font-size: var(--size-8);
+}

@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import MoveableComponent from 'components/main/MoveableComponent';
 import 'css/main/MoveableBox.css';
+import InsertChart from 'components/modals/InsertChart';
+import DrawNotebook from 'components/modals/DrawNotebook';
+import InsertCode from 'components/modals/InsertCode';
+import { number } from 'yup/lib/locale';
 
 export default function LayersRenderComponent({
   notebooks,
@@ -8,16 +12,46 @@ export default function LayersRenderComponent({
   id,
   currentPage,
 }) {
+  const [showChartBox, setshowChartBox] = useState(false);
+  const [showDrawBox, setshowDrawBox] = useState(false);
+  const [showCodeBox, setshowCodeBox] = useState(false);
+
   const [target, setTarget] = useState(null);
   const [numberOfElement, setnumberOfElement] = useState(null);
-
-  const containerRef = useRef(null);
-
   const [elements, setelements] = useState(
     notebooks
       .find((item, index) => item.id == id)
       .cards.find((item, index) => index + 1 == currentPage).elements,
   );
+
+  const containerRef = useRef(null);
+
+
+  const [data, setdata] = useState({});
+  const handleClickEdit = () => {
+    setdata(notebooks
+    .filter((item) => item.id == id)[0]
+    .cards[currentPage - 1].elements.filter(
+      (item, index) => index == numberOfElement,
+    )[0])
+
+    switch (
+      notebooks
+        .filter((item) => item.id == id)[0]
+        .cards[currentPage - 1].elements.filter(
+          (item, index) => index == numberOfElement,
+        )[0].type
+    ) {
+      case 'chart': {
+        setshowChartBox(true);
+        break;
+      }
+      case 'code': {
+        setshowCodeBox(true);
+        break;
+      }
+    }
+  };
   useEffect(() => {
     setnotebooks(
       notebooks.map((item1, index1) => {
@@ -37,7 +71,7 @@ export default function LayersRenderComponent({
   useEffect(() => {
     //memory leak
     window.addEventListener('keydown', (e) => {
-      console.log('Execution of eventListener', e);
+      // console.log('Execution of eventListener', e);
       if (e.ctrlKey && e.code == 'KeyX') {
         console.log('cut', target);
       }
@@ -86,6 +120,41 @@ export default function LayersRenderComponent({
           {element.value}
         </div>
       ))}
+      {target && (
+        <button className='editButton' onClick={handleClickEdit}>
+          <i className='fas fa-pen-square'></i>
+          Edit
+        </button>
+      )}
+      {/* <InsertText/> */}
+      <InsertChart
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showChartBox}
+        setshowBox={setshowChartBox}
+        currentPage={currentPage}
+        numberOfElement={numberOfElement}
+      />
+      <DrawNotebook
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showDrawBox}
+        setshowBox={setshowDrawBox}
+        currentPage={currentPage}
+        numberOfElement={numberOfElement}
+      />
+      <InsertCode
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showCodeBox}
+        setshowBox={setshowCodeBox}
+        currentPage={currentPage}
+        numberOfElement={numberOfElement}
+        data={data}
+      />
     </div>
   );
 }
