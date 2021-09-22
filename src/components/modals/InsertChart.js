@@ -1,17 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import 'css/modals/InsertImage.css';
 import 'css/modals/InsertChart.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
-import {
-  Doughnut,
-  Bar,
-  PolarArea,
-  Line,
-  Radar,
-  Pie,
-  Scatter,
-} from 'react-chartjs-2';
 import handleContentChange from 'utils/Global/handleContentChange';
 import ChartTemplate from 'components/main/ChartTemplate';
 
@@ -22,6 +13,8 @@ export default function InsertChart({
   showBox,
   setshowBox,
   currentPage,
+  numberOfElement,
+  data,
 }) {
   const box = useRef(null);
 
@@ -29,15 +22,33 @@ export default function InsertChart({
   const [currentChartType, setcurrentChartType] = useState(4);
   const [currentTitle, setcurrentTitle] = useState('');
   const [currentLabel, setcurrentLabel] = useState('');
+  const [chartValues, setchartValues] = useState(
+    data && data.data
+      ? data.data.chartValues
+      : [
+          {
+            name: '',
+            value: '',
+          },
+        ],
+  );
+  useEffect(() => {
+    setchartValues(
+      data && data.data
+        ? data.data.chartValues
+        : [
+            {
+              name: '',
+              value: '',
+            },
+          ],
+    );
+    setcurrentChartType(data && data.data ? data.data.type : 4);
+    setcurrentTitle(data && data.data ? data.data.title : '');
+    setcurrentLabel(data && data.data ? data.data.label : '');
+  }, [showBox]);
 
-  const [chartValues, setchartValues] = useState([
-    {
-      name: '',
-      value: '',
-    },
-  ]);
-
-  const data = {
+  const dataChart = {
     labels: chartValues.map((item) => item.name),
     datasets: [
       {
@@ -115,43 +126,100 @@ export default function InsertChart({
   };
   const handleSubmit = () => {
     if (chartValues.length >= 1) {
-      setnotebooks(
-        notebooks.map((item1, index1) => {
-          if (item1.id == id) {
-            item1.cards.map((item2, index2) => {
-              if (index2 + 1 == currentPage) {
-                item2.elements.push({
-                  type: 'chart',
-                  frame: {
-                    translate: [0, 0],
-                    rotate: 0,
-                    width: null,
-                    height: null,
-                  },
-                  value: (
-                    <div
-                      style={{
-                        background: '#f8f8ff',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        padding: '10px',
-                      }}
-                    >
-                      <h1 style={{ color: '#333', marginBottom: '15px' }}>
-                        {currentTitle}
-                      </h1>
-                      <ChartTemplate data={data} type={currentChartType} />
-                    </div>
-                  ),
+      numberOfElement
+        ? setnotebooks(
+            notebooks.map((item1, index1) => {
+              if (item1.id == id) {
+                item1.cards.map((item2, index2) => {
+                  if (index2 + 1 == currentPage) {
+                    item2.elements[numberOfElement] = {
+                      type: 'chart',
+                      frame: {
+                        translate: [0, 0],
+                        rotate: 0,
+                        width: null,
+                        height: null,
+                      },
+                      value: (
+                        <div
+                          style={{
+                            background: '#f8f8ff',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            padding: '10px',
+                          }}
+                        >
+                          <h1 style={{ color: '#333', marginBottom: '15px' }}>
+                            {currentTitle}
+                          </h1>
+                          <ChartTemplate
+                            data={dataChart}
+                            type={currentChartType}
+                          />
+                        </div>
+                      ),
+                      data: {
+                        chartValues: chartValues,
+                        type: currentChartType,
+                        title: currentTitle,
+                        label: currentLabel,
+                      },
+                    };
+                  }
+                  return item2;
                 });
               }
-              return item2;
-            });
-          }
-          return item1;
-        }),
-      );
+              return item1;
+            }),
+          )
+        : setnotebooks(
+            notebooks.map((item1, index1) => {
+              if (item1.id == id) {
+                item1.cards.map((item2, index2) => {
+                  if (index2 + 1 == currentPage) {
+                    item2.elements.push({
+                      type: 'chart',
+                      frame: {
+                        translate: [0, 0],
+                        rotate: 0,
+                        width: null,
+                        height: null,
+                      },
+                      value: (
+                        <div
+                          style={{
+                            background: '#f8f8ff',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            padding: '10px',
+                          }}
+                        >
+                          <h1 style={{ color: '#333', marginBottom: '15px' }}>
+                            {currentTitle}
+                          </h1>
+                          <ChartTemplate
+                            data={dataChart}
+                            type={currentChartType}
+                          />
+                        </div>
+                      ),
+                      data: {
+                        chartValues: chartValues,
+                        type: currentChartType,
+                        title: currentTitle,
+                        label: currentLabel,
+                      },
+                    });
+                  }
+                  return item2;
+                });
+              }
+              return item1;
+            }),
+          );
+
       setchartValues([
         {
           name: '',
@@ -202,7 +270,7 @@ export default function InsertChart({
                 </button>
               </span>
               <div className='chartTypes scrollClass'>
-                <ChartTemplate data={data} type={currentChartType} />
+                <ChartTemplate data={dataChart} type={currentChartType} />
               </div>
               <h1>Data:</h1>
               <div className='dataField scrollClass'>

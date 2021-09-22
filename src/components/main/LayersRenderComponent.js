@@ -136,6 +136,7 @@ export default function LayersRenderComponent({
         setshowBox={setshowChartBox}
         currentPage={currentPage}
         numberOfElement={numberOfElement}
+        data={data}
       />
       <DrawNotebook
         notebooks={notebooks}
