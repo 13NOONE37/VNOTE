@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
 import handleContentChange from 'utils/Global/handleContentChange';
@@ -51,26 +51,23 @@ export default function InsertCode({
   ];
   const sizes = [12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 44, 52];
 
-  const [currentFontSize, setcurrentFontSize] = useState(
-    data && data.data ? data.data.fontSize : 18,
-  );
-  const [currentLanguage, setcurrentLanguage] = useState(
-    data && data.data ? data.data.mode : 'javascript',
-  );
-  const [currentTheme, setcurrentTheme] = useState(
-    data && data.data ? data.data.theme : 'terminal',
-  );
-  const [currentCode, setcurrentCode] = useState(
-    data && data.data ? data.data.value : '',
-  );
-  if (data && data.data) {
-    console.log(data.data.value, 'remi');
-  }
+  const [currentFontSize, setcurrentFontSize] = useState(18);
+  const [currentLanguage, setcurrentLanguage] = useState('javascript');
+  const [currentTheme, setcurrentTheme] = useState('terminal');
+  const [currentCode, setcurrentCode] = useState('');
+  useEffect(() => {
+    setcurrentFontSize(data && data.data ? data.data.fontSize : 18);
+    setcurrentLanguage(data && data.data ? data.data.mode : 'javascript');
+    setcurrentTheme(data && data.data ? data.data.theme : 'terminal');
+    setcurrentCode(data && data.data ? data.data.value : '');
+  }, [showBox]);
+
   const handleOnChange = (newValue) => {
     setcurrentCode(newValue);
   };
 
   const handleSubmit = () => {
+    console.log(currentCode, 'kod do submitu');
     numberOfElement
       ? setnotebooks(
           notebooks.map((item1, index1) => {
@@ -258,7 +255,6 @@ export default function InsertCode({
                   </button>
                 </span>
               </div>
-              <h1>{currentCode}</h1>
               <AceEditor
                 mode={currentLanguage}
                 theme={currentTheme}
