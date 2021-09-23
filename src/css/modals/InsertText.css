@@ -1,0 +1,57 @@
+.textPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden auto;
+  padding: var(--size-4);
+}
+.textTools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.textTools input {
+  width: 30px;
+  height: 30px;
+  background-color: var(--blue-8);
+}
+.textTools select {
+  height: 30px;
+  background-color: var(--blue-8);
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.textTools select option {
+  height: 30px;
+  background-color: var(--blue-8);
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.textTools button {
+  width: 30px;
+  height: 30px;
+  background-color: var(--blue-8);
+}
+.textTools button i {
+}
+.textEditField {
+  background-color: #fff;
+  color: #000;
+  margin-top: 20px;
+  padding: var(--size-8);
+  width: 100%;
+  min-height: 50px;
+  outline: none;
+}
+.highlightedButton {
+  filter: brightness(2);
+}

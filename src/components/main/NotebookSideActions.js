@@ -10,6 +10,7 @@ import InsertShape from 'components/modals/InsertShape';
 import InsertChart from 'components/modals/InsertChart';
 import InsertIframe from 'components/modals/InsertIframe';
 import InsertCode from 'components/modals/InsertCode';
+import InsertText from 'components/modals/InsertText';
 
 function NotebookSideActions({
   notebooks,
@@ -18,6 +19,7 @@ function NotebookSideActions({
   currentPage,
   setcurrentPage,
 }) {
+  const [showTextBox, setshowTextBox] = useState(false);
   const [showImageBox, setshowImageBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
   const [showChartBox, setshowChartBox] = useState(false);
@@ -29,6 +31,7 @@ function NotebookSideActions({
   const [showPrintBox, setshowPrintBox] = useState(false);
 
   const handleToggleView = () => console.log('Toogle view');
+  const handleInsertText = () => setshowTextBox(true);
   const handleInsertImage = () => setshowImageBox(true);
   const handleInsertShape = () => setshowShapeBox(true);
   const handleInsertChart = () => setshowChartBox(true);
@@ -53,9 +56,7 @@ function NotebookSideActions({
     {
       name: 'Insert text',
       icon: 'fas fa-text-height',
-      action: () => {
-        console.log('action executed');
-      },
+      action: handleInsertText,
     },
     {
       name: 'Insert image',
@@ -119,37 +120,20 @@ function NotebookSideActions({
                               height: null,
                             },
                             value: (
-                              <div id='toc_container'>
-                                <p class='toc_title'>Contents</p>
-                                <ul class='toc_list'>
-                                  <li>
-                                    <a href='#First_Point_Header'>
-                                      1 First Point Header
-                                    </a>
-                                    <ul>
-                                      <li>
-                                        <a href='#First_Sub_Point_1'>
-                                          1.1 First Sub Point 1
-                                        </a>
-                                      </li>
-                                      <li>
-                                        <a href='#First_Sub_Point_2'>
-                                          1.2 First Sub Point 2
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </li>
-                                  <li>
-                                    <a href='#Second_Point_Header'>
-                                      2 Second Point Header
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href='#Third_Point_Header'>
-                                      3 Third Point Header
-                                    </a>
-                                  </li>
-                                </ul>
+                              <div
+                                className='tableOfContents'
+                                style={{ color: '#2a2d2e' }}
+                              >
+                                <h1>Table of Contents</h1>
+                                <ol className='list'>
+                                  {item.cards.map((item2, index2) => (
+                                    <li
+                                      onClick={() => setcurrentPage(index2 + 1)}
+                                    >
+                                      {item2.titleOfPage}
+                                    </li>
+                                  ))}
+                                </ol>
                               </div>
                             ),
                           },
@@ -203,6 +187,14 @@ function NotebookSideActions({
         ))}
       </span>
 
+      <InsertText
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showTextBox}
+        setshowBox={setshowTextBox}
+        currentPage={currentPage}
+      />
       <InsertImage
         notebooks={notebooks}
         setnotebooks={setnotebooks}

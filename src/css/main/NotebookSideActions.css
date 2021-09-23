@@ -81,3 +81,25 @@
 .sideNotebookActions .action:hover .sideNotebookTooltip {
   opacity: 1;
 }
+
+.tableOfContents {
+  color: #2a2d2e;
+  width: 100%;
+}
+.tableOfContents h1 {
+  font-weight: 800;
+  font-size: 50px;
+}
+.tableOfContents ol {
+  margin-top: 35px;
+}
+.tableOfContents ol li {
+  font-weight: 600;
+  font-size: 20px;
+  margin: 2px 40px;
+  cursor: pointer;
+}
+
+.tableOfContents ol li:hover {
+  text-decoration: underline;
+}
