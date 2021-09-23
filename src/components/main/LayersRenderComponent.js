@@ -4,7 +4,7 @@ import 'css/main/MoveableBox.css';
 import InsertChart from 'components/modals/InsertChart';
 import DrawNotebook from 'components/modals/DrawNotebook';
 import InsertCode from 'components/modals/InsertCode';
-import { number } from 'yup/lib/locale';
+import InsertShape from 'components/modals/InsertShape';
 
 export default function LayersRenderComponent({
   notebooks,
@@ -15,6 +15,7 @@ export default function LayersRenderComponent({
   const [showChartBox, setshowChartBox] = useState(false);
   const [showDrawBox, setshowDrawBox] = useState(false);
   const [showCodeBox, setshowCodeBox] = useState(false);
+  const [showShapeBox, setshowShapeBox] = useState(false);
 
   const [target, setTarget] = useState(null);
   const [numberOfElement, setnumberOfElement] = useState(null);
@@ -49,6 +50,10 @@ export default function LayersRenderComponent({
       }
       case 'code': {
         setshowCodeBox(true);
+        break;
+      }
+      case 'svg': {
+        setshowShapeBox(true);
         break;
       }
     }
@@ -128,6 +133,16 @@ export default function LayersRenderComponent({
         </button>
       )}
       {/* <InsertText/> */}
+      <InsertShape
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showShapeBox}
+        setshowBox={setshowShapeBox}
+        currentPage={currentPage}
+        numberOfElement={numberOfElement}
+        data={data}
+      />
       <InsertChart
         notebooks={notebooks}
         setnotebooks={setnotebooks}

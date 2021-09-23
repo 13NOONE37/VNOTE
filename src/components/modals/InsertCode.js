@@ -67,7 +67,6 @@ export default function InsertCode({
   };
 
   const handleSubmit = () => {
-    console.log(currentCode, 'kod do submitu');
     numberOfElement
       ? setnotebooks(
           notebooks.map((item1, index1) => {
