@@ -11,7 +11,13 @@ import InsertChart from 'components/modals/InsertChart';
 import InsertIframe from 'components/modals/InsertIframe';
 import InsertCode from 'components/modals/InsertCode';
 
-function NotebookSideActions({ notebooks, setnotebooks, id, currentPage }) {
+function NotebookSideActions({
+  notebooks,
+  setnotebooks,
+  id,
+  currentPage,
+  setcurrentPage,
+}) {
   const [showImageBox, setshowImageBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
   const [showChartBox, setshowChartBox] = useState(false);
@@ -92,7 +98,70 @@ function NotebookSideActions({ notebooks, setnotebooks, id, currentPage }) {
       name: 'Auto Table of Contents',
       icon: 'fas fa-th-list',
       action: () => {
-        console.log('action executed');
+        notebooks.map((n) => {
+          if (n.id == id) {
+            n.isTableOfContentsCreated
+              ? alert('already created')
+              : setnotebooks(
+                  notebooks.map((item, index) => {
+                    if (item.id == id) {
+                      item.isTableOfContentsCreated = true;
+                      item.cards.unshift({
+                        date: '',
+                        titleOfPage: 'Table of Contents',
+                        elements: [
+                          {
+                            type: 'image',
+                            frame: {
+                              translate: [0, 0],
+                              rotate: 0,
+                              width: null,
+                              height: null,
+                            },
+                            value: (
+                              <div id='toc_container'>
+                                <p class='toc_title'>Contents</p>
+                                <ul class='toc_list'>
+                                  <li>
+                                    <a href='#First_Point_Header'>
+                                      1 First Point Header
+                                    </a>
+                                    <ul>
+                                      <li>
+                                        <a href='#First_Sub_Point_1'>
+                                          1.1 First Sub Point 1
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a href='#First_Sub_Point_2'>
+                                          1.2 First Sub Point 2
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <a href='#Second_Point_Header'>
+                                      2 Second Point Header
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href='#Third_Point_Header'>
+                                      3 Third Point Header
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            ),
+                          },
+                        ],
+                      });
+                    }
+                    return item;
+                  }),
+                );
+          }
+        });
+        setcurrentPage(1);
       },
     },
     {

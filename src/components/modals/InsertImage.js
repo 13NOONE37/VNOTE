@@ -92,21 +92,17 @@ export default function InsertImage({
       if (urlImage != '') {
         //set image from url
         pushFrame(urlImage);
-        console.log('url');
       } else {
         //set image from upload
         pushFrame(uploadedImage);
-        console.log('upload');
       }
     } else {
       if (uploadedImage != '') {
         //set image from upload
         pushFrame(uploadedImage);
-        console.log('upload');
       } else {
         //set image from url
         pushFrame(urlImage);
-        console.log('url');
       }
     }
   };

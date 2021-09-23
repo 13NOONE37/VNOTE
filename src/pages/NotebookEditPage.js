@@ -29,6 +29,7 @@ export default function NotebookEditPage() {
         setnotebooks={setnotebooks}
         id={id}
         currentPage={currentPage}
+        setcurrentPage={setcurrentPage}
       />
       <main>
         <NotebookEdit

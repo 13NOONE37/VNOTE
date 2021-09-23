@@ -127,7 +127,6 @@ export default function InsertShape({
     setcurrentColor(data && data.data ? data.data.fill : '#1eb36d');
   }, [showBox]);
 
-  console.log(data);
   const handleSubmit = () => {
     const handleAdd = () => {
       if (shapes[currentShapeIndex].shape) {
