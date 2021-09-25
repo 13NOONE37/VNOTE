@@ -120,10 +120,7 @@ function NotebookSideActions({
                               height: null,
                             },
                             value: (
-                              <div
-                                className='tableOfContents'
-                                style={{ color: '#2a2d2e' }}
-                              >
+                              <div className='tableOfContents'>
                                 <h1>Table of Contents</h1>
                                 <ol className='list'>
                                   {item.cards.map((item2, index2) => (

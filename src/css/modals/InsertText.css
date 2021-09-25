@@ -51,6 +51,7 @@
   width: 100%;
   min-height: 50px;
   outline: none;
+  overflow: hidden scroll;
 }
 .highlightedButton {
   filter: brightness(2);

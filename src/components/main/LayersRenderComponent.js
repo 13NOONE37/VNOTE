@@ -5,6 +5,7 @@ import InsertChart from 'components/modals/InsertChart';
 import DrawNotebook from 'components/modals/DrawNotebook';
 import InsertCode from 'components/modals/InsertCode';
 import InsertShape from 'components/modals/InsertShape';
+import InsertText from 'components/modals/InsertText';
 
 export default function LayersRenderComponent({
   notebooks,
@@ -16,6 +17,7 @@ export default function LayersRenderComponent({
   const [showDrawBox, setshowDrawBox] = useState(false);
   const [showCodeBox, setshowCodeBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
+  const [showTextBox, setshowTextBox] = useState(false);
 
   const [target, setTarget] = useState(null);
   const [numberOfElement, setnumberOfElement] = useState(null);
@@ -54,6 +56,10 @@ export default function LayersRenderComponent({
       }
       case 'svg': {
         setshowShapeBox(true);
+        break;
+      }
+      case 'text': {
+        setshowTextBox(true);
         break;
       }
     }
@@ -132,7 +138,16 @@ export default function LayersRenderComponent({
           Edit
         </button>
       )}
-      {/* <InsertText/> */}
+      <InsertText
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showTextBox}
+        setshowBox={setshowTextBox}
+        currentPage={currentPage}
+        numberOfElement={numberOfElement}
+        data={data}
+      />
       <InsertShape
         notebooks={notebooks}
         setnotebooks={setnotebooks}

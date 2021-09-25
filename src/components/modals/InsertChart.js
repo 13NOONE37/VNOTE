@@ -135,10 +135,11 @@ export default function InsertChart({
                     item2.elements[numberOfElement] = {
                       type: 'chart',
                       frame: {
-                        translate: [0, 0],
-                        rotate: 0,
-                        width: null,
-                        height: null,
+                        translate:
+                          data && data.data ? data.frame.translate : [0, 0],
+                        rotate: data && data.data ? data.frame.rotate : 0,
+                        width: data && data.data ? data.frame.width : null,
+                        height: data && data.data ? data.frame.height : null,
                       },
                       value: (
                         <div

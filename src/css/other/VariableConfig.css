@@ -50,6 +50,17 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.scrollClass2::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollClass2::-webkit-scrollbar-thumb {
+  background-color: hsla(198, 100%, 5%, 0.4);
+  transition: all 0.2s ease-in;
+}
+.scrollClass2::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 14, 20, 0.5);
+}
+
 .tooltipParent {
   position: relative;
 }
