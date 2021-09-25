@@ -7,8 +7,10 @@
 }
 .textTools {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  padding-top: 15px;
 }
 .textTools input {
   width: 30px;

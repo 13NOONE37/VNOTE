@@ -177,7 +177,8 @@ export default function InsertShape({
                 item2.elements[numberOfElement] = {
                   type: 'svg',
                   frame: {
-                    translate: data && data.data ? data.frame.translate : 0,
+                    translate:
+                      data && data.data ? data.frame.translate : [0, 0],
                     rotate: data && data.data ? data.frame.rotate : 0,
                     width: data && data.data ? data.frame.width : null,
                     height: data && data.data ? data.frame.height : null,
@@ -222,11 +223,13 @@ export default function InsertShape({
             <div className='topBar'>
               <span>Choose shape</span>
             </div>
-            <input
-              type='color'
-              value={currentColor}
-              onChange={(e) => setcurrentColor(e.target.value)}
-            />
+            <div className='textTools'>
+              <input
+                type='color'
+                value={currentColor}
+                onChange={(e) => setcurrentColor(e.target.value)}
+              />
+            </div>
             <div className='shapePreview scrollClass'>
               {shapes.map((shape, index) => (
                 <button

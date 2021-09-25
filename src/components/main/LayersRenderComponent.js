@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import MoveableComponent from 'components/main/MoveableComponent';
 import 'css/main/MoveableBox.css';
 import InsertChart from 'components/modals/InsertChart';
@@ -80,10 +80,9 @@ export default function LayersRenderComponent({
     );
   }, [elements]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     //memory leak
-    window.addEventListener('keydown', (e) => {
-      // console.log('Execution of eventListener', e);
+    window.onkeydown = (e) => {
       if (e.ctrlKey && e.code == 'KeyX') {
         console.log('cut', target);
       }
@@ -94,14 +93,24 @@ export default function LayersRenderComponent({
         console.log('paste', target);
       }
       if (e.code == 'Delete') {
-        console.log('delete', target);
+        console.log('delete', target, numberOfElement);
+        setnotebooks(
+          notebooks.map((item, index) => {
+            if (item.id == id) {
+              item.cards[currentPage - 1].elements = item.cards[
+                currentPage - 1
+              ].elements.filter((item2, index2) => index2 != numberOfElement);
+            }
+            return item;
+          }),
+        );
       }
-    });
-  }, []);
+    };
+  });
 
   return (
     <div
-      className='layerContainer '
+      className='layerContainer scrollClass2'
       ref={containerRef}
       onClick={(e) => {
         e.target == containerRef.current && setTarget(null);
