@@ -4,7 +4,7 @@ import 'css/modals/InsertText.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
 
-export default function InsertText({
+export default function InsertTable({
   notebooks,
   setnotebooks,
   id,
