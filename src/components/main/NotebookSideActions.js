@@ -47,6 +47,65 @@ function NotebookSideActions({
   };
   const handleShareNotebook = () => setshowShareBox(true);
 
+  const handleCreateContentsTable = (n) => {
+    n.isTableOfContentsCreated = true;
+    n.cards.unshift({
+      date: '',
+      titleOfPage: 'Table of Contents',
+      elements: [
+        {
+          type: 'image',
+          frame: {
+            translate: [50, 55],
+            rotate: 0,
+            width: null,
+            height: null,
+          },
+          value: (
+            <div className='tableOfContents'>
+              <h1>Contents</h1>
+              <ol className='list'>
+                {n.cards.map((item2, index2) => (
+                  <li key={index2} onClick={() => setcurrentPage(index2 + 1)}>
+                    {item2.titleOfPage}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ),
+        },
+      ],
+    });
+  };
+  const handleUpdateContentsTable = (n) => {
+    n.cards[0] = {
+      date: '',
+      titleOfPage: 'Table of Contents',
+      elements: [
+        {
+          type: 'image',
+          frame: {
+            translate: [50, 55],
+            rotate: 0,
+            width: null,
+            height: null,
+          },
+          value: (
+            <div className='tableOfContents'>
+              <h1>Contents</h1>
+              <ol className='list'>
+                {n.cards.map((item2, index2) => (
+                  <li key={index2} onClick={() => setcurrentPage(index2 + 1)}>
+                    {item2.titleOfPage}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ),
+        },
+      ],
+    };
+  };
   const notebookSideActions = [
     {
       name: 'Toogle View',
@@ -102,47 +161,11 @@ function NotebookSideActions({
         notebooks.map((n) => {
           if (n.id == id) {
             n.isTableOfContentsCreated
-              ? alert('already created')
-              : setnotebooks(
-                  notebooks.map((item, index) => {
-                    if (item.id == id) {
-                      item.isTableOfContentsCreated = true;
-                      item.cards.unshift({
-                        date: '',
-                        titleOfPage: 'Table of Contents',
-                        elements: [
-                          {
-                            type: 'image',
-                            frame: {
-                              translate: [0, 0],
-                              rotate: 0,
-                              width: null,
-                              height: null,
-                            },
-                            value: (
-                              <div className='tableOfContents'>
-                                <h1>Table of Contents</h1>
-                                <ol className='list'>
-                                  {item.cards.map((item2, index2) => (
-                                    <li
-                                      onClick={() => setcurrentPage(index2 + 1)}
-                                    >
-                                      {item2.titleOfPage}
-                                    </li>
-                                  ))}
-                                </ol>
-                              </div>
-                            ),
-                          },
-                        ],
-                      });
-                    }
-                    return item;
-                  }),
-                );
+              ? handleUpdateContentsTable(n)
+              : handleCreateContentsTable(n);
           }
         });
-        setcurrentPage(1);
+        setcurrentPage(2);
       },
     },
     {
