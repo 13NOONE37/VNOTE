@@ -18,7 +18,9 @@ export default function LayersRenderComponent({
   const [showCodeBox, setshowCodeBox] = useState(false);
   const [showShapeBox, setshowShapeBox] = useState(false);
   const [showTextBox, setshowTextBox] = useState(false);
+  const [showTableBox, setshowTableBox] = useState(false);
 
+  const [currentCopied, setcurrentCopied] = useState(null);
   const [target, setTarget] = useState(null);
   const [numberOfElement, setnumberOfElement] = useState(null);
   const [elements, setelements] = useState(
@@ -62,6 +64,10 @@ export default function LayersRenderComponent({
         setshowTextBox(true);
         break;
       }
+      case 'table': {
+        setshowTableBox(true);
+        break;
+      }
     }
   };
   useEffect(() => {
@@ -81,29 +87,48 @@ export default function LayersRenderComponent({
   }, [elements]);
 
   useLayoutEffect(() => {
+    const handleDelete = () => {
+      setnotebooks(
+        notebooks.map((item, index) => {
+          if (item.id == id) {
+            item.cards[currentPage - 1].elements = item.cards[
+              currentPage - 1
+            ].elements.filter((item2, index2) => index2 != numberOfElement);
+          }
+          return item;
+        }),
+      );
+    };
     //memory leak
     window.onkeydown = (e) => {
       if (e.ctrlKey && e.code == 'KeyX') {
         console.log('cut', target);
+        setcurrentCopied({ page: currentPage, number: numberOfElement });
+        handleDelete();
       }
       if (e.ctrlKey && e.code == 'KeyC') {
         console.log('copy', target);
+
+        setcurrentCopied(
+          notebooks.filter((item) => item.id == id)[0].cards[currentPage - 1]
+            .elements[numberOfElement],
+        );
       }
       if (e.ctrlKey && e.code == 'KeyV') {
-        console.log('paste', target);
+        console.log('paste', target, currentCopied);
+        currentCopied != null &&
+          setnotebooks(
+            notebooks.map((item, index) => {
+              if (item.id == id) {
+                item.cards[currentPage - 1].elements.unshift(currentCopied);
+              }
+              return item;
+            }),
+          );
       }
       if (e.code == 'Delete') {
         console.log('delete', target, numberOfElement);
-        setnotebooks(
-          notebooks.map((item, index) => {
-            if (item.id == id) {
-              item.cards[currentPage - 1].elements = item.cards[
-                currentPage - 1
-              ].elements.filter((item2, index2) => index2 != numberOfElement);
-            }
-            return item;
-          }),
-        );
+        handleDelete();
       }
     };
   });

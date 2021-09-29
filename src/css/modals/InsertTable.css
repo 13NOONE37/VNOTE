@@ -1,0 +1,12 @@
+.tablePreview {
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: var(--size-4);
+}
+.tablePreview table,
+td {
+  border: 2px solid white;
+  border-collapse: collapse;
+  padding: var(--size-2);
+}

@@ -11,6 +11,7 @@ import InsertChart from 'components/modals/InsertChart';
 import InsertIframe from 'components/modals/InsertIframe';
 import InsertCode from 'components/modals/InsertCode';
 import InsertText from 'components/modals/InsertText';
+import InsertTable from 'components/modals/InsertTable';
 
 function NotebookSideActions({
   notebooks,
@@ -26,6 +27,7 @@ function NotebookSideActions({
   const [showDrawBox, setshowDrawBox] = useState(false);
   const [showIframeBox, setshowIframeBox] = useState(false);
   const [showCodeBox, setshowCodeBox] = useState(false);
+  const [showTableBox, setshowTableBox] = useState(false);
   const [showPaperBox, setshowPaperBox] = useState(false);
   const [showShareBox, setshowShareBox] = useState(false);
   const [showPrintBox, setshowPrintBox] = useState(false);
@@ -38,6 +40,7 @@ function NotebookSideActions({
   const handleDrawNotebook = () => setshowDrawBox(true);
   const handleInsertIframe = () => setshowIframeBox(true);
   const handleCodeBox = () => setshowCodeBox(true);
+  const handleTableBox = () => setshowTableBox(true);
   const handleChooseTypeOfPaper = () => setshowPaperBox(true);
   const handlePrintNotebook = () => {
     alert(
@@ -150,9 +153,7 @@ function NotebookSideActions({
     {
       name: 'Insert table',
       icon: 'fas fa-table',
-      action: () => {
-        console.log('action executed');
-      },
+      action: handleTableBox,
     },
     {
       name: 'Auto Table of Contents',
@@ -261,6 +262,14 @@ function NotebookSideActions({
         id={id}
         showBox={showCodeBox}
         setshowBox={setshowCodeBox}
+        currentPage={currentPage}
+      />
+      <InsertTable
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showTableBox}
+        setshowBox={setshowTableBox}
         currentPage={currentPage}
       />
 
