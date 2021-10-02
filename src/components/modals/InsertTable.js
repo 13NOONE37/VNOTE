@@ -3,6 +3,7 @@ import 'css/modals/InsertImage.css';
 import 'css/modals/InsertTable.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
+import ContentEditable from 'react-contenteditable';
 
 export default function InsertTable({
   notebooks,
@@ -19,15 +20,15 @@ export default function InsertTable({
   const [table, setTable] = useState({
     columns: [
       {
-        label: 'Name',
+        label: 'Column name',
       },
       {
-        label: 'Email',
+        label: 'Column name',
       },
     ],
     rows: [
       {
-        data: ['Oliwer', 'oliwerklauze22@gmail.com'],
+        data: ['', ''],
       },
     ],
   });
@@ -39,68 +40,104 @@ export default function InsertTable({
   }, [showBox]);
 
   const handleSubmit = () => {
-    // setcurrentText(edit.current.innerHTML);
-    // numberOfElement
-    //   ? setnotebooks(
-    //       notebooks.map((item1, index1) => {
-    //         if (item1.id == id) {
-    //           item1.cards.map((item2, index2) => {
-    //             if (index2 + 1 == currentPage) {
-    //               item2.elements[numberOfElement] = {
-    //                 type: 'table',
-    //                 frame: {
-    //                   translate:
-    //                     data && data.data ? data.frame.translate : [0, 0],
-    //                   rotate: data && data.data ? data.frame.rotate : 0,
-    //                   width: data && data.data ? data.frame.width : null,
-    //                   height: data && data.data ? data.frame.height : null,
-    //                 },
-    //                 value: <div className='scrollClass'></div>,
-    //                 data: {},
-    //               };
-    //             }
-    //             return item2;
-    //           });
-    //         }
-    //         return item1;
-    //       }),
-    //     )
-    //   : setnotebooks(
-    //       notebooks.map((item1, index1) => {
-    //         if (item1.id == id) {
-    //           item1.cards.map((item2, index2) => {
-    //             if (index2 + 1 == currentPage) {
-    //               item2.elements.push({
-    //                 type: 'table',
-    //                 frame: {
-    //                   translate: [0, 0],
-    //                   rotate: 0,
-    //                   width: 100,
-    //                   height: 100,
-    //                 },
-    //                 value: <div className='scrollClass'></div>,
-    //                 data: {},
-    //               });
-    //             }
-    //             return item2;
-    //           });
-    //         }
-    //         return item1;
-    //       }),
-    //     );
-    // setshowBox(false);
+    numberOfElement
+      ? setnotebooks(
+          notebooks.map((item1, index1) => {
+            if (item1.id == id) {
+              item1.cards.map((item2, index2) => {
+                if (index2 + 1 == currentPage) {
+                  item2.elements[numberOfElement] = {
+                    type: 'table',
+                    frame: {
+                      translate:
+                        data && data.data ? data.frame.translate : [0, 0],
+                      rotate: data && data.data ? data.frame.rotate : 0,
+                      width: data && data.data ? data.frame.width : null,
+                      height: data && data.data ? data.frame.height : null,
+                    },
+                    value: (
+                      <table>
+                        <tr>
+                          {updateForce &&
+                            table.columns.map((item, index) => (
+                              <th>{item.label}</th>
+                            ))}
+                        </tr>
+
+                        {updateForce &&
+                          table.rows.map((item, index) => (
+                            <tr key={index}>
+                              {item.data.map((item2, index2) => (
+                                <td>{item2}</td>
+                              ))}
+                            </tr>
+                          ))}
+                      </table>
+                    ),
+                    data: { table },
+                  };
+                }
+                return item2;
+              });
+            }
+            return item1;
+          }),
+        )
+      : setnotebooks(
+          notebooks.map((item1, index1) => {
+            if (item1.id == id) {
+              item1.cards.map((item2, index2) => {
+                if (index2 + 1 == currentPage) {
+                  item2.elements.push({
+                    type: 'table',
+                    frame: {
+                      translate: [0, 0],
+                      rotate: 0,
+                      width: 100,
+                      height: 100,
+                    },
+                    value: (
+                      <table>
+                        <tr>
+                          {updateForce &&
+                            table.columns.map((item, index) => (
+                              <th>{item.label}</th>
+                            ))}
+                        </tr>
+
+                        {updateForce &&
+                          table.rows.map((item, index) => (
+                            <tr key={index}>
+                              {item.data.map((item2, index2) => (
+                                <td>{item2}</td>
+                              ))}
+                            </tr>
+                          ))}
+                      </table>
+                    ),
+                    data: { table },
+                  });
+                }
+                return item2;
+              });
+            }
+            return item1;
+          }),
+        );
+
+    setshowBox(false);
     setTable({
       columns: [
         {
-          label: 'Name',
+          label: 'Column name',
         },
         {
-          label: 'Email',
+          label: 'Column name',
         },
       ],
       rows: [
         {
-          data: ['Oliwer', 'oliwerklauze22@gmail.com'],
+          data: ['', ''],
         },
       ],
     });
@@ -117,7 +154,7 @@ export default function InsertTable({
   };
   const handleAddCol = () => {
     const temp = table;
-    temp.columns.push({ label: 'Password' });
+    temp.columns.push({ label: 'Column name' });
     temp.rows.map((item, index) => {
       item.data.push('');
       return item;
@@ -125,6 +162,22 @@ export default function InsertTable({
     setTable(temp);
     setupdateForce(updateForce + 1);
   };
+
+  const handleChangeColTitle = (e) => {
+    // setTable(table.columns.map((item,index)=>{
+
+    //   return item;
+    // }))
+    console.log(e, e.target.value);
+  };
+  const handleChangeRowValue = (e) => {
+    // setTable(table.columns.map((item,index)=>{
+
+    //   return item;
+    // }))
+    console.log(e, e.target.value);
+  };
+
   return createPortal(
     <>
       {showBox && (
@@ -139,13 +192,18 @@ export default function InsertTable({
               <span>Create table</span>
             </div>
             <div className='tablePreview scrollClass'>
+              <button onClick={handleAddRow}>Add row</button>
+              <button onClick={handleAddCol}>Add Col</button>
               <table>
                 <tr>
                   {updateForce &&
                     table.columns.map((item, index) => (
-                      <th contentEditable key={index}>
-                        {item.label}
-                      </th>
+                      <ContentEditable
+                        html={item.label}
+                        disabled={false}
+                        onChange={handleChangeColTitle}
+                        tagName={'th'}
+                      />
                     ))}
                 </tr>
 
@@ -153,15 +211,16 @@ export default function InsertTable({
                   table.rows.map((item, index) => (
                     <tr key={index}>
                       {item.data.map((item2, index2) => (
-                        <td contentEditable key={index2}>
-                          {item2}
-                        </td>
+                        <ContentEditable
+                          html={item2}
+                          disabled={false}
+                          onChange={handleChangeRowValue}
+                          tagName={'td'}
+                        />
                       ))}
                     </tr>
                   ))}
               </table>
-              <button onClick={handleAddRow}>Add row</button>
-              <button onClick={handleAddCol}>Add Col</button>
             </div>
             <div className='bottomBar'>
               <button
