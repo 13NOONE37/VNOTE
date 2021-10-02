@@ -15,6 +15,24 @@ export default function InsertTable({
   data,
 }) {
   const box = useRef(null);
+  const [updateForce, setupdateForce] = useState(1);
+  const [table, setTable] = useState({
+    columns: [
+      {
+        label: 'Name',
+      },
+      {
+        label: 'Email',
+      },
+    ],
+    rows: [
+      {
+        data: ['Oliwer', 'oliwerklauze22@gmail.com'],
+      },
+    ],
+  });
+  // const [rowsNumber, setrowsNumber] = useState(5);
+  // const [colsNumber, setcolsNumber] = useState(3);
 
   useEffect(() => {
     // setcurrentText(data && data.data ? data.data.text : '');
@@ -71,8 +89,42 @@ export default function InsertTable({
     //       }),
     //     );
     // setshowBox(false);
+    setTable({
+      columns: [
+        {
+          label: 'Name',
+        },
+        {
+          label: 'Email',
+        },
+      ],
+      rows: [
+        {
+          data: ['Oliwer', 'oliwerklauze22@gmail.com'],
+        },
+      ],
+    });
   };
+  const handleAddRow = () => {
+    const temp = table;
+    temp.rows.push({ data: [] });
+    for (let i = 0; i < temp.columns.length; i++) {
+      temp.rows[temp.rows.length - 1].data.push('');
+    }
 
+    setTable(temp);
+    setupdateForce(updateForce + 1);
+  };
+  const handleAddCol = () => {
+    const temp = table;
+    temp.columns.push({ label: 'Password' });
+    temp.rows.map((item, index) => {
+      item.data.push('');
+      return item;
+    });
+    setTable(temp);
+    setupdateForce(updateForce + 1);
+  };
   return createPortal(
     <>
       {showBox && (
@@ -84,26 +136,32 @@ export default function InsertTable({
         >
           <div className='imageBox'>
             <div className='topBar'>
-              <span>Enter text</span>
+              <span>Create table</span>
             </div>
             <div className='tablePreview scrollClass'>
               <table>
                 <tr>
-                  <td contentEditable>12345</td>
-                  <td contentEditable>23456</td>
-                  <td contentEditable>3324234</td>
+                  {updateForce &&
+                    table.columns.map((item, index) => (
+                      <th contentEditable key={index}>
+                        {item.label}
+                      </th>
+                    ))}
                 </tr>
-                <tr>
-                  <td contentEditable>1123123</td>
-                  <td contentEditable>1232</td>
-                  <td contentEditable>3213123</td>
-                </tr>
-                <tr>
-                  <td contentEditable>1123123</td>
-                  <td contentEditable>212323</td>
-                  <td contentEditable>11231233</td>
-                </tr>
+
+                {updateForce &&
+                  table.rows.map((item, index) => (
+                    <tr key={index}>
+                      {item.data.map((item2, index2) => (
+                        <td contentEditable key={index2}>
+                          {item2}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
               </table>
+              <button onClick={handleAddRow}>Add row</button>
+              <button onClick={handleAddCol}>Add Col</button>
             </div>
             <div className='bottomBar'>
               <button

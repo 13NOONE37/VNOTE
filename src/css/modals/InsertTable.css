@@ -1,12 +1,27 @@
 .tablePreview {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   color: white;
-  padding: var(--size-4);
+  padding: var(--size-8);
+
+  overflow: auto;
 }
+
 .tablePreview table,
-td {
+td,
+th {
   border: 2px solid white;
   border-collapse: collapse;
+  max-width: 100%;
+  outline: none;
+}
+.tablePreview td,
+th {
   padding: var(--size-2);
+}
+.tablePreview td:focus,
+th:focus {
+  background-color: rgba(255, 255, 255, 0.05);
 }

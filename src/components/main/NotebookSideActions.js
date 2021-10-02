@@ -79,6 +79,7 @@ function NotebookSideActions({
         },
       ],
     });
+    handleUpdateContentsTable(n);
   };
   const handleUpdateContentsTable = (n) => {
     n.cards[0] = {
