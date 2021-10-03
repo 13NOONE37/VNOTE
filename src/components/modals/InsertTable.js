@@ -28,15 +28,31 @@ export default function InsertTable({
     ],
     rows: [
       {
-        data: ['', ''],
+        data: [' ', ' '],
       },
     ],
   });
-  // const [rowsNumber, setrowsNumber] = useState(5);
-  // const [colsNumber, setcolsNumber] = useState(3);
 
   useEffect(() => {
-    // setcurrentText(data && data.data ? data.data.text : '');
+    setTable(
+      data && data.data
+        ? data.data.tableDataset
+        : {
+            columns: [
+              {
+                label: 'Column name',
+              },
+              {
+                label: 'Column name',
+              },
+            ],
+            rows: [
+              {
+                data: [' ', ' '],
+              },
+            ],
+          },
+    );
   }, [showBox]);
 
   const handleSubmit = () => {
@@ -56,7 +72,7 @@ export default function InsertTable({
                       height: data && data.data ? data.frame.height : null,
                     },
                     value: (
-                      <table>
+                      <table className='tableGlobal'>
                         <tr>
                           {updateForce &&
                             table.columns.map((item, index) => (
@@ -74,7 +90,7 @@ export default function InsertTable({
                           ))}
                       </table>
                     ),
-                    data: { table },
+                    data: { tableDataset: table },
                   };
                 }
                 return item2;
@@ -97,7 +113,7 @@ export default function InsertTable({
                       height: 100,
                     },
                     value: (
-                      <table>
+                      <table className='tableGlobal'>
                         <tr>
                           {updateForce &&
                             table.columns.map((item, index) => (
@@ -115,7 +131,7 @@ export default function InsertTable({
                           ))}
                       </table>
                     ),
-                    data: { table },
+                    data: { tableDataset: table },
                   });
                 }
                 return item2;
@@ -137,7 +153,7 @@ export default function InsertTable({
       ],
       rows: [
         {
-          data: ['', ''],
+          data: [' ', ' '],
         },
       ],
     });
@@ -162,20 +178,11 @@ export default function InsertTable({
     setTable(temp);
     setupdateForce(updateForce + 1);
   };
-
-  const handleChangeColTitle = (e) => {
-    // setTable(table.columns.map((item,index)=>{
-
-    //   return item;
-    // }))
-    console.log(e, e.target.value);
+  const handleChangeColTitle = (e, index) => {
+    table.columns[index].label = e.target.value;
   };
-  const handleChangeRowValue = (e) => {
-    // setTable(table.columns.map((item,index)=>{
-
-    //   return item;
-    // }))
-    console.log(e, e.target.value);
+  const handleChangeRowValue = (e, rowIndex, colIndex) => {
+    table.rows[rowIndex].data[colIndex] = e.target.value;
   };
 
   return createPortal(
@@ -194,14 +201,14 @@ export default function InsertTable({
             <div className='tablePreview scrollClass'>
               <button onClick={handleAddRow}>Add row</button>
               <button onClick={handleAddCol}>Add Col</button>
-              <table>
+              <table className='tableGlobal'>
                 <tr>
                   {updateForce &&
                     table.columns.map((item, index) => (
                       <ContentEditable
                         html={item.label}
                         disabled={false}
-                        onChange={handleChangeColTitle}
+                        onChange={(e) => handleChangeColTitle(e, index)}
                         tagName={'th'}
                       />
                     ))}
@@ -214,7 +221,9 @@ export default function InsertTable({
                         <ContentEditable
                           html={item2}
                           disabled={false}
-                          onChange={handleChangeRowValue}
+                          onChange={(e) =>
+                            handleChangeRowValue(e, index, index2)
+                          }
                           tagName={'td'}
                         />
                       ))}

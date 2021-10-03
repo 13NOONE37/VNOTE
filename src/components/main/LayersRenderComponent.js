@@ -6,6 +6,7 @@ import DrawNotebook from 'components/modals/DrawNotebook';
 import InsertCode from 'components/modals/InsertCode';
 import InsertShape from 'components/modals/InsertShape';
 import InsertText from 'components/modals/InsertText';
+import InsertTable from 'components/modals/InsertTable';
 
 export default function LayersRenderComponent({
   notebooks,
@@ -217,6 +218,16 @@ export default function LayersRenderComponent({
         id={id}
         showBox={showCodeBox}
         setshowBox={setshowCodeBox}
+        currentPage={currentPage}
+        numberOfElement={numberOfElement}
+        data={data}
+      />
+      <InsertTable
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        showBox={showTableBox}
+        setshowBox={setshowTableBox}
         currentPage={currentPage}
         numberOfElement={numberOfElement}
         data={data}
