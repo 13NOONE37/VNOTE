@@ -14,6 +14,8 @@ export default function LayersRenderComponent({
   id,
   currentPage,
 }) {
+  const [updateForce, setupdateForce] = useState(1);
+
   const [showChartBox, setshowChartBox] = useState(false);
   const [showDrawBox, setshowDrawBox] = useState(false);
   const [showCodeBox, setshowCodeBox] = useState(false);

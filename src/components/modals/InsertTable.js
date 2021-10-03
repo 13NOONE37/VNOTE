@@ -76,7 +76,9 @@ export default function InsertTable({
                         <tr>
                           {updateForce &&
                             table.columns.map((item, index) => (
-                              <th>{item.label}</th>
+                              <th
+                                dangerouslySetInnerHTML={{ __html: item.label }}
+                              ></th>
                             ))}
                         </tr>
 
@@ -84,7 +86,9 @@ export default function InsertTable({
                           table.rows.map((item, index) => (
                             <tr key={index}>
                               {item.data.map((item2, index2) => (
-                                <td>{item2}</td>
+                                <td
+                                  dangerouslySetInnerHTML={{ __html: item2 }}
+                                ></td>
                               ))}
                             </tr>
                           ))}
@@ -117,7 +121,9 @@ export default function InsertTable({
                         <tr>
                           {updateForce &&
                             table.columns.map((item, index) => (
-                              <th>{item.label}</th>
+                              <th
+                                dangerouslySetInnerHTML={{ __html: item.label }}
+                              ></th>
                             ))}
                         </tr>
 
@@ -125,7 +131,9 @@ export default function InsertTable({
                           table.rows.map((item, index) => (
                             <tr key={index}>
                               {item.data.map((item2, index2) => (
-                                <td>{item2}</td>
+                                <td
+                                  dangerouslySetInnerHTML={{ __html: item2 }}
+                                ></td>
                               ))}
                             </tr>
                           ))}
@@ -184,6 +192,24 @@ export default function InsertTable({
   const handleChangeRowValue = (e, rowIndex, colIndex) => {
     table.rows[rowIndex].data[colIndex] = e.target.value;
   };
+  const handleDeleteRow = (rowIndex) => {
+    let temp = table;
+    temp.rows = temp.rows.filter((item, index) => index != rowIndex);
+    setTable(temp);
+    setupdateForce(updateForce + 1);
+  };
+  const handleDeleteCol = (colIndex) => {
+    let temp = table;
+    temp.columns = temp.columns.filter((item, index) => index != colIndex);
+
+    temp.rows = temp.rows.map((item) => {
+      item.data = item.data.filter((item2, index2) => index2 != colIndex);
+      return item;
+    });
+    console.log(temp.rows);
+    setTable(temp);
+    setupdateForce(updateForce + 1);
+  };
 
   return createPortal(
     <>
@@ -199,9 +225,32 @@ export default function InsertTable({
               <span>Create table</span>
             </div>
             <div className='tablePreview scrollClass'>
-              <button onClick={handleAddRow}>Add row</button>
-              <button onClick={handleAddCol}>Add Col</button>
+              <div className='tableTools'>
+                {' '}
+                <button onClick={handleAddRow} className='tableButton'>
+                  Add row
+                </button>
+                <button onClick={handleAddCol} className='tableButton'>
+                  Add Column
+                </button>
+              </div>
               <table className='tableGlobal'>
+                <tr>
+                  {updateForce &&
+                    table.columns.map((item, index) => (
+                      <td>
+                        <button
+                          style={{
+                            backgroundColor: 'var(--error)',
+                            padding: '10px',
+                          }}
+                          onClick={() => handleDeleteCol(index)}
+                        >
+                          <i className='far fa-trash-alt'></i>
+                        </button>
+                      </td>
+                    ))}
+                </tr>
                 <tr>
                   {updateForce &&
                     table.columns.map((item, index) => (
@@ -210,11 +259,12 @@ export default function InsertTable({
                         disabled={false}
                         onChange={(e) => handleChangeColTitle(e, index)}
                         tagName={'th'}
+                        key={index}
                       />
                     ))}
                 </tr>
-
-                {updateForce &&
+                {table.columns.length > 0 &&
+                  updateForce &&
                   table.rows.map((item, index) => (
                     <tr key={index}>
                       {item.data.map((item2, index2) => (
@@ -225,8 +275,22 @@ export default function InsertTable({
                             handleChangeRowValue(e, index, index2)
                           }
                           tagName={'td'}
+                          key={index2}
                         />
                       ))}
+                      <td style={{ padding: 0 }}>
+                        <button
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: 'var(--error)',
+                            padding: '10px',
+                          }}
+                          onClick={() => handleDeleteRow(index)}
+                        >
+                          <i className='far fa-trash-alt'></i>
+                        </button>
+                      </td>
                     </tr>
                   ))}
               </table>
