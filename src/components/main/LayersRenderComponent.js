@@ -14,6 +14,8 @@ export default function LayersRenderComponent({
   id,
   currentPage,
   isEditMode,
+  currentCopied,
+  setcurrentCopied,
 }) {
   const [updateForce, setupdateForce] = useState(1);
 
@@ -24,7 +26,6 @@ export default function LayersRenderComponent({
   const [showTextBox, setshowTextBox] = useState(false);
   const [showTableBox, setshowTableBox] = useState(false);
 
-  const [currentCopied, setcurrentCopied] = useState(null);
   const [target, setTarget] = useState(null);
   const [numberOfElement, setnumberOfElement] = useState(null);
   const [elements, setelements] = useState(
@@ -105,34 +106,53 @@ export default function LayersRenderComponent({
     };
     //memory leak
     window.onkeydown = (e) => {
-      if (!isEditMode) {
+      if (isEditMode) {
         if (e.ctrlKey && e.code == 'KeyX') {
-          console.log('cut', target);
-          setcurrentCopied({ page: currentPage, number: numberOfElement });
+          console.log('cut');
+          setcurrentCopied({
+            page: currentPage,
+            elementIndex: target.getAttribute('element_index'),
+          });
           handleDelete();
         }
         if (e.ctrlKey && e.code == 'KeyC') {
-          console.log('copy', target);
-
-          setcurrentCopied(
-            notebooks.filter((item) => item.id == id)[0].cards[currentPage - 1]
-              .elements[numberOfElement],
-          );
+          if (target != null) {
+            console.log('Copy');
+            setcurrentCopied({
+              page: currentPage,
+              elementIndex: target.getAttribute('element_index'),
+            });
+          }
         }
         if (e.ctrlKey && e.code == 'KeyV') {
-          console.log('paste', target, currentCopied);
-          currentCopied != null &&
+          if (currentCopied != null) {
+            console.log('paste');
+
+            let elementToAdd = notebooks.find((item) => item.id == id).cards[
+              currentCopied.page - 1
+            ].elements[currentCopied.elementIndex];
+
+            elementToAdd.frame.translate = [0, 0];
+            elementToAdd.frame.rotate = 0;
+
             setnotebooks(
-              notebooks.map((item, index) => {
-                if (item.id == id) {
-                  item.cards[currentPage - 1].elements.unshift(currentCopied);
+              notebooks.map((item1, index1) => {
+                if (item1.id == id) {
+                  item1.cards.map((item2, index2) => {
+                    if (index2 + 1 == currentPage) {
+                      item2.elements.push(elementToAdd);
+                    }
+                    return item2;
+                  });
                 }
-                return item;
+                return item1;
               }),
             );
+            setupdateForce(updateForce + 1);
+          }
         }
         if (e.code == 'Delete') {
-          console.log('delete', target, numberOfElement);
+          console.log('delete');
           handleDelete();
         }
       }
@@ -154,26 +174,28 @@ export default function LayersRenderComponent({
         elements={elements}
         setelements={setelements}
       />
-      {elements.map((element, index) => (
-        <div
-          className='target'
-          key={index}
-          style={{
-            zIndex: index + 1,
-            transform: `translate(${element.frame.translate[0]}px, ${element.frame.translate[1]}px ) rotate(${element.frame.rotate}deg) `,
-            width: `${element.frame.width}px`,
-            height: `${element.frame.height}px`,
-          }}
-          onClick={(e) => {
-            if (isEditMode) {
-              setTarget(e.currentTarget);
-              setnumberOfElement(index);
-            }
-          }}
-        >
-          {element.value}
-        </div>
-      ))}
+      {updateForce &&
+        elements.map((element, index) => (
+          <div
+            className='target'
+            element_index={index}
+            key={index}
+            style={{
+              zIndex: index + 1,
+              transform: `translate(${element.frame.translate[0]}px, ${element.frame.translate[1]}px ) rotate(${element.frame.rotate}deg) `,
+              width: `${element.frame.width}px`,
+              height: `${element.frame.height}px`,
+            }}
+            onClick={(e) => {
+              if (isEditMode) {
+                setTarget(e.currentTarget);
+                setnumberOfElement(index);
+              }
+            }}
+          >
+            {element.value}
+          </div>
+        ))}
       {target && (
         <button className='editButton' onClick={handleClickEdit}>
           <i className='fas fa-pen-square'></i>

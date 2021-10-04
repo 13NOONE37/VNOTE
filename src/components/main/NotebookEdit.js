@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContentEditable from 'react-contenteditable';
 
 import 'css/main/NotebookEdit.css';
@@ -22,7 +22,6 @@ function NotebookEdit({
       }),
     );
   };
-
   const handleChangeSubTitle = (e) => {
     setnotebooks(
       notebooks.map((item, index) => {
@@ -38,6 +37,8 @@ function NotebookEdit({
       }),
     );
   };
+
+  const [currentCopied, setcurrentCopied] = useState(null);
 
   return notebooks.map(
     (notebook, index) =>
@@ -80,6 +81,8 @@ function NotebookEdit({
                       id={id}
                       currentPage={currentPage}
                       isEditMode={isEditMode}
+                      currentCopied={currentCopied}
+                      setcurrentCopied={setcurrentCopied}
                     />
                   </span>
                 </>

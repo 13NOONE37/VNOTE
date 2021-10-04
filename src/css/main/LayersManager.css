@@ -1,0 +1,11 @@
+.LayersManager {
+  z-index: 99999;
+
+  position: fixed;
+  right: 0;
+
+  width: 150px;
+  height: 100vh;
+  background-color: #222;
+  box-shadow: inset 10px 0px var(--blue-10);
+}

@@ -6,6 +6,7 @@ import 'css/main/SideBar.css';
 import ControPageCount from 'components/main/ControPageCount';
 import NotebookSideActions from 'components/main/NotebookSideActions';
 import NotebookEdit from 'components/main/NotebookEdit';
+import LayersManager from 'components/main/LayersManager';
 
 export default function NotebookEditPage() {
   const { id } = useParams();
@@ -51,6 +52,13 @@ export default function NotebookEditPage() {
           isEditMode={isEditMode}
         />
       </main>
+      <LayersManager
+        notebooks={notebooks}
+        setnotebooks={setnotebooks}
+        id={id}
+        currentPage={currentPage}
+        isEditMode={isEditMode}
+      />
     </div>
   );
 }
