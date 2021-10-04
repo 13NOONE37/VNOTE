@@ -103,3 +103,17 @@
 .tableOfContents ol li:hover {
   text-decoration: underline;
 }
+.disabledButton {
+  color: var(--grey-1) !important;
+}
+.disabledButton:hover,
+.disabledButton:focus {
+  touch-action: none !important;
+  box-shadow: none !important;
+}
+.disabledButton:hover .sideNotebookTooltip {
+  opacity: 0 !important;
+}
+.disabledButton i {
+  color: var(--grey-1) !important;
+}

@@ -5,7 +5,14 @@ import 'css/main/NotebookEdit.css';
 import LayersRenderComponent from './LayersRenderComponent';
 import handleContentChange from 'utils/Global/handleContentChange';
 
-function NotebookEdit({ notebooks, setnotebooks, id, currentPage }) {
+function NotebookEdit({
+  notebooks,
+  setnotebooks,
+  id,
+  currentPage,
+  isEditMode,
+  setisEditMode,
+}) {
   const handleChangeTitle = (e) => {
     setnotebooks(
       notebooks.map((item, index) => {

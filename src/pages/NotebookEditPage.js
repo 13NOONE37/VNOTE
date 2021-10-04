@@ -21,6 +21,7 @@ export default function NotebookEditPage() {
   ] = useContext(AppContext);
 
   const [currentPage, setcurrentPage] = useState(1);
+  const [isEditMode, setisEditMode] = useState(true);
 
   return (
     <div className='notebookPage scrollClass'>
@@ -30,6 +31,8 @@ export default function NotebookEditPage() {
         id={id}
         currentPage={currentPage}
         setcurrentPage={setcurrentPage}
+        isEditMode={isEditMode}
+        setisEditMode={setisEditMode}
       />
       <main>
         <NotebookEdit
@@ -37,6 +40,8 @@ export default function NotebookEditPage() {
           setnotebooks={setnotebooks}
           id={id}
           currentPage={currentPage}
+          isEditMode={isEditMode}
+          setisEditMode={setisEditMode}
         />
         <ControPageCount
           notebooks={notebooks}

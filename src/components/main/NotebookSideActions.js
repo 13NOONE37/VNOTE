@@ -19,6 +19,8 @@ function NotebookSideActions({
   id,
   currentPage,
   setcurrentPage,
+  isEditMode,
+  setisEditMode,
 }) {
   const [showTextBox, setshowTextBox] = useState(false);
   const [showImageBox, setshowImageBox] = useState(false);
@@ -32,7 +34,7 @@ function NotebookSideActions({
   const [showShareBox, setshowShareBox] = useState(false);
   const [showPrintBox, setshowPrintBox] = useState(false);
 
-  const handleToggleView = () => console.log('Toogle view');
+  const handleToggleView = () => setisEditMode(!isEditMode);
   const handleInsertText = () => setshowTextBox(true);
   const handleInsertImage = () => setshowImageBox(true);
   const handleInsertShape = () => setshowShapeBox(true);
@@ -112,7 +114,7 @@ function NotebookSideActions({
   };
   const notebookSideActions = [
     {
-      name: 'Toogle View',
+      name: 'Toggle View',
       icon: 'fas fa-eye',
       action: handleToggleView,
     },
@@ -200,9 +202,23 @@ function NotebookSideActions({
         </NavLink>
       </span>
 
+      {/* prettier-ignore */}
       <span className='sideNotebookActions'>
         {notebookSideActions.map((item, index) => (
-          <button key={index} className='action' onClick={() => item.action()}>
+          <button
+            key={index}
+            className={`action ${
+              !isEditMode && !(item.name == 'Toggle View'||
+              item.name == 'Share' ||
+              item.name == 'Print')
+                ? 'disabledButton'
+                : ' szczyr'
+            }`}
+            disabled={ !isEditMode && !(item.name == 'Toggle View'||
+            item.name == 'Share' ||
+            item.name == 'Print') ? true : false}
+            onClick={() => item.action()}
+          >
             <i className={item.icon}></i>
             <span className='sideNotebookTooltip'>{item.name}</span>
           </button>
