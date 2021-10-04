@@ -105,6 +105,7 @@
 }
 .disabledButton {
   color: var(--grey-1) !important;
+  cursor: default !important;
 }
 .disabledButton:hover,
 .disabledButton:focus {

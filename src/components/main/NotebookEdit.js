@@ -11,7 +11,6 @@ function NotebookEdit({
   id,
   currentPage,
   isEditMode,
-  setisEditMode,
 }) {
   const handleChangeTitle = (e) => {
     setnotebooks(
@@ -59,7 +58,7 @@ function NotebookEdit({
                       <ContentEditable
                         className={`titleEditable`}
                         html={notebook.title}
-                        disabled={false}
+                        disabled={!isEditMode}
                         onChange={handleChangeTitle}
                         tagName={'span'}
                       />
@@ -67,7 +66,7 @@ function NotebookEdit({
                       <ContentEditable
                         className={`titleEditable`}
                         html={page.titleOfPage}
-                        disabled={false}
+                        disabled={!isEditMode}
                         onChange={handleChangeSubTitle}
                         tagName={'span'}
                       />
@@ -80,6 +79,7 @@ function NotebookEdit({
                       setnotebooks={setnotebooks}
                       id={id}
                       currentPage={currentPage}
+                      isEditMode={isEditMode}
                     />
                   </span>
                 </>

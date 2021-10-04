@@ -13,6 +13,7 @@ export default function LayersRenderComponent({
   setnotebooks,
   id,
   currentPage,
+  isEditMode,
 }) {
   const [updateForce, setupdateForce] = useState(1);
 
@@ -104,34 +105,36 @@ export default function LayersRenderComponent({
     };
     //memory leak
     window.onkeydown = (e) => {
-      if (e.ctrlKey && e.code == 'KeyX') {
-        console.log('cut', target);
-        setcurrentCopied({ page: currentPage, number: numberOfElement });
-        handleDelete();
-      }
-      if (e.ctrlKey && e.code == 'KeyC') {
-        console.log('copy', target);
+      if (!isEditMode) {
+        if (e.ctrlKey && e.code == 'KeyX') {
+          console.log('cut', target);
+          setcurrentCopied({ page: currentPage, number: numberOfElement });
+          handleDelete();
+        }
+        if (e.ctrlKey && e.code == 'KeyC') {
+          console.log('copy', target);
 
-        setcurrentCopied(
-          notebooks.filter((item) => item.id == id)[0].cards[currentPage - 1]
-            .elements[numberOfElement],
-        );
-      }
-      if (e.ctrlKey && e.code == 'KeyV') {
-        console.log('paste', target, currentCopied);
-        currentCopied != null &&
-          setnotebooks(
-            notebooks.map((item, index) => {
-              if (item.id == id) {
-                item.cards[currentPage - 1].elements.unshift(currentCopied);
-              }
-              return item;
-            }),
+          setcurrentCopied(
+            notebooks.filter((item) => item.id == id)[0].cards[currentPage - 1]
+              .elements[numberOfElement],
           );
-      }
-      if (e.code == 'Delete') {
-        console.log('delete', target, numberOfElement);
-        handleDelete();
+        }
+        if (e.ctrlKey && e.code == 'KeyV') {
+          console.log('paste', target, currentCopied);
+          currentCopied != null &&
+            setnotebooks(
+              notebooks.map((item, index) => {
+                if (item.id == id) {
+                  item.cards[currentPage - 1].elements.unshift(currentCopied);
+                }
+                return item;
+              }),
+            );
+        }
+        if (e.code == 'Delete') {
+          console.log('delete', target, numberOfElement);
+          handleDelete();
+        }
       }
     };
   });
@@ -162,8 +165,10 @@ export default function LayersRenderComponent({
             height: `${element.frame.height}px`,
           }}
           onClick={(e) => {
-            setTarget(e.currentTarget);
-            setnumberOfElement(index);
+            if (isEditMode) {
+              setTarget(e.currentTarget);
+              setnumberOfElement(index);
+            }
           }}
         >
           {element.value}

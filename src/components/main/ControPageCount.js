@@ -7,6 +7,7 @@ function ControPageCount({
   id,
   currentPage,
   setcurrentPage,
+  isEditMode,
 }) {
   const handleAddPage = () => {
     const date = new Date();
@@ -73,7 +74,11 @@ function ControPageCount({
       >
         <i className='fas fa-forward'></i>
       </button>
-      <button className='skewButton' onClick={handleAddPage}>
+      <button
+        className={`skewButton ${!isEditMode ? 'disabledButton' : ''}`}
+        disabled={!isEditMode}
+        onClick={handleAddPage}
+      >
         <i className='fas fa-plus'></i>
       </button>
     </div>

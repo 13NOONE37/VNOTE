@@ -41,7 +41,6 @@ export default function NotebookEditPage() {
           id={id}
           currentPage={currentPage}
           isEditMode={isEditMode}
-          setisEditMode={setisEditMode}
         />
         <ControPageCount
           notebooks={notebooks}
@@ -49,6 +48,7 @@ export default function NotebookEditPage() {
           id={id}
           currentPage={currentPage}
           setcurrentPage={setcurrentPage}
+          isEditMode={isEditMode}
         />
       </main>
     </div>
