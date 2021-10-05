@@ -4,8 +4,53 @@
   position: fixed;
   right: 0;
 
-  width: 150px;
+  width: 200px;
   height: 100vh;
   background-color: #222;
-  box-shadow: inset 10px 0px var(--blue-10);
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s ease-in;
+}
+
+.LayersManager ul {
+  padding-top: 50px;
+  height: 100%;
+  list-style-type: none;
+  overflow: hidden auto;
+}
+.LayersManager ul li {
+  background-color: var(--blue-9);
+  padding: var(--size-4);
+  color: #fff;
+  margin: 10px 0px;
+  word-wrap: break-word;
+}
+.over {
+  border-top: 5px solid goldenrod;
+}
+
+.collapseButton {
+  z-index: 100000;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+
+  background-color: var(--blue-9);
+  color: #eee;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.collapseButton i {
+  font-size: var(--size-8);
+  transition: 0.2s ease-in;
+  /* transform: rotate(90deg); */
 }
