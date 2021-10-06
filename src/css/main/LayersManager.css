@@ -24,6 +24,7 @@
   color: #fff;
   margin: 10px 0px;
   word-wrap: break-word;
+  cursor: move;
 }
 .over {
   border-top: 5px solid goldenrod;

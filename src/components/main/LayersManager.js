@@ -41,8 +41,29 @@ export default function LayersManager({
     }
 
     if (dragSrcEl != e.currentTarget) {
-      dragSrcEl.innerHTML = e.currentTarget.innerHTML;
-      e.currentTarget.innerHTML = e.dataTransfer.getData('text/html');
+      let pageToMove = null;
+      const pageToMoveIndex = parseInt(dragSrcEl.getAttribute('element-index'));
+      const pageAnchorIndex = parseInt(
+        e.currentTarget.getAttribute('element-index'),
+      );
+
+      notebooks.map((item) => {
+        if (item.id == id) {
+          pageToMove = item.cards[pageToMoveIndex];
+        }
+      });
+
+      setnotebooks(
+        notebooks.map((item) => {
+          if (item.id == id) {
+            item.cards.splice(pageToMoveIndex, 1);
+            item.cards.splice(pageAnchorIndex, 0, pageToMove);
+          }
+          return item;
+        }),
+      );
+      // dragSrcEl.innerHTML = e.currentTarget.innerHTML;
+      // e.currentTarget.innerHTML = e.dataTransfer.getData('text/html');
     }
 
     return false;
@@ -80,6 +101,7 @@ export default function LayersManager({
                 item.id == id &&
                 item.cards.map((item2, index2) => (
                   <li
+                    element-index={index2}
                     key={index2}
                     draggable={true}
                     onDragStart={handleDragStart}
