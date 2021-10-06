@@ -239,15 +239,14 @@ export default function InsertTable({
                   {updateForce &&
                     table.columns.map((item, index) => (
                       <td>
-                        <button
-                          style={{
-                            backgroundColor: 'var(--error)',
-                            padding: '10px',
-                          }}
-                          onClick={() => handleDeleteCol(index)}
-                        >
-                          <i className='far fa-trash-alt'></i>
-                        </button>
+                        <div style={{ display: 'grid', placeItems: 'center' }}>
+                          <button
+                            className='deleteData'
+                            onClick={() => handleDeleteCol(index)}
+                          >
+                            <i className='far fa-trash-alt'></i>
+                          </button>
+                        </div>
                       </td>
                     ))}
                 </tr>
@@ -278,14 +277,10 @@ export default function InsertTable({
                           key={index2}
                         />
                       ))}
-                      <td style={{ padding: 0 }}>
+                      <td style={{ display: 'grid', placeItems: 'center' }}>
                         <button
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            backgroundColor: 'var(--error)',
-                            padding: '10px',
-                          }}
+                          title='Delete'
+                          className='deleteData'
                           onClick={() => handleDeleteRow(index)}
                         >
                           <i className='far fa-trash-alt'></i>

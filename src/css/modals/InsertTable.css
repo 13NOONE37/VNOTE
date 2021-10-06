@@ -37,13 +37,3 @@ th:focus {
   gap: 5px;
   margin-bottom: 20px;
 }
-.tableButton {
-  width: 80px;
-  height: 80px;
-  background-color: #333 !important;
-  border: 2px solid transparent;
-  transition: 0.1s linear;
-}
-.tableButton:hover {
-  border: 2px solid var(--positive);
-}
