@@ -79,7 +79,6 @@ export default function InsertCode({
                     value: (
                       <div
                         style={{
-                          border: '5px solid #333',
                           width: '100%',
                           height: '100%',
                           padding: '0',
@@ -142,7 +141,6 @@ export default function InsertCode({
                     value: (
                       <div
                         style={{
-                          border: '5px solid #333',
                           width: '100%',
                           height: '100%',
                           padding: '0',
