@@ -128,6 +128,38 @@ export default function InsertShape({
   }, [showBox]);
 
   const handleSubmit = () => {
+    const handleUpdate = () => {
+      setnotebooks(
+        notebooks.map((item1, index1) => {
+          if (item1.id == id) {
+            item1.cards.map((item2, index2) => {
+              if (index2 + 1 == currentPage) {
+                item2.elements[numberOfElement] = {
+                  type: 'svg',
+                  frame: data.frame,
+                  value: (
+                    <svg
+                      preserveAspectRatio='none'
+                      style={{ width: '100%', height: '100%' }}
+                      viewBox={shapes[currentShapeIndex].shape.props.viewBox}
+                    >
+                      {shapes[currentShapeIndex].shape.props.children}
+                    </svg>
+                  ),
+                  data: {
+                    fill: currentColor,
+                    index: currentShapeIndex,
+                    shape: shapes[currentShapeIndex].shape,
+                  },
+                };
+              }
+              return item2;
+            });
+          }
+          return item1;
+        }),
+      );
+    };
     const handleAdd = () => {
       if (shapes[currentShapeIndex].shape) {
         setnotebooks(
@@ -168,46 +200,10 @@ export default function InsertShape({
         setshowBox(false);
       }
     };
-    const handleUpdate = () => {
-      setnotebooks(
-        notebooks.map((item1, index1) => {
-          if (item1.id == id) {
-            item1.cards.map((item2, index2) => {
-              if (index2 + 1 == currentPage) {
-                item2.elements[numberOfElement] = {
-                  type: 'svg',
-                  frame: {
-                    translate:
-                      data && data.data ? data.frame.translate : [0, 0],
-                    rotate: data && data.data ? data.frame.rotate : 0,
-                    width: data && data.data ? data.frame.width : null,
-                    height: data && data.data ? data.frame.height : null,
-                  },
-                  value: (
-                    <svg
-                      preserveAspectRatio='none'
-                      style={{ width: '100%', height: '100%' }}
-                      viewBox={shapes[currentShapeIndex].shape.props.viewBox}
-                    >
-                      {shapes[currentShapeIndex].shape.props.children}
-                    </svg>
-                  ),
-                  data: {
-                    fill: currentColor,
-                    index: currentShapeIndex,
-                    shape: shapes[currentShapeIndex].shape,
-                  },
-                };
-              }
-              return item2;
-            });
-          }
-          return item1;
-        }),
-      );
-      setshowBox(false);
-    };
-    numberOfElement ? handleUpdate() : handleAdd();
+
+    !isNaN(numberOfElement) ? handleUpdate() : handleAdd();
+
+    setshowBox(false);
   };
 
   return createPortal(

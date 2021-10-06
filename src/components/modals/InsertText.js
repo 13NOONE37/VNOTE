@@ -28,100 +28,100 @@ export default function InsertText({
 
   const handleSubmit = () => {
     setcurrentText(edit.current.innerHTML);
-    numberOfElement
-      ? setnotebooks(
-          notebooks.map((item1, index1) => {
-            if (item1.id == id) {
-              item1.cards.map((item2, index2) => {
-                if (index2 + 1 == currentPage) {
-                  item2.elements[numberOfElement] = {
-                    type: 'text',
-                    frame: {
-                      translate:
-                        data && data.data ? data.frame.translate : [0, 0],
-                      rotate: data && data.data ? data.frame.rotate : 0,
-                      width: data && data.data ? data.frame.width : null,
-                      height: data && data.data ? data.frame.height : null,
-                    },
-                    value: (
-                      <div
-                        className='scrollClass2'
-                        style={{
-                          background: '#ffffff',
-                          color: '#000000',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          padding: '25px',
-                          width: '100%',
-                          height: '100%',
-                          wordBreak: 'break-all',
-                          hyphens: 'auto',
-                          whiteSpace: 'auto',
-                          overflow: 'hidden auto',
-                        }}
-                        dangerouslySetInnerHTML={{
-                          __html: edit.current.innerHTML,
-                        }}
-                      ></div>
-                    ),
-                    data: {
-                      text: edit.current.innerHTML,
-                    },
-                  };
-                }
-                return item2;
-              });
-            }
-            return item1;
-          }),
-        )
-      : setnotebooks(
-          notebooks.map((item1, index1) => {
-            if (item1.id == id) {
-              item1.cards.map((item2, index2) => {
-                if (index2 + 1 == currentPage) {
-                  item2.elements.push({
-                    type: 'text',
-                    frame: {
-                      translate: [0, 0],
-                      rotate: 0,
-                      width: 100,
-                      height: 100,
-                    },
-                    value: (
-                      <div
-                        className='scrollClass2'
-                        style={{
-                          background: '#ffffff',
-                          color: '#000000',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          padding: '25px',
-                          width: '100%',
-                          height: '100%',
-                          wordBreak: 'break-all',
-                          hyphens: 'auto',
-                          whiteSpace: 'auto',
-                          overflow: 'hidden auto',
-                        }}
-                        dangerouslySetInnerHTML={{
-                          __html: edit.current.innerHTML,
-                        }}
-                      ></div>
-                    ),
-                    data: {
-                      text: edit.current.innerHTML,
-                    },
-                  });
-                }
-                return item2;
-              });
-            }
-            return item1;
-          }),
-        );
+
+    const handleUpdate = () => {
+      setnotebooks(
+        notebooks.map((item1, index1) => {
+          if (item1.id == id) {
+            item1.cards.map((item2, index2) => {
+              if (index2 + 1 == currentPage) {
+                item2.elements[numberOfElement] = {
+                  type: 'text',
+                  frame: data.frame,
+                  value: (
+                    <div
+                      className='scrollClass2'
+                      style={{
+                        background: '#ffffff',
+                        color: '#000000',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        padding: '25px',
+                        width: '100%',
+                        height: '100%',
+                        wordBreak: 'break-all',
+                        hyphens: 'auto',
+                        whiteSpace: 'auto',
+                        overflow: 'hidden auto',
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: edit.current.innerHTML,
+                      }}
+                    ></div>
+                  ),
+                  data: {
+                    text: edit.current.innerHTML,
+                  },
+                };
+              }
+              return item2;
+            });
+          }
+          return item1;
+        }),
+      );
+    };
+    const handleAdd = () => {
+      setnotebooks(
+        notebooks.map((item1, index1) => {
+          if (item1.id == id) {
+            item1.cards.map((item2, index2) => {
+              if (index2 + 1 == currentPage) {
+                item2.elements.push({
+                  type: 'text',
+                  frame: {
+                    translate: [0, 0],
+                    rotate: 0,
+                    width: 100,
+                    height: 100,
+                  },
+                  value: (
+                    <div
+                      className='scrollClass2'
+                      style={{
+                        background: '#ffffff',
+                        color: '#000000',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        padding: '25px',
+                        width: '100%',
+                        height: '100%',
+                        wordBreak: 'break-all',
+                        hyphens: 'auto',
+                        whiteSpace: 'auto',
+                        overflow: 'hidden auto',
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: edit.current.innerHTML,
+                      }}
+                    ></div>
+                  ),
+                  data: {
+                    text: edit.current.innerHTML,
+                  },
+                });
+              }
+              return item2;
+            });
+          }
+          return item1;
+        }),
+      );
+    };
+
+    !isNaN(numberOfElement) ? handleUpdate() : handleAdd();
 
     setcurrentText('');
     setcurrentColor('#000000');

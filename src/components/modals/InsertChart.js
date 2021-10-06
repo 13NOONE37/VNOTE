@@ -126,7 +126,7 @@ export default function InsertChart({
   };
   const handleSubmit = () => {
     if (chartValues.length >= 1) {
-      numberOfElement
+      !isNaN(numberOfElement)
         ? setnotebooks(
             notebooks.map((item1, index1) => {
               if (item1.id == id) {

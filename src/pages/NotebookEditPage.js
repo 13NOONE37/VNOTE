@@ -7,6 +7,7 @@ import ControPageCount from 'components/main/ControPageCount';
 import NotebookSideActions from 'components/main/NotebookSideActions';
 import NotebookEdit from 'components/main/NotebookEdit';
 import LayersManager from 'components/main/LayersManager';
+import NotFound from './NotFound';
 
 export default function NotebookEditPage() {
   const { id } = useParams();
@@ -24,7 +25,7 @@ export default function NotebookEditPage() {
   const [currentPage, setcurrentPage] = useState(1);
   const [isEditMode, setisEditMode] = useState(true);
 
-  return (
+  return notebooks.find((item) => item.id == id) ? (
     <div className='notebookPage scrollClass'>
       <NotebookSideActions
         notebooks={notebooks}
@@ -60,5 +61,7 @@ export default function NotebookEditPage() {
         isEditMode={isEditMode}
       />
     </div>
+  ) : (
+    <NotFound />
   );
 }

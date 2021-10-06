@@ -67,7 +67,7 @@ export default function InsertCode({
   };
 
   const handleSubmit = () => {
-    numberOfElement
+    !isNaN(numberOfElement)
       ? setnotebooks(
           notebooks.map((item1, index1) => {
             if (item1.id == id) {

@@ -3,7 +3,6 @@ import ContentEditable from 'react-contenteditable';
 
 import 'css/main/NotebookEdit.css';
 import LayersRenderComponent from './LayersRenderComponent';
-import handleContentChange from 'utils/Global/handleContentChange';
 
 function NotebookEdit({
   notebooks,
