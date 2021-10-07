@@ -143,7 +143,7 @@ export default function Note({
                 </button>
               )}
               <span className='noteTitle'>
-                {item.title ? item.title : String.fromCharCode(0)}
+                {item.title ? item.title : '&#009'}
               </span>
               <span className='noteContent scrollClass'>
                 {item.content && item.isCheckboxList ? (

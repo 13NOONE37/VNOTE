@@ -3,7 +3,7 @@ import 'css/main/NotebookSideActions.css';
 import { ReactComponent as VNoteLogo } from 'resources/SVG/logo.svg';
 import { NavLink } from 'react-router-dom';
 import ShareNotebook from 'components/modals/ShareNotebook';
-import DrawNotebook from 'components/modals/DrawNotebook';
+import InsertDraw from 'components/modals/InsertDraw';
 import TogglePaper from 'components/modals/TogglePaper';
 import InsertImage from 'components/modals/InsertImage';
 import InsertShape from 'components/modals/InsertShape';
@@ -257,7 +257,7 @@ function NotebookSideActions({
         setshowBox={setshowChartBox}
         currentPage={currentPage}
       />
-      <DrawNotebook
+      <InsertDraw
         notebooks={notebooks}
         setnotebooks={setnotebooks}
         id={id}

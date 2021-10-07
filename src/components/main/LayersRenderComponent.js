@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import MoveableComponent from 'components/main/MoveableComponent';
 import 'css/main/MoveableBox.css';
 import InsertChart from 'components/modals/InsertChart';
-import DrawNotebook from 'components/modals/DrawNotebook';
+import InsertDraw from 'components/modals/InsertDraw';
 import InsertCode from 'components/modals/InsertCode';
 import InsertShape from 'components/modals/InsertShape';
 import InsertText from 'components/modals/InsertText';
@@ -232,7 +232,7 @@ export default function LayersRenderComponent({
         numberOfElement={numberOfElement}
         data={data}
       />
-      <DrawNotebook
+      <InsertDraw
         notebooks={notebooks}
         setnotebooks={setnotebooks}
         id={id}
