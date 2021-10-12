@@ -68,7 +68,6 @@ export default function App({
 
   const [keepRatio, setkeepRatio] = useState(false);
 
-  // const [isEventListenerAdded, setisEventListenerAdded] = useState(false);
   useEffect(() => {
     const buttons = [
       document.querySelector('.moveable-nw'),
