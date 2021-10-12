@@ -68,25 +68,25 @@ export default function App({
 
   const [keepRatio, setkeepRatio] = useState(false);
 
-  const [isEventListenerAdded, setisEventListenerAdded] = useState(false);
+  // const [isEventListenerAdded, setisEventListenerAdded] = useState(false);
   useEffect(() => {
-    //memory leak; można dodać gdzię window.removeEventListener('mouseup', handleSetKeepRatio)
-    if (!isEventListenerAdded) {
-      console.log('addEventListener');
-      const buttons = [
-        document.querySelector('.moveable-nw'),
-        document.querySelector('.moveable-ne'),
-        document.querySelector('.moveable-sw'),
-        document.querySelector('.moveable-se'),
-      ];
-      buttons.forEach((item) => {
-        item.addEventListener('mousedown', () => setkeepRatio(true));
-      });
-      const handleSetKeepRatio = () => setkeepRatio(false);
-      window.addEventListener('mouseup', handleSetKeepRatio);
+    const buttons = [
+      document.querySelector('.moveable-nw'),
+      document.querySelector('.moveable-ne'),
+      document.querySelector('.moveable-sw'),
+      document.querySelector('.moveable-se'),
+    ];
+    const handleSetKeepRatioFalse = () => setkeepRatio(false);
+    const handleSetKeepRatioTrue = () => setkeepRatio(true);
 
-      setisEventListenerAdded(true);
-    }
+    buttons.forEach((item) => {
+      item.addEventListener('mousedown', handleSetKeepRatioTrue);
+      return () =>
+        item.removeEventListener('mousedown', handleSetKeepRatioTrue);
+    });
+
+    window.addEventListener('mouseup', handleSetKeepRatioFalse);
+    return () => window.removeEventListener('mouseup', handleSetKeepRatioFalse);
   }, []);
   return (
     <Moveable

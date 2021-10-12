@@ -88,6 +88,15 @@ export default function DrawNotebook({
         >
           <div className='imageBox'>
             <div className='topBar'>
+              <button
+                type='button'
+                href={`data:text/json;charset=utf-8,${encodeURIComponent(
+                  JSON.stringify(notebooks),
+                )}`}
+                download='filename.json'
+              >
+                Download Json
+              </button>
               <span>Enter text</span>
             </div>
             <div className='textPreview scrollClass'>
@@ -142,7 +151,6 @@ export default function DrawNotebook({
 
               <canvas
                 ref={canvasRef}
-                style={{ width: '100%', height: '100%' }}
                 onMouseMove={handleDraw}
                 onTouchMove={handleDraw}
                 onMouseDown={handleStartDrawing}

@@ -8,3 +8,25 @@
     flex-direction: column;
   }
 }
+
+@media print {
+  .sideNotebook {
+    display: none !important;
+  }
+  .collapseButton {
+    display: none !important;
+  }
+  .controlPageCount {
+    display: none !important;
+  }
+  body {
+    background-color: #fff !important;
+  }
+  .notebookPage {
+    background-color: #fff !important;
+  }
+}
+@page {
+  margin-top: 0;
+  margin-bottom: 0;
+}
