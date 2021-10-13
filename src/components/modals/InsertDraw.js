@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import 'css/modals/ShareNote.css';
+import 'css/modals/InsertDraw.css';
 import handleClickOutside from 'utils/ModalsFunctions/HandleClickOutside';
 import { createPortal } from 'react-dom';
 import handleContentChange from 'utils/Global/handleContentChange';
@@ -86,7 +87,7 @@ export default function DrawNotebook({
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => handleClickOutside(e, box, setshowBox)}
         >
-          <div className='imageBox'>
+          <div className='imageBox drawBox'>
             <div className='topBar'>
               <button
                 type='button'
@@ -99,7 +100,7 @@ export default function DrawNotebook({
               </button>
               <span>Enter text</span>
             </div>
-            <div className='textPreview scrollClass'>
+            <div className='drawPreview scrollClass'>
               <div className='textTools'>
                 <button
                   onClick={() => {

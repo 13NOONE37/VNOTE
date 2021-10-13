@@ -45,9 +45,7 @@ function NotebookSideActions({
   const handleTableBox = () => setshowTableBox(true);
   const handleChooseTypeOfPaper = () => setshowPaperBox(true);
   const handlePrintNotebook = () => {
-    alert(
-      'przygotować strone w css do druku(ukryć wszyskie elementy poza contentem oraz skolejkować wszyskie strony',
-    );
+    // 'przygotować strone w css do druku(ukryć wszyskie elementy poza contentem oraz skolejkować wszyskie strony',
     window.print();
   };
   const handleShareNotebook = () => setshowShareBox(true);
