@@ -36,7 +36,8 @@
   background-color: #00293d;
 }
 
-.ProfileBar button {
+.ProfileBar button,
+.ProfileBar a {
   cursor: pointer;
   height: 77px;
   width: 77px;
@@ -51,7 +52,8 @@
 
   background-color: transparent;
 }
-.ProfileBar button i {
+.ProfileBar button i,
+.ProfileBar a i {
   color: var(--grey-2);
   z-index: 2;
 }

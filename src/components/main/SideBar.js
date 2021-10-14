@@ -1,5 +1,5 @@
 import 'css/main/SideBar.css';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -166,7 +166,11 @@ export default function SideBar() {
             ) : (
               <i className='fas fa-user' title={user.displayName} />
             )}
-            <ProfileBar />
+            <ProfileBar
+              notes={notes}
+              notebooks={notebooks}
+              categoriesTable={categoriesTable}
+            />
           </button>
         </div>
       </aside>

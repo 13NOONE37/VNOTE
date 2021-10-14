@@ -29,6 +29,11 @@ export default function Notebook({
 
   useEffect(() => {
     if (isNewNotebook) {
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+
       const temp = notebooks;
 
       const newId = parseInt(
@@ -45,59 +50,9 @@ export default function Notebook({
         paperColor: 75,
         cards: [
           {
-            date: '1.01.2001',
-            titleOfPage: 'Destrukturyzacja',
-            elements: [
-              {
-                type: 'image',
-                frame: {
-                  translate: [0, 0],
-                  rotate: 0,
-                  width: null,
-                  height: null,
-                },
-                value: (
-                  <img
-                    src='https://ratatuj.pl/wp-content/uploads/2019/01/ratatouille_pixar_disney_two_rats-525x295.jpg'
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                ),
-              },
-              {
-                type: 'image',
-                frame: {
-                  translate: [0, 0],
-                  rotate: 0,
-                  width: null,
-                  height: null,
-                },
-                value: (
-                  <img
-                    src='https://wedel.pl/uploads/media/default/0001/02/39381df179e04212e6b22902fbee2f7ceb0caac6.png'
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                ),
-              },
-            ],
-          },
-          {
-            date: '2.02.2002',
-            titleOfPage: 'OOP in JS',
-            elements: [
-              {
-                type: 'text',
-                frame: {
-                  translate: [0, 0],
-                  rotate: 0,
-                },
-                value: (
-                  <span>
-                    <b>szczur</b>
-                    <i> lur</i>
-                  </span>
-                ),
-              },
-            ],
+            date: `${day}.${month > 9 ? month : `0${month}`}.${year}`,
+            titleOfPage: 'Title of Page',
+            elements: [],
           },
         ],
       });
