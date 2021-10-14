@@ -168,8 +168,11 @@ export default function SideBar() {
             )}
             <ProfileBar
               notes={notes}
+              setnotes={setnotes}
               notebooks={notebooks}
+              setnotebooks={setnotebooks}
               categoriesTable={categoriesTable}
+              setcategoriesTable={setcategoriesTable}
             />
           </button>
         </div>

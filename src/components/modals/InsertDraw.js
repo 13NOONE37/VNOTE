@@ -28,8 +28,8 @@ export default function DrawNotebook({
   useEffect(() => {
     if (showBox) {
       const canvas = canvasRef.current;
-      canvas.width = 700;
-      canvas.height = 915;
+      canvas.width = 680;
+      canvas.height = 819;
 
       const context = canvas.getContext('2d');
 
@@ -89,15 +89,6 @@ export default function DrawNotebook({
         >
           <div className='imageBox drawBox'>
             <div className='topBar'>
-              <button
-                type='button'
-                href={`data:text/json;charset=utf-8,${encodeURIComponent(
-                  JSON.stringify(notebooks),
-                )}`}
-                download='filename.json'
-              >
-                Download Json
-              </button>
               <span>Enter text</span>
             </div>
             <div className='drawPreview scrollClass'>

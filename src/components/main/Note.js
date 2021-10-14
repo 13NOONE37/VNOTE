@@ -142,9 +142,12 @@ export default function Note({
                   <i className='fas fa-thumbtack notePin'></i>
                 </button>
               )}
-              <span className='noteTitle'>
-                {item.title ? item.title : '&#009'}
-              </span>
+              <span
+                className='noteTitle'
+                dangerouslySetInnerHTML={{
+                  __html: `${item.title ? item.title : '&#009'}`,
+                }}
+              ></span>
               <span className='noteContent scrollClass'>
                 {item.content && item.isCheckboxList ? (
                   <div className='tasksList'>
