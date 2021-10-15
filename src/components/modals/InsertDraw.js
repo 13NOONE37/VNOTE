@@ -178,7 +178,7 @@ export default function InsertDraw({
         >
           <div className='imageBox drawBox'>
             <div className='topBar'>
-              <span>Enter text</span>
+              <span>Draw</span>
             </div>
             <div className='drawPreview scrollClass'>
               <div className='textTools'>

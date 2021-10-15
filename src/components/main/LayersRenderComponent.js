@@ -96,6 +96,7 @@ export default function LayersRenderComponent({
   }, [elements]);
 
   useLayoutEffect(() => {
+    console.log('shorcut init');
     const handleDelete = () => {
       setnotebooks(
         notebooks.map((item, index) => {
@@ -107,15 +108,18 @@ export default function LayersRenderComponent({
           return item;
         }),
       );
+      setupdateForce(updateForce + 1);
     };
     //memory leak
     window.onkeydown = (e) => {
       if (isEditMode) {
         if (e.ctrlKey && e.code == 'KeyX') {
-          console.log('cut');
           setcurrentCopied({
             page: currentPage,
             elementIndex: target.getAttribute('element_index'),
+            cutContent: notebooks.find((item) => item.id == id).cards[
+              currentPage - 1
+            ].elements[target.getAttribute('element_index')],
           });
           handleDelete();
         }
@@ -132,9 +136,14 @@ export default function LayersRenderComponent({
           if (currentCopied != null) {
             console.log('paste');
 
-            let elementToAdd = notebooks.find((item) => item.id == id).cards[
-              currentCopied.page - 1
-            ].elements[currentCopied.elementIndex];
+            let elementToAdd;
+            if (currentCopied.cutContent) {
+              elementToAdd = currentCopied.cutContent;
+            } else {
+              elementToAdd = notebooks.find((item) => item.id == id).cards[
+                currentCopied.page - 1
+              ].elements[currentCopied.elementIndex];
+            }
 
             elementToAdd.frame.translate = [0, 0];
             elementToAdd.frame.rotate = 0;
