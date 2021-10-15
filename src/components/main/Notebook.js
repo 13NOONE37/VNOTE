@@ -80,7 +80,10 @@ export default function Notebook({
           }}
         >
           <div className='notebookInfo'>
-            <span className='title'>{item.title}</span>
+            <span
+              className='title'
+              dangerouslySetInnerHTML={{ __html: item.title }}
+            ></span>
           </div>
           <NotebookTools item={item} redirectToEdit={redirectToEdit} />
         </div>

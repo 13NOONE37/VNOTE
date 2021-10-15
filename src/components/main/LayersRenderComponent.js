@@ -73,6 +73,10 @@ export default function LayersRenderComponent({
         setshowTableBox(true);
         break;
       }
+      case 'draw': {
+        setshowDrawBox(true);
+        break;
+      }
     }
   };
   useEffect(() => {
@@ -240,6 +244,7 @@ export default function LayersRenderComponent({
         setshowBox={setshowDrawBox}
         currentPage={currentPage}
         numberOfElement={numberOfElement}
+        data={data}
       />
       <InsertCode
         notebooks={notebooks}

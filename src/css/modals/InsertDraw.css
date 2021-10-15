@@ -8,16 +8,38 @@
   justify-content: center;
   align-items: center;
 }
-.drawPreview .textTools button,
-input {
-  width: unset;
-  height: unset;
-  padding: var(--size-4);
-  /* background-color: var(--blue-11); */
+.textTools input[type='color'] {
+  padding: 0;
+  margin: 0;
 }
+.textTools input[type='range'] {
+  width: 100px;
+  -webkit-appearance: none;
+  background-color: transparent;
+  overflow: hidden;
+}
+.textTools input[type='range']::-webkit-slider-runnable-track {
+  cursor: pointer;
+  background-color: var(--blue-8);
+  border-radius: 5px;
+  content: '1';
+  color: white;
+}
+.textTools input[type='range']::-webkit-slider-thumb {
+  /* movable circle */
+  -webkit-appearance: none;
+  cursor: pointer;
+  height: 20px;
+  width: 1px;
+  transform-origin: right;
+  transform: scaleX(100);
+
+  background-color: #fff;
+}
+
 .drawPreview .textTools .colorStatic {
   padding: var(--size-4);
-  background-color: var(--blue-9);
+  background-color: var(--blue-8);
 }
 .drawPreview {
   height: 100%;
